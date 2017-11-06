@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigiwayDB", "DigiwayDB\DigiwayDB.csproj", "{129FEFD3-0B57-4900-B14A-64A86651ECFA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigiwayModel", "DigiwayDB\DigiwayModel.csproj", "{129FEFD3-0B57-4900-B14A-64A86651ECFA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigiwayTest", "DigiwayTest\DigiwayTest.csproj", "{3B12235D-220C-4214-8D69-11DCD9734F0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{129FEFD3-0B57-4900-B14A-64A86651ECFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{129FEFD3-0B57-4900-B14A-64A86651ECFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{129FEFD3-0B57-4900-B14A-64A86651ECFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B12235D-220C-4214-8D69-11DCD9734F0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B12235D-220C-4214-8D69-11DCD9734F0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B12235D-220C-4214-8D69-11DCD9734F0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B12235D-220C-4214-8D69-11DCD9734F0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
