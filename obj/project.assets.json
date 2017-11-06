@@ -2510,11 +2510,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\etu31944\\source\\repos\\Digiway2\\Digiway.csproj",
+      "projectUniqueName": "C:\\Users\\etu31944\\Source\\Repos\\Digiway2\\Digiway.csproj",
       "projectName": "Digiway",
-      "projectPath": "C:\\Users\\etu31944\\source\\repos\\Digiway2\\Digiway.csproj",
+      "projectPath": "C:\\Users\\etu31944\\Source\\Repos\\Digiway2\\Digiway.csproj",
       "packagesPath": "C:\\Users\\etu31944\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\etu31944\\source\\repos\\Digiway2\\obj\\",
+      "outputPath": "C:\\Users\\etu31944\\Source\\Repos\\Digiway2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
