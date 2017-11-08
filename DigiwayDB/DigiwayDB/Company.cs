@@ -1,20 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace DigiwayModel
 {
     public class Company
     {
+        [Key]
         public int CompanyId { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Address { get; set; }
+        [Required]
         public int ZIP { get; set; }
+        [Required]
         public string City { get; set; }
+        [Required]
         public string Country { get; set; }
+        [Required]
         public int TelNum { get; set; }
-        public bool IsValidated { get; set; }
-        public long UserId { get; set; }
         public virtual ICollection<User> Users { get; set; }
 
         public Company()

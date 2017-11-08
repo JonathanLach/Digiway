@@ -5,7 +5,8 @@ namespace DigiwayModel
 {
     public class DigiwayContext : DbContext
     {
-        public DigiwayContext(DbContextOptions options):base(options) { }
+        public DigiwayContext(DbContextOptions options):base(options) {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
