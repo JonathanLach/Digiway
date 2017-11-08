@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DigiwayDB
+namespace DigiwayModel
 {
     public class EventCategory
     {
-        public long Id { get; set; }
+        public long EventCategoryId { get; set; }
         public string Name { get; set; }
-
-    }
+        public virtual ICollection<Event> Events { get; set; }
+}
 }
