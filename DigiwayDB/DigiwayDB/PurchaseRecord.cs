@@ -21,6 +21,6 @@ namespace DigiwayModel
         public ActionRecord ActionRecord { get; set; }
         public long ProductId { get; set; }
         [ForeignKey("ProductId")]
-        public Product product { get; set; }
+        public Product Product { get; set; }
     }
 }

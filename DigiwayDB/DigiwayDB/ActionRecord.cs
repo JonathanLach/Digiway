@@ -13,8 +13,8 @@ namespace DigiwayModel
         [Required]
         public DateTime RecordDate { get; set; }
         public long UserId { get; set; }
-        [ForeignKey("UserId")]
         public User User { get; set; }
+        public string Description { get; set; }
         public virtual ICollection<TransferRecord> TransferRecords { get; set; }
         public virtual ICollection<PurchaseRecord> PurchaseRecords { get; set; }
     }

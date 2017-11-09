@@ -8,7 +8,7 @@ namespace DigiwayModel
     public class Company
     {
         [Key]
-        public int CompanyId { get; set; }
+        public long CompanyId { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
@@ -21,12 +21,7 @@ namespace DigiwayModel
         public string Country { get; set; }
         [Required]
         public int TelNum { get; set; }
-        public virtual ICollection<User> Users { get; set; }
-
-        public Company()
-        {
-            Users = new HashSet<User>();
-        }
+        public virtual ICollection<UserCompany> Users { get; set; }
     }
 
 }

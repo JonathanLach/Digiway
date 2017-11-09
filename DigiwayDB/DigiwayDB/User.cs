@@ -30,14 +30,9 @@ namespace DigiwayModel
         [Required]
         public double Money { get; set; }
 
-        public virtual ICollection<Friendship> Friends { get; set; }
-        public virtual ICollection<Company> Companies { get; set; }
+        public virtual ICollection<UserCompany> Companies { get; set; }
         public virtual ICollection<ActionRecord> ActionRecords { get; set; }
 
-
-        public User()
-        {
-            Companies = new HashSet<Company>();
-        }
+        public virtual ICollection<User> Friends { get; set; }
     }
 }

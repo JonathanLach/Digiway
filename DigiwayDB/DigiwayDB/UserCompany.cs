@@ -6,12 +6,11 @@ using System.Text;
 
 namespace DigiwayModel
 {
-    public class Friendship
+    public class UserCompany
     {
         public long UserId { get; set; }
         public User User { get; set; }
-        public long FriendId { get; set; }
-        public User Friend { get; set; }
-        public bool IsAwaiting { get; set; }
-    }
+        public long CompanyId { get; set; }
+        public Company Company{ get; set; }
+}
 }
