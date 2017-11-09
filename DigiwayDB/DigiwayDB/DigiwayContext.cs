@@ -12,15 +12,9 @@ namespace DigiwayModel
         {
             modelBuilder.HasDefaultSchema("digiway");
             modelBuilder.Entity<UserCompany>().HasKey(table => new { table.UserId, table.CompanyId });
-            modelBuilder.Entity<Friendship>().HasKey(table => new { table.UserId, table.FriendId });
-            modelBuilder.Entity<Friendship>(f =>
-                {
-                    f.HasOne(u => u.User).WithMany().HasForeignKey("UserId").OnDelete(DeleteBehavior.ClientSetNull);
-                    f.HasOne(fr => fr.Friend).WithMany().HasForeignKey("FriendId").OnDelete(DeleteBehavior.ClientSetNull);
-                }
-            );
-         }
-
+            modelBuilder.Entity<User>().HasMany(u => u.Friends).WithOne(f => f.User).OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<Friendship>().HasOne(fr => fr.User).WithMany(u => u.Friends).OnDelete(DeleteBehavior.Cascade);
+        }
         public DbSet<ActionRecord> ActionRecords { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Event> Events { get; set; }

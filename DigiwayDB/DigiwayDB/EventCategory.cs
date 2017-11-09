@@ -7,7 +7,6 @@ namespace DigiwayModel
 {
     public class EventCategory
     {
-        [Key]
         public long EventCategoryId { get; set; }
         [Required]
         public string Name { get; set; }

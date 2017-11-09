@@ -8,7 +8,6 @@ namespace DigiwayModel
 {
     public class PurchaseRecord
     {
-        [Key]
         public long PurchaseRecordId { get; set; }
         [Required]
         public int Quantity { get; set; }
@@ -16,11 +15,7 @@ namespace DigiwayModel
         public double UnitPrice { get; set; }
         public long EventId { get; set; }
         public Event Event { get; set; }
-        public long ActionRecordId { get; set; }
-        [ForeignKey("ActionRecordId")]
         public ActionRecord ActionRecord { get; set; }
-        public long ProductId { get; set; }
-        [ForeignKey("ProductId")]
         public Product Product { get; set; }
     }
 }

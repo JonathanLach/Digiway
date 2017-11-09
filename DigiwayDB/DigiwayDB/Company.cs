@@ -7,7 +7,6 @@ namespace DigiwayModel
 {
     public class Company
     {
-        [Key]
         public long CompanyId { get; set; }
         [Required]
         public string Name { get; set; }

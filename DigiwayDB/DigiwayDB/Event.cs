@@ -8,7 +8,6 @@ namespace DigiwayModel
 {
     public class Event
     {
-        [Key]
         public long EventId { get; set; }
         [Required]
         public string Name { get; set; }
@@ -23,11 +22,7 @@ namespace DigiwayModel
         [Required]
         public double TicketPrice { get; set; }
         public string Description { get; set; }
-        public long CompanyId { get; set; }
-        [ForeignKey("CompanyId")]
         public Company Company { get; set; }
-        [ForeignKey("CategoryId")]
-        public long CategoryId { get; set; }
         public EventCategory EventCategory { get; set; }
 
         public virtual ICollection<PointOfInterest> PointsOfInterest { get; set; }

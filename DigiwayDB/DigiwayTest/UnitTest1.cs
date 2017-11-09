@@ -13,9 +13,9 @@ namespace DigiwayTest
 
         public void TestMethod1()
         {
+            string deleteFriendship = "CREATE TRIGGER digiway.cascadeFriendship ON digiway.Users AFTER DELETE AS DELETE FROM digiway.Friendships WHERE FriendUserId IS NULL;";
             DbContextOptionsBuilder builder = new DbContextOptionsBuilder();
             DbContextOptions options = builder.UseSqlServer(@"Data Source = vm-sql2.iesn.Be\Stu3ig; Initial Catalog=1718_etu31944_DB; User Id=1718_etu31944; Password=ReuVA9^75sw").Options;
-
             _context = new DigiwayContext(options);
             _context.Database.EnsureDeleted();
             _context.Database.EnsureCreated();
@@ -132,6 +132,7 @@ namespace DigiwayTest
             };
 
             _context.Users.Add(testUser);
+            _context.Users.Add(testUser2);
             _context.ActionRecords.Add(testActionRecord);
             _context.Companies.Add(testCompany);
             _context.EventCategories.Add(testEventCateg);
@@ -143,6 +144,7 @@ namespace DigiwayTest
             _context.TransferRecords.Add(testTransferRec);
             _context.UserCompanies.Add(testUserCompany);
             _context.Friendships.Add(testFriendship);
+            _context.Database.ExecuteSqlCommand(deleteFriendship);
             _context.SaveChanges();
         }
 

@@ -7,7 +7,6 @@ namespace DigiwayModel
 {
     public class User
     {
-        [Key]
         public long UserId { get; set; }
         [Required]
         public string Login { get; set; }
@@ -33,6 +32,6 @@ namespace DigiwayModel
         public virtual ICollection<UserCompany> Companies { get; set; }
         public virtual ICollection<ActionRecord> ActionRecords { get; set; }
 
-        public virtual ICollection<User> Friends { get; set; }
+        public virtual ICollection<Friendship> Friends { get; set; }
     }
 }

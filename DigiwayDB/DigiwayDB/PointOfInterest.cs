@@ -8,7 +8,6 @@ namespace DigiwayModel
 {
     public class PointOfInterest
     {
-        [Key]
         public long PointOfInterestId { get; set; }
         [Required]
         public string Name { get; set; }
@@ -18,8 +17,6 @@ namespace DigiwayModel
         public double Longitude { get; set; }
         [Required]
         public double Latitude { get; set; }
-        public long EventId { get; set; }
-        [ForeignKey("EventId")]
         public Event Event { get; set; }
     }
 }
