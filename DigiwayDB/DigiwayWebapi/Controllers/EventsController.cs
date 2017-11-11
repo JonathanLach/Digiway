@@ -40,20 +40,49 @@ namespace DigiwayWebapi.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task Post([FromBody]Event e)
         {
+            if (ModelState.IsValid) {
+                await _context.Events.AddAsync(e);
+                await _context.SaveChangesAsync();
+            }
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public async Task Put(int id, [FromBody]Event e)
         {
+            if(ModelState.IsValid)
+            {
+                var existingEvent = await _context.Events.FindAsync(e.EventId);
+                if(existingEvent != null)
+                {
+                    existingEvent.Name = e.Name;
+                    existingEvent.PointsOfInterest = e.PointsOfInterest;
+                    existingEvent.TicketPrice = e.TicketPrice;
+                    existingEvent.ZIP = e.ZIP;
+                    existingEvent.Description = e.Description;
+                    existingEvent.Address = e.Address;
+                    existingEvent.City = e.City;
+                    existingEvent.Company = e.Company;
+                    existingEvent.EventCategory = e.EventCategory;
+                    existingEvent.EventDate = e.EventDate;
+                    existingEvent.PurchaseRecords = e.PurchaseRecords;
+                    await _context.SaveChangesAsync();
+                }
+            }
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
+            var existingEvent = await _context.Events.FindAsync(id);
+            if (existingEvent != null)
+            {
+                _context.Events.Remove(existingEvent);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }
