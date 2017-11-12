@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DigiwayModel;
 using Microsoft.EntityFrameworkCore;
-using System.Web;
 
 namespace DigiwayWebapi.Controllers
 {
@@ -31,59 +30,74 @@ namespace DigiwayWebapi.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public async Task<IQueryable<Event>> Get(int id)
+        public async Task<IActionResult> Get(long id)
         {
-            return await Task.FromResult(_context.Events.Where(e => e.EventId == id)
-                    .Include(ec => ec.EventCategory)
-                    .Include(poi => poi.PointsOfInterest)
-                    .Include(c => c.Company));
+            var existingEvent = await _context.Events
+                                .Include(ec => ec.EventCategory)
+                                .Include(poi => poi.PointsOfInterest)
+                                .Include(c => c.Company)
+                                .Where(e => e.EventId == id)
+                                .FirstOrDefaultAsync();
+            if (existingEvent == null)
+            {
+                return NotFound();
+            }
+            return new ObjectResult(existingEvent);
         }
 
         // POST api/values
         [HttpPost]
-        public async Task Post([FromBody]Event e)
+        public async Task<IActionResult> Post([FromBody]Event e)
         {
-            if (ModelState.IsValid) {
-                await _context.Events.AddAsync(e);
-                await _context.SaveChangesAsync();
+            if(!ModelState.IsValid || e == null)
+            {
+                return BadRequest();
             }
+            await _context.Events.AddAsync(e);
+            await _context.SaveChangesAsync();
+            return CreatedAtRoute("DigiwayWebapi", new { id = e.EventId }, e);
         }
 
         // PUT api/values/5
         [HttpPut]
-        public async Task Put(int id, [FromBody]Event e)
+        public async Task<IActionResult> Put(int id, [FromBody]Event e)
         {
-            if(ModelState.IsValid)
+            if(!ModelState.IsValid || e == null)
             {
-                var existingEvent = await _context.Events.FindAsync(e.EventId);
-                if(existingEvent != null)
-                {
-                    existingEvent.Name = e.Name;
-                    existingEvent.PointsOfInterest = e.PointsOfInterest;
-                    existingEvent.TicketPrice = e.TicketPrice;
-                    existingEvent.ZIP = e.ZIP;
-                    existingEvent.Description = e.Description;
-                    existingEvent.Address = e.Address;
-                    existingEvent.City = e.City;
-                    existingEvent.Company = e.Company;
-                    existingEvent.EventCategory = e.EventCategory;
-                    existingEvent.EventDate = e.EventDate;
-                    existingEvent.PurchaseRecords = e.PurchaseRecords;
-                    await _context.SaveChangesAsync();
-                }
+                return BadRequest(ModelState);
             }
+            var existingEvent = await _context.Events.FindAsync(e.EventId);
+            if (existingEvent == null)
+            {
+                return NotFound();
+            }
+            existingEvent.Name = e.Name;
+            existingEvent.PointsOfInterest = e.PointsOfInterest;
+            existingEvent.TicketPrice = e.TicketPrice;
+            existingEvent.ZIP = e.ZIP;
+            existingEvent.Description = e.Description;
+            existingEvent.Address = e.Address;
+            existingEvent.City = e.City;
+            existingEvent.Company = e.Company;
+            existingEvent.EventCategory = e.EventCategory;
+            existingEvent.EventDate = e.EventDate;
+            existingEvent.PurchaseRecords = e.PurchaseRecords;
+            await _context.SaveChangesAsync();
+            return new NoContentResult();
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public async Task Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var existingEvent = await _context.Events.FindAsync(id);
-            if (existingEvent != null)
+            if (existingEvent == null)
             {
-                _context.Events.Remove(existingEvent);
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
+            _context.Events.Remove(existingEvent);
+            await _context.SaveChangesAsync();
+            return new NoContentResult();
         }
     }
 }
