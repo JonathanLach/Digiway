@@ -26,5 +26,10 @@ namespace DigiwayUWP.Views
         {
             this.InitializeComponent();
         }
+
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            DigiwayView.IsPaneOpen = !DigiwayView.IsPaneOpen;
+        }
     }
 }

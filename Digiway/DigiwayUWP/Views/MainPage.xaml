@@ -8,7 +8,18 @@
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <controls:MenuBar />
-    </Grid>
+    <SplitView x:Name="DigiwayView" DisplayMode="CompactOverlay"  IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="150">
+        <SplitView.Pane>
+            <StackPanel Background="DarkCyan">
+                <Button x:Name="MenuButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Width="50" Height="50" Background="Transparent" Click="MenuButton_Click"/>
+                <controls:MenuBar />
+            </StackPanel>
+
+        </SplitView.Pane>
+        <SplitView.Content>
+            <Grid>
+                <TextBlock Text="Digiway" FontSize="54" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            </Grid>
+        </SplitView.Content>
+    </SplitView>
 </Page>

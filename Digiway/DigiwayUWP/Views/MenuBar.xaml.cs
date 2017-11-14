@@ -23,5 +23,6 @@ namespace DigiwayUWP.Views
         {
             this.InitializeComponent();
         }
+
     }
 }

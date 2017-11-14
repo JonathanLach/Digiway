@@ -8,53 +8,8 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-
-    <Grid>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Button Name="actionButton"  Content="Actions" Background="White">
-                    <Button.Flyout>
-                        <MenuFlyout Placement="Bottom">
-                            <MenuFlyoutItem Text="Exit" />
-                        </MenuFlyout>
-                    </Button.Flyout>
-                </Button>
-                <Button Name="profileButton"  Content="Profile" Background="White">
-                    <Button.Flyout>
-                        <MenuFlyout Placement="Bottom">
-                            <MenuFlyoutItem Text="Check" />
-                            <MenuFlyoutItem Text="Deposit Money" />
-                            <MenuFlyoutItem Text="Withdraw Money" />
-                        </MenuFlyout>
-                    </Button.Flyout>
-                </Button>
-                <Button Name="eventsButton" Content="Events" Background="White">
-                    <Button.Flyout>
-                        <MenuFlyout Placement="Bottom">
-                            <MenuFlyoutItem Text="Manage" />
-                            <MenuFlyoutItem Text="New" />
-                            <MenuFlyoutItem Text="Notifications" />
-                        </MenuFlyout>
-                    </Button.Flyout>
-                </Button>
-                <Button Name="historyRecordsButton" Content="History" Background="White">
-                    <Button.Flyout>
-                        <MenuFlyout Placement="Bottom">
-                            <MenuFlyoutItem Text="Actions" />
-                            <MenuFlyoutItem Text="Transfers" />
-                            <MenuFlyoutItem Text="Sales" />
-                        </MenuFlyout>
-                    </Button.Flyout>
-                </Button>
-                <Button Name="analyticsButton" Content="Analytics" Background="White">
-                    <Button.Flyout>
-                        <MenuFlyout Placement="Bottom">
-                            <MenuFlyoutItem Text="Global Sales" />
-                            <MenuFlyoutItem Text="User Preferences" />
-                        </MenuFlyout>
-                    </Button.Flyout>
-                </Button>
-            </StackPanel>
-        </StackPanel>
-    </Grid>
+    <StackPanel Orientation="Horizontal">
+        <Button x:Name="MainPageButton" FontFamily="Segoe MDL2 Assets" Content="&#xE825;" Width="50" Height="50" Background="Transparent"/>
+        <TextBlock Text="Home" FontSize="18" VerticalAlignment="Center"/>
+    </StackPanel>
 </UserControl>
