@@ -16,5 +16,7 @@ namespace DigiwayWebapi.Models
         public Event Event { get; set; }
         public ActionRecord ActionRecord { get; set; }
         public Product Product { get; set; }
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

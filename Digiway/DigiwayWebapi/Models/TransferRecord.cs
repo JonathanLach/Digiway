@@ -12,5 +12,7 @@ namespace DigiwayWebapi.Models
         [Required]
         public double TransferedValue { get; set; }
         public ActionRecord ActionRecord { get; set; }
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

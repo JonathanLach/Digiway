@@ -12,5 +12,7 @@ namespace DigiwayWebapi.Models
         public User User { get; set; }
         public User Friend { get; set; }
         public bool IsAwaiting { get; set; }
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

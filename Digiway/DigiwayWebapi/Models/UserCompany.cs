@@ -12,5 +12,7 @@ namespace DigiwayWebapi.Models
         public User User { get; set; }
         public long CompanyId { get; set; }
         public Company Company{ get; set; }
-}
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
+    }
 }

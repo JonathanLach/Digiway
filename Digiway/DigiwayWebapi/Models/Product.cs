@@ -15,5 +15,7 @@ namespace DigiwayWebapi.Models
         public bool IsCustom { get; set; }
         public ProductCategory ProductCategory { get; set; }
         public virtual ICollection<PurchaseRecord> PurchaseRecords { get; set; }
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }
