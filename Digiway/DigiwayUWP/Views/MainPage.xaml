@@ -7,9 +7,9 @@
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
 
-    <SplitView x:Name="DigiwayView" DisplayMode="CompactOverlay"  IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="200">
+    <SplitView x:Name="DigiwayView" DisplayMode="CompactOverlay"  IsPaneOpen="False" CompactPaneLength="65" OpenPaneLength="200">
         <SplitView.Pane>
-            <StackPanel Background="DarkSlateGray">
+            <StackPanel Background="LightGray">
                 <Button x:Name="MenuButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Width="50" Height="50" Background="Transparent" Click="MenuButton_Click"/>
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="HomeButton" FontFamily="Segoe MDL2 Assets" Content="&#xE825;" Width="50" Height="50"  Background="Transparent" Click="MenuItem_Click"/>
@@ -20,24 +20,21 @@
                     <Button x:Name="ProfileButton2" Content="Profile" FontSize="18" VerticalAlignment="Center" Width="150" Height="50" Background="Transparent" Click="MenuItem_Click"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Button x:Name="EventsButton" FontFamily="Segoe MDL2 Assets" Content="&#xE77B;" Width="50" Height="50" Background="Transparent" Click="MenuItem_Click"/>
+                    <Button x:Name="EventsButton" FontFamily="Segoe MDL2 Assets" Content="&#xE8BF;" Width="50" Height="50" Background="Transparent" Click="MenuItem_Click"/>
                     <Button x:Name="EventsButton2" Content="Events" FontSize="18" VerticalAlignment="Center" Width="150" Height="50" Background="Transparent" Click="MenuItem_Click"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Button x:Name="ActionRecordsButton" FontFamily="Segoe MDL2 Assets" Content="&#xE77B;" Width="50" Height="50" Background="Transparent" Click="MenuItem_Click"/>
+                    <Button x:Name="ActionRecordsButton" FontFamily="Segoe MDL2 Assets" Content="&#xE8BC;" Width="50" Height="50" Background="Transparent" Click="MenuItem_Click"/>
                     <Button x:Name="ActionRecordsButton2" Content="Action Records" FontSize="18" VerticalAlignment="Center" Width="150" Height="50" Background="Transparent" Click="MenuItem_Click"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Button x:Name="AnalyticsButton" FontFamily="Segoe MDL2 Assets" Content="&#xE77B;" Width="50" Height="50" Background="Transparent" Click="MenuItem_Click"/>
+                    <Button x:Name="AnalyticsButton" FontFamily="Segoe MDL2 Assets" Content="&#xE904;" Width="50" Height="50" Background="Transparent" Click="MenuItem_Click"/>
                     <Button x:Name="AnalyticsButton2" Content="Analytics" FontSize="18" VerticalAlignment="Center" Width="150" Height="50" Background="Transparent" Click="MenuItem_Click"/>
                 </StackPanel>
             </StackPanel>
-
         </SplitView.Pane>
         <SplitView.Content>
-            <Grid>
-                <Frame x:Name="contentFrame" x:FieldModifier="public"/>
-            </Grid>
+            <Frame x:Name="contentFrame" x:FieldModifier="public"/>
         </SplitView.Content>
     </SplitView>
 </Page>
