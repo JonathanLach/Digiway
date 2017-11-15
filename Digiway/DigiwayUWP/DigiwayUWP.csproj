@@ -116,9 +116,6 @@
     <Compile Include="Views\AnalyticsPage.xaml.cs">
       <DependentUpon>AnalyticsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BlankPage1.xaml.cs">
-      <DependentUpon>BlankPage1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\EventsPage.xaml.cs">
       <DependentUpon>EventsPage.xaml</DependentUpon>
     </Compile>
@@ -147,6 +144,7 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Resources\HomeBackground.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -158,10 +156,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AnalyticsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\BlankPage1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -190,6 +184,7 @@
       <Version>5.3.0</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
