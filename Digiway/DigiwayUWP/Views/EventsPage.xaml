@@ -5,7 +5,8 @@
     xmlns:local="using:DigiwayUWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Events}">
 
     <Grid>
         <Grid.Background>
@@ -30,38 +31,38 @@
         <TextBlock Text="Event Manager" FontSize="30" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"/>
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top">
             <TextBlock Text="Name: "  Margin="0,0,30,0"/>
-            <TextBox/>
+            <TextBox Text="{Binding EventDate, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Margin="0,0,0,15">
             <TextBlock Text="Date: " Margin="0,0,30,0"/>
-            <DatePicker/>
+            <DatePicker Date="{Binding EventDate, Mode=TwoWay, Converter={StaticResource NativeTypeConverter}, ConverterParameter=DateTime}"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" Margin="0,10,0,0">
             <TextBlock Text="Address: "/>
-            <TextBox/>
+            <TextBox Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="4" Grid.Column="1" VerticalAlignment="Top" Margin="0,10,0,0">
             <TextBlock Text="City: "/>
-            <TextBox/>
+            <TextBox Text="{Binding City, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" Margin="0,10,0,0">
             <TextBlock Text="ZIP: "/>
-            <TextBox/>
+            <TextBox Text="{Binding ZIP, Mode=TwoWay, Converter={StaticResource NativeTypeConverter},ConverterParameter=Int, UpdateSourceTrigger=Explicit}"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="6" Grid.Column="1" VerticalAlignment="Top" Margin="0,10,0,0">
             <TextBlock Text="Ticket Price: "/>
-            <TextBox/>
+            <TextBox Text="{Binding TicketPrice, Mode=TwoWay, Converter={StaticResource NativeTypeConverter},ConverterParameter=Int, UpdateSourceTrigger=Explicit}"/>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.RowSpan="7"  VerticalAlignment="Top" Margin="20,0,20,0">
+        <!--- <StackPanel Orientation="Vertical" Grid.Row="1" Grid.RowSpan="7"  VerticalAlignment="Top" Margin="20,0,20,0">
             <TextBlock Text="Description: "/>
             <TextBox AcceptsReturn="True" Height="300"/>
-        </StackPanel>
+        </StackPanel>-->
         <StackPanel Orientation="Vertical" Grid.Row="7" Grid.Column="1"  VerticalAlignment="Top" Margin="0,10,0,0">
             <TextBlock Text="Category: "/>
-            <ComboBox />
+            <ComboBox ItemsSource="{Binding Categories}" DisplayMemberPath="Name" />
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="8" Grid.Column="1" VerticalAlignment="Top" Margin="0,10,0,0">
-            <Button Content="Envoyer" HorizontalAlignment="Center" Width="100" Height="30" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
+            <Button Content="Envoyer" Command="{Binding AddNewEvent}" HorizontalAlignment="Center" Width="100" Height="30" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
         </StackPanel>
     </Grid>
 </Page>

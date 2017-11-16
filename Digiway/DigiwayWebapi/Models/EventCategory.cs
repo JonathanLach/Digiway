@@ -11,7 +11,5 @@ namespace DigiwayWebapi.Models
         [Required]
         public string Name { get; set; }
         public virtual ICollection<Event> Events { get; set; }
-        [Timestamp]
-        public byte[] RowVersion { get; set; }
     }
 }

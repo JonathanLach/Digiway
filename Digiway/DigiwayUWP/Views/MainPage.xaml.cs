@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DigiwayUWP.Models;
+using GalaSoft.MvvmLight.Views;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,35 +27,15 @@ namespace DigiwayUWP.Views
         public MainPage()
         {
             this.InitializeComponent();
+
+            hamburgerMenuControl.ItemsSource = MenuItem.GetMainItems();
             contentFrame.Navigate(typeof(HomePage));
         }
 
-        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        private void OnMenuItemClick(object sender, ItemClickEventArgs e)
         {
-            DigiwayView.IsPaneOpen = !DigiwayView.IsPaneOpen;
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            if (e.OriginalSource == HomeButton || e.OriginalSource == HomeButton2) {
-                contentFrame.Navigate(typeof(HomePage));
-            }
-            else if (e.OriginalSource == ProfileButton || e.OriginalSource == ProfileButton2)
-            {
-                contentFrame.Navigate(typeof(ProfilePage));
-            }
-            else if (e.OriginalSource == EventsButton || e.OriginalSource == EventsButton2)
-            {
-                contentFrame.Navigate(typeof(EventsPage));
-            }
-            else if (e.OriginalSource == ActionRecordsButton || e.OriginalSource == ActionRecordsButton2)
-            {
-                contentFrame.Navigate(typeof(ActionRecordsPage));
-            }
-            else if (e.OriginalSource == AnalyticsButton || e.OriginalSource == AnalyticsButton2)
-            {
-                contentFrame.Navigate(typeof(AnalyticsPage));
-            }
+            var menuItem = e.ClickedItem as MenuItem;
+            contentFrame.Navigate(menuItem.PageType);
         }
     }
 }

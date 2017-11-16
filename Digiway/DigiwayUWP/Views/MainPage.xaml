@@ -4,37 +4,32 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:models="using:DigiwayUWP.Models"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
 
-    <SplitView x:Name="DigiwayView" DisplayMode="CompactOverlay"  IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="200">
-        <SplitView.Pane>
-            <StackPanel Background="LightGray">
-                <Button x:Name="MenuButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Width="50" Height="50" Background="Transparent" Click="MenuButton_Click"/>
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="HomeButton" FontFamily="Segoe MDL2 Assets" Content="&#xE825;" Width="50" Height="50"  Background="Transparent" Click="MenuItem_Click"/>
-                    <Button x:Name="HomeButton2" Content="Home" FontSize="18" VerticalAlignment="Center" Width="150" Height="50" Background="Transparent" Click="MenuItem_Click"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="ProfileButton" FontFamily="Segoe MDL2 Assets" Content="&#xE77B;" Width="50" Height="50" Background="Transparent" Click="MenuItem_Click"/>
-                    <Button x:Name="ProfileButton2" Content="Profile" FontSize="18" VerticalAlignment="Center" Width="150" Height="50" Background="Transparent" Click="MenuItem_Click"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="EventsButton" FontFamily="Segoe MDL2 Assets" Content="&#xE8BF;" Width="50" Height="50" Background="Transparent" Click="MenuItem_Click"/>
-                    <Button x:Name="EventsButton2" Content="Events" FontSize="18" VerticalAlignment="Center" Width="150" Height="50" Background="Transparent" Click="MenuItem_Click"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="ActionRecordsButton" FontFamily="Segoe MDL2 Assets" Content="&#xE8BC;" Width="50" Height="50" Background="Transparent" Click="MenuItem_Click"/>
-                    <Button x:Name="ActionRecordsButton2" Content="Action Records" FontSize="18" VerticalAlignment="Center" Width="150" Height="50" Background="Transparent" Click="MenuItem_Click"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="AnalyticsButton" FontFamily="Segoe MDL2 Assets" Content="&#xE904;" Width="50" Height="50" Background="Transparent" Click="MenuItem_Click"/>
-                    <Button x:Name="AnalyticsButton2" Content="Analytics" FontSize="18" VerticalAlignment="Center" Width="150" Height="50" Background="Transparent" Click="MenuItem_Click"/>
-                </StackPanel>
-            </StackPanel>
-        </SplitView.Pane>
-        <SplitView.Content>
-            <Frame x:Name="contentFrame" x:FieldModifier="public"/>
-        </SplitView.Content>
-    </SplitView>
+    <Page.Resources>
+        <DataTemplate x:Key="DefaultTemplate" x:DataType="models:MenuItem">
+            <Grid Width="240" Height="48">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <SymbolIcon Grid.Column="0" Symbol="{x:Bind Icon, Mode=OneWay}" Foreground="White" />
+                <TextBlock Grid.Column="1" Text="{x:Bind Name, Mode=OneWay}" FontSize="16" VerticalAlignment="Center" Foreground="White" />
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <controls:HamburgerMenu x:Name="hamburgerMenuControl"
+                                PaneBackground="Black"
+                                Foreground="White"
+                                ItemTemplate="{StaticResource DefaultTemplate}"
+                                ItemClick="OnMenuItemClick"
+                                OpenPaneLength="180">
+            <Frame x:Name="contentFrame" Foreground="Black"/>
+        </controls:HamburgerMenu>
+    </Grid>
 </Page>

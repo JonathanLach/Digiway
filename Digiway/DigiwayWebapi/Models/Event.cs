@@ -27,8 +27,6 @@ namespace DigiwayWebapi.Models
 
         public virtual ICollection<PointOfInterest> PointsOfInterest { get; set; }
         public virtual ICollection<PurchaseRecord> PurchaseRecords { get; set; }
-        [Timestamp]
-        public byte[] RowVersion { get; set; }
 
     }
 }

@@ -15,7 +15,5 @@ namespace DigiwayWebapi.Models
         public string Description { get; set; }
         public virtual ICollection<TransferRecord> TransferRecords { get; set; }
         public virtual ICollection<PurchaseRecord> PurchaseRecords { get; set; }
-        [Timestamp]
-        public byte[] RowVersion { get; set; }
     }
 }

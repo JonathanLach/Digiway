@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DigiwayWindows.Models
+namespace DigiwayUWP.Models
 {
     public class Company
     {
+        public long CompanyId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public int ZIP { get; set; }

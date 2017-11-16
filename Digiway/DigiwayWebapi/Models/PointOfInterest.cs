@@ -18,7 +18,5 @@ namespace DigiwayWebapi.Models
         [Required]
         public double Latitude { get; set; }
         public Event Event { get; set; }
-        [Timestamp]
-        public byte[] RowVersion { get; set; }
     }
 }

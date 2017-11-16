@@ -1,11 +1,15 @@
-﻿using System;
+﻿using DigiwayUWP.DataAccessObjects;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace DigiwayWindows.Models
+namespace DigiwayUWP.Models
 {
     public class Event
     {
+        public long EventId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public int ZIP { get; set; }
@@ -19,5 +23,16 @@ namespace DigiwayWindows.Models
         public virtual ICollection<PointOfInterest> PointsOfInterest { get; set; }
         public virtual ICollection<PurchaseRecord> PurchaseRecords { get; set; }
 
+        public async Task AddEvent()
+        {
+            EventService eService = new EventService();
+            await eService.AddEvent(this);
+        }
+
+        public static async Task<ObservableCollection<EventCategory>> GetEvents()
+        {
+            EventService eService = new EventService();
+            return await eService.GetEvents();
+        }
     }
 }

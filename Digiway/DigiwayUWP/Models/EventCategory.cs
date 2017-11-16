@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DigiwayWindows.Models
+namespace DigiwayUWP.Models
 {
     public class EventCategory
     {
         public string Name { get; set; }
         public virtual ICollection<Event> Events { get; set; }
-}
+
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
 }

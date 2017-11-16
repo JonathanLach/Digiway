@@ -3,7 +3,7 @@ using System;
 
 namespace DigiwayWebapi.Models
 {
-    public class DigiwayContext : DbContext
+    public partial class DigiwayContext : DbContext
     {
         public DigiwayContext(DbContextOptions options):base(options) {
         }

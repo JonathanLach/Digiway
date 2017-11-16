@@ -21,8 +21,6 @@ namespace DigiwayWebapi.Models
         [Required]
         public int TelNum { get; set; }
         public virtual ICollection<UserCompany> Users { get; set; }
-        [Timestamp]
-        public byte[] RowVersion { get; set; }
     }
 
 }
