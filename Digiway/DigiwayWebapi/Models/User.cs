@@ -2,12 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace DigiwayWebapi.Models
 {
     public class User
     {
+        [Key]
+        [ScaffoldColumn(false)]
         public long UserId { get; set; }
         [Required]
         public string Login { get; set; }
@@ -32,7 +35,5 @@ namespace DigiwayWebapi.Models
 
         public virtual ICollection<UserCompany> Companies { get; set; }
         public virtual ICollection<ActionRecord> ActionRecords { get; set; }
-
-        public virtual ICollection<Friendship> Friends { get; set; }
     }
 }

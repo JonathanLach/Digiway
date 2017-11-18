@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using DigiwayUWP.DataAccessObjects;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,16 @@ namespace DigiwayUWP.ViewModels
     public class MainPageViewModel
     {
         private INavigationService _navigationService;
-        private ICommand _addNewEvent;
 
         public MainPageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
+            InitializeHttpClient();
+        }
+
+        public async Task InitializeHttpClient()
+        {
+            await ClientService.RunAsync();
         }
     }
 }

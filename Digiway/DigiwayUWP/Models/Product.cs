@@ -8,7 +8,6 @@ namespace DigiwayUWP.Models
 {
     public class Product
     {
-        public long ProductId { get; set; }
         public string Name { get; set; }
         public bool IsCustom { get; set; }
         public ProductCategory ProductCategory { get; set; }

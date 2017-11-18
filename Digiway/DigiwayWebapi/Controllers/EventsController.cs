@@ -62,6 +62,7 @@ namespace DigiwayWebapi.Controllers
         [HttpPut]
         public async Task<IActionResult> Put(int id, [FromBody]Event e)
         {
+
             if(!ModelState.IsValid || e == null)
             {
                 return BadRequest(ModelState);

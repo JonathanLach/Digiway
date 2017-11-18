@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,22 +18,27 @@ namespace DigiwayUWP.Models
         public DateTime EventDate { get; set; }
         public double TicketPrice { get; set; }
         public string Description { get; set; }
-        public Company Company { get; set; }
-        public EventCategory EventCategory { get; set; }
+        public virtual Company Company { get; set; }
+        public virtual EventCategory EventCategory { get; set; }
 
         public virtual ICollection<PointOfInterest> PointsOfInterest { get; set; }
         public virtual ICollection<PurchaseRecord> PurchaseRecords { get; set; }
 
+        private static EventService eService = new EventService();
+
         public async Task AddEvent()
         {
-            EventService eService = new EventService();
             await eService.AddEvent(this);
         }
 
         public static async Task<ObservableCollection<EventCategory>> GetEvents()
         {
-            EventService eService = new EventService();
             return await eService.GetEvents();
+        }
+
+        public static async Task<ObservableCollection<Company>> GetCompanies()
+        {
+            return await eService.GetCompanies();
         }
     }
 }

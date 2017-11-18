@@ -22,8 +22,8 @@ namespace DigiwayWebapi.Models
         [Required]
         public double TicketPrice { get; set; }
         public string Description { get; set; }
-        public Company Company { get; set; }
-        public EventCategory EventCategory { get; set; }
+        public virtual Company Company { get; set; }
+        public virtual EventCategory EventCategory { get; set; }
 
         public virtual ICollection<PointOfInterest> PointsOfInterest { get; set; }
         public virtual ICollection<PurchaseRecord> PurchaseRecords { get; set; }

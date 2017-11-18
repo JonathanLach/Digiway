@@ -8,11 +8,10 @@ namespace DigiwayUWP.Models
 {
     public class PurchaseRecord
     {
-        public long PurchaseRecordId { get; set; }
         public int Quantity { get; set; }
         public double UnitPrice { get; set; }
-        public Event Event { get; set; }
-        public ActionRecord ActionRecord { get; set; }
-        public Product Product { get; set; }
+        public virtual Event Event { get; set; }
+        public virtual ActionRecord ActionRecord { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

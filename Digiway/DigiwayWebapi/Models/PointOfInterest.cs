@@ -8,6 +8,8 @@ namespace DigiwayWebapi.Models
 {
     public class PointOfInterest
     {
+        [Key]
+        [ScaffoldColumn(false)]
         public long PointOfInterestId { get; set; }
         [Required]
         public string Name { get; set; }
@@ -17,6 +19,6 @@ namespace DigiwayWebapi.Models
         public double Longitude { get; set; }
         [Required]
         public double Latitude { get; set; }
-        public Event Event { get; set; }
+        public virtual Event Event { get; set; }
     }
 }

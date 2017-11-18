@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using DigiwayWebapi.Models;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace DigiwayWebapi
 {
@@ -26,7 +27,11 @@ namespace DigiwayWebapi
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = @"Data Source = vm-sql2.iesn.Be\Stu3ig; Initial Catalog = 1718_etu31944_DB; User Id = 1718_etu31944; Password = ReuVA9^75sw";
-            services.AddMvc().AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects; 
+            });
             services.AddDbContext<DigiwayContext>(options => options.UseSqlServer(connection));
         }
 
@@ -37,7 +42,6 @@ namespace DigiwayWebapi
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseMvc();
         }
     }

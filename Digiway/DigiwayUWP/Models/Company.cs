@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DigiwayUWP.Models
 {
@@ -13,7 +15,13 @@ namespace DigiwayUWP.Models
         public string City { get; set; }
         public string Country { get; set; }
         public int TelNum { get; set; }
-        public virtual ICollection<UserCompany> Users { get; set; }
+        //public virtual ICollection<UserCompany> Users { get; set; }
+        //public virtual ICollection<UserCompany> Users { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 
 }

@@ -9,8 +9,8 @@ namespace DigiwayWebapi.Models
     public class UserCompany
     {
         public long UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
         public long CompanyId { get; set; }
-        public Company Company{ get; set; }
+        public virtual Company Company{ get; set; }
     }
 }

@@ -8,22 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Xaml.Controls;
 
 namespace DigiwayUWP.ViewModels
 {
-    public class EventsPageViewModel
+    public class EventsPageViewModel : INotifyPropertyChanged
     {
         private INavigationService _navigationService;
-        private ICommand _addNewEvent;
-        private ICommand AddNewEvent
-        {
-            get
-            {
-                _addNewEvent =  new RelayCommand(async () => await AddEvent());
-                return _addNewEvent;
-            }
-        }
-
 
         private string _name;
         public string Name
@@ -67,17 +58,17 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
-        private DateTime _eventDate;
-        public DateTime EventDate
+        private DateTime _eventDatePicker;
+        public DateTime EventDatePicker
         {
             get
             {
-                return _eventDate;
+                return _eventDatePicker;
             }
             set
             {
-                _eventDate = value;
-                OnPropertyChanged("EventDate");
+                _eventDatePicker = value;
+                OnPropertyChanged("EventDatePicker");
             }
         }
 
@@ -122,6 +113,7 @@ namespace DigiwayUWP.ViewModels
                 OnPropertyChanged("Description");
             }
         }
+
         private ObservableCollection<EventCategory> _categories;
         public ObservableCollection<EventCategory> Categories
         {
@@ -131,21 +123,95 @@ namespace DigiwayUWP.ViewModels
             }
             set
             {
+                if (_categories == value)
+                {
+                    return;
+                }
                 _categories = value;
                 OnPropertyChanged("Categories");
             }
         }
 
+        private EventCategory _categorySelected;
+        public EventCategory CategorySelected
+        {
+            get
+            {
+                return _categorySelected;
+            }
+            set
+            {
+                if (_categorySelected != value)
+                {
+                    _categorySelected = value;
+                    OnPropertyChanged("CategorySelected");
+                }
+            }
+        }
+
+        private ObservableCollection<Company> _companies;
+        public ObservableCollection<Company> Companies
+        {
+            get
+            {
+                return _companies;
+            }
+            set
+            {
+                if (_companies == value)
+                {
+                    return;
+                }
+                _companies = value;
+                OnPropertyChanged("Companies");
+            }
+        }
+
+        private Company _companySelected;
+        public Company CompanySelected
+        {
+            get
+            {
+                return _companySelected;
+            }
+            set
+            {
+                if (_companySelected != value)
+                {
+                    _companySelected = value;
+                    OnPropertyChanged("CompanySelected");
+                }
+            }
+        }
+
+        private ICommand _addNewEvent;
+        public ICommand AddNewEvent
+        {
+            get
+            {
+                if (_addNewEvent == null)
+                {
+                    _addNewEvent = new RelayCommand(async () => await AddEvent());
+                }
+                return _addNewEvent;
+            }
+        }
 
         public EventsPageViewModel(INavigationService navigationService = null)
         {
             _navigationService = navigationService;
             GetEvents();
+            GetCompanies();
         }
 
-        private async Task GetEvents()
+        private async void GetEvents()
         {
             Categories = await Event.GetEvents();
+        }
+
+        private async void GetCompanies()
+        {
+            Companies = await Event.GetCompanies();
         }
 
         private async Task AddEvent()
@@ -155,14 +221,14 @@ namespace DigiwayUWP.ViewModels
                 Name = this.Name,
                 Address = this.Address,
                 City = this.City,
-                Company = null,
+                Company = this.CompanySelected,
                 Description = this.Description,
-                EventDate = this.EventDate,
-                EventCategory = null,
+                EventDate = this.EventDatePicker,
+                EventCategory = this.CategorySelected,
                 PointsOfInterest = null,
                 PurchaseRecords = null,
-                TicketPrice = 10,
-                ZIP = 6000
+                TicketPrice = this.TicketPrice,
+                ZIP = this.ZIP
             };
             await newEvent.AddEvent();
         }

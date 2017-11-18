@@ -8,13 +8,17 @@ namespace DigiwayWebapi.Models
 {
     public class PurchaseRecord
     {
+        [Key]
+        [ScaffoldColumn(false)]
         public long PurchaseRecordId { get; set; }
         [Required]
         public int Quantity { get; set; }
         [Required]
         public double UnitPrice { get; set; }
         public Event Event { get; set; }
-        public ActionRecord ActionRecord { get; set; }
-        public Product Product { get; set; }
+        [ForeignKey("ActionRecord")]
+        public long ActionRecordId { get; set; }
+        public virtual ActionRecord ActionRecord { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

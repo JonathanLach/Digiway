@@ -13,7 +13,7 @@ namespace DigiwayDBGenerator
 
         public void DBGeneration()
         {
-            string deleteFriendship = "CREATE TRIGGER digiway.cascadeFriendship ON digiway.Users AFTER DELETE AS DELETE FROM digiway.Friendships WHERE FriendUserId IS NULL;";
+            //string deleteFriendship = "CREATE TRIGGER digiway.cascadeFriendship ON digiway.Users AFTER DELETE AS DELETE FROM digiway.Friendships WHERE FriendUserId IS NULL;";
             DbContextOptionsBuilder builder = new DbContextOptionsBuilder();
             DbContextOptions options = builder.UseSqlServer(@"Data Source = vm-sql2.iesn.Be\Stu3ig; Initial Catalog=1718_etu31944_DB; User Id=1718_etu31944; Password=ReuVA9^75sw").Options;
             _context = new DigiwayContext(options);
@@ -49,12 +49,12 @@ namespace DigiwayDBGenerator
                 TelNumber=0476064613,
                 Hashcode="emach14751dqad4"
             };
-            Friendship testFriendship = new Friendship()
+            /*Friendship testFriendship = new Friendship()
             {
                 User = testUser,
                 Friend = testUser2,
                 IsAwaiting = false
-            };
+            };*/
             ActionRecord testActionRecord = new ActionRecord()
             {
                 RecordDate = new System.DateTime(2017, 11, 11),
@@ -143,8 +143,8 @@ namespace DigiwayDBGenerator
             _context.PurchaseRecords.Add(testPurchaseRec);
             _context.TransferRecords.Add(testTransferRec);
             _context.UserCompanies.Add(testUserCompany);
-            _context.Friendships.Add(testFriendship);
-            _context.Database.ExecuteSqlCommand(deleteFriendship);
+            //_context.Friendships.Add(testFriendship);
+            //_context.Database.ExecuteSqlCommand(deleteFriendship);
             _context.SaveChanges();
         }
 

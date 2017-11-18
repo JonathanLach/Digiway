@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DigiwayUWP.Models
 {
     public class User
     {
-        public long UserId { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public string Hashcode { get; set; }
@@ -24,5 +24,10 @@ namespace DigiwayUWP.Models
         public virtual ICollection<ActionRecord> ActionRecords { get; set; }
 
         public virtual ICollection<Friendship> Friends { get; set; }
+
+        public async Task AttemptConnection()
+        {
+
+        }
     }
 }

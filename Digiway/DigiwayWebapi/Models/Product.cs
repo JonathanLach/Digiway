@@ -8,12 +8,14 @@ namespace DigiwayWebapi.Models
 {
     public class Product
     {
+        [Key]
+        [ScaffoldColumn(false)]
         public long ProductId { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
         public bool IsCustom { get; set; }
-        public ProductCategory ProductCategory { get; set; }
+        public virtual ProductCategory ProductCategory { get; set; }
         public virtual ICollection<PurchaseRecord> PurchaseRecords { get; set; }
     }
 }
