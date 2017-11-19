@@ -200,13 +200,13 @@ namespace DigiwayUWP.ViewModels
         public EventsPageViewModel(INavigationService navigationService = null)
         {
             _navigationService = navigationService;
-            GetEvents();
+            GetEventCategories();
             GetCompanies();
         }
 
-        private async void GetEvents()
+        private async void GetEventCategories()
         {
-            Categories = await Event.GetEvents();
+            Categories = await EventCategory.GetEventCategories();
         }
 
         private async void GetCompanies()

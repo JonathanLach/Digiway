@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DigiwayUWP.ViewModels
 {
-    class AnalyticsPageViewModel
+    public class AnalyticsPageViewModel
     {
     }
 }

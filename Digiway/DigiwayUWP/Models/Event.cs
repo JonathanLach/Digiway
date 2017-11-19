@@ -31,11 +31,6 @@ namespace DigiwayUWP.Models
             await eService.AddEvent(this);
         }
 
-        public static async Task<ObservableCollection<EventCategory>> GetEvents()
-        {
-            return await eService.GetEvents();
-        }
-
         public static async Task<ObservableCollection<Company>> GetCompanies()
         {
             return await eService.GetCompanies();

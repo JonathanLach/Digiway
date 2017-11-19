@@ -12,7 +12,7 @@ namespace DigiwayUWP.ViewModels
 {
     public class MainPageViewModel
     {
-        private INavigationService _navigationService;
+        /*private INavigationService _navigationService;
 
         public MainPageViewModel(INavigationService navigationService)
         {
@@ -23,6 +23,6 @@ namespace DigiwayUWP.ViewModels
         public async Task InitializeHttpClient()
         {
             await ClientService.RunAsync();
-        }
+        }*/
     }
 }

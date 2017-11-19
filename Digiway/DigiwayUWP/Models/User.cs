@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DigiwayUWP.DataAccessObjects;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,9 +27,11 @@ namespace DigiwayUWP.Models
 
         public virtual ICollection<Friendship> Friends { get; set; }
 
-        public async Task AttemptConnection()
-        {
+        public static UserService userService = new UserService();
 
+        public static async Task<ObservableCollection<User>> GetUsers()
+        {
+            return await userService.GetUsers();
         }
     }
 }
