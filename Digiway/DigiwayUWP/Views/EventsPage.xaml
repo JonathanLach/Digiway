@@ -27,6 +27,7 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Event Manager" FontSize="30" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"/>
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top">
@@ -65,7 +66,7 @@
             <TextBlock Text="Company: "/>
             <ComboBox ItemsSource="{Binding Companies}" SelectedItem="{Binding CompanySelected, Mode=TwoWay}"/>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Row="9" Grid.Column="1" VerticalAlignment="Top" Margin="0,5,0,0">
+        <StackPanel Orientation="Vertical" Grid.Row="9" Grid.Column="1" VerticalAlignment="Center" Margin="0,5,0,0">
             <Button Content="Envoyer" Command="{Binding AddNewEvent}" HorizontalAlignment="Center" Width="100" Height="30" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
         </StackPanel>
     </Grid>

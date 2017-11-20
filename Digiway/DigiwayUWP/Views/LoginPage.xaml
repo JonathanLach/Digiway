@@ -30,11 +30,11 @@
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Margin="0,5,0,0">
             <TextBlock Text="Password: "/>
-            <TextBox Background="WhiteSmoke" Text="{Binding Password, Mode=TwoWay}"/>
+            <PasswordBox Background="WhiteSmoke" Password="{Binding Password, Mode=TwoWay}"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom">
             <Button Content="Connect" Command="{Binding SignIn}" HorizontalAlignment="Center" Width="100" Height="30" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
         </StackPanel>
-        <TextBlock Text="{Binding LoginError}" FontSize="30" Grid.Row="3" Grid.Column="1" Foreground="Red" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        <TextBlock Text="{Binding LoginError}" FontSize="30" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" Foreground="Red" VerticalAlignment="Top" HorizontalAlignment="Center"/>
     </Grid>
 </Page>

@@ -58,8 +58,8 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
-        private DateTime _eventDatePicker;
-        public DateTime EventDatePicker
+        private DatePicker _eventDatePicker;
+        public DatePicker EventDatePicker
         {
             get
             {
@@ -223,7 +223,7 @@ namespace DigiwayUWP.ViewModels
                 City = this.City,
                 Company = this.CompanySelected,
                 Description = this.Description,
-                EventDate = this.EventDatePicker,
+                EventDate = Convert.ToDateTime(EventDatePicker),
                 EventCategory = this.CategorySelected,
                 PointsOfInterest = null,
                 PurchaseRecords = null,
