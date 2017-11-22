@@ -17,7 +17,7 @@ namespace DigiwayUWP.Models
         {
             var items = new List<MenuItem>();
             items.Add(new MenuItem() { Icon = Symbol.Home, Name = "Home", PageType = typeof(Views.HomePage) });
-            items.Add(new MenuItem() { Icon = Symbol.Calendar, Name = "Events", PageType = typeof(Views.EventsPage) });
+            items.Add(new MenuItem() { Icon = Symbol.Calendar, Name = "Events", PageType = typeof(Views.EventsListPage) });
             items.Add(new MenuItem() { Icon = Symbol.Account, Name = "Profile", PageType = typeof(Views.ProfilePage) });
             items.Add(new MenuItem() { Icon = Symbol.List, Name = "Action Records", PageType = typeof(Views.ActionRecordsPage) });
             items.Add(new MenuItem() { Icon = Symbol.Globe, Name = "Analytics", PageType = typeof(Views.AnalyticsPage) });

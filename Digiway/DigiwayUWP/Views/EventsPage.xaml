@@ -5,6 +5,7 @@
     xmlns:local="using:DigiwayUWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=Events}">
 
@@ -54,7 +55,7 @@
             <TextBlock Text="Ticket Price: "/>
             <TextBox Text="{Binding TicketPrice, Mode=TwoWay}"/>
         </StackPanel>
-        <!--- <StackPanel Orientation="Vertical" Grid.Row="1" Grid.RowSpan="7"  VerticalAlignment="Top" Margin="20,0,20,0">
+        <!---<StackPanel Orientation="Vertical" Grid.Row="1" Grid.RowSpan="7"  VerticalAlignment="Top" Margin="20,0,20,0">
             <TextBlock Text="Description: "/>
             <TextBox AcceptsReturn="True" Height="300"/>
         </StackPanel>-->

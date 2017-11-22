@@ -21,6 +21,7 @@ namespace DigiwayUWP.ViewModels
             SimpleIoc.Default.Register<EventsPageViewModel>();
             SimpleIoc.Default.Register<ProfilePageViewModel>();
             SimpleIoc.Default.Register<LoginPageViewModel>();
+            SimpleIoc.Default.Register<EventsListPageViewModel>();
 
             NavigationService navigationPages = new NavigationService();
             SimpleIoc.Default.Register<INavigationService>(() => navigationPages);
@@ -30,6 +31,7 @@ namespace DigiwayUWP.ViewModels
             navigationPages.Configure("EventsPage", typeof(EventsPage));
             navigationPages.Configure("ProfilePage", typeof(ProfilePage));
             navigationPages.Configure("LoginPage", typeof(LoginPage));
+            navigationPages.Configure("EventsListPage", typeof(EventsListPage));
         }
 
         public MainPageViewModel Main
@@ -52,6 +54,14 @@ namespace DigiwayUWP.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<LoginPageViewModel>();
+            }
+        }
+
+        public EventsListPageViewModel EventsList
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<EventsListPageViewModel>();
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using DigiwayUWP.DataAccessObjects;
+using DigiwayUWP.Models;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using System;
@@ -7,22 +8,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace DigiwayUWP.ViewModels
 {
     public class MainPageViewModel
     {
-        /*private INavigationService _navigationService;
 
-        public MainPageViewModel(INavigationService navigationService)
+        public User CurrentUser { get; set; }
+
+        public void OnNavigatedTo(NavigationEventArgs e)
         {
-            _navigationService = navigationService;
-            InitializeHttpClient();
+            CurrentUser = (User)e.Parameter;
         }
-
-        public async Task InitializeHttpClient()
-        {
-            await ClientService.RunAsync();
-        }*/
     }
 }

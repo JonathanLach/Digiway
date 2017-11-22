@@ -89,18 +89,35 @@ namespace DigiwayUWP.ViewModels
 
         public async Task Connection()
         {
+            string hashedPassword = hashPassword(Password);
             ObservableCollection<User> users = await User.GetUsers();
             foreach (User u in users)
             {
-                if (u.Login == Login && u.Password == Password)
+                if (u.Login == Login && u.Password == hashedPassword)
                 {
-                    _navigationService.NavigateTo("MainPage");
+                    _navigationService.NavigateTo("MainPage", u);
                 }
                 else
                 {
                     LoginError = "Login ou mot de passe incorrect";
                 }
             }
+        }
+
+        public static String hashPassword(string value)
+        {
+            StringBuilder Sb = new StringBuilder();
+
+            using (var hash = SHA256.Create())
+            {
+                Encoding enc = Encoding.UTF8;
+                Byte[] result = hash.ComputeHash(enc.GetBytes(value));
+
+                foreach (Byte b in result)
+                    Sb.Append(b.ToString("x2"));
+            }
+
+            return Sb.ToString();
         }
 
         protected virtual void OnPropertyChanged(string PropertyName)

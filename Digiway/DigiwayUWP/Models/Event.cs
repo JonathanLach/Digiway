@@ -33,9 +33,20 @@ namespace DigiwayUWP.Models
             await eService.AddEvent(this);
         }
 
+        public static async Task<ObservableCollection<Event>> GetEvents()
+        {
+            return await eService.GetEvents();
+        }
+
         public static async Task<ObservableCollection<Company>> GetCompanies()
         {
             return await eService.GetCompanies();
+        }
+
+        public override string ToString()
+        {
+            IFormatProvider culture = new System.Globalization.CultureInfo("en-US");
+            return Name + "\t" + EventDate.GetDateTimeFormats('D', culture).GetValue(1) + "\t" + EventCategory;
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using DigiwayUWP.Models;
-using DigiwayUWP.ViewModels;
-using GalaSoft.MvvmLight.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,25 +20,16 @@ namespace DigiwayUWP.Views
     /// <summary>
     /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class EventsListPage
     {
-        public MainPage()
+        public EventsListPage()
         {
             this.InitializeComponent();
-
-            hamburgerMenuControl.ItemsSource = MenuItem.GetMainItems();
-            contentFrame.Navigate(typeof(HomePage));
         }
 
-        private void OnMenuItemClick(object sender, ItemClickEventArgs e)
+        private void AddEventClick(object sender, RoutedEventArgs e)
         {
-            var menuItem = e.ClickedItem as MenuItem;
-            contentFrame.Navigate(menuItem.PageType);
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            ((MainPageViewModel)DataContext).OnNavigatedTo(e);
+            Frame.Navigate(typeof(EventsPage));
         }
     }
 }
