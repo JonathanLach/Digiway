@@ -1,9 +1,11 @@
 ﻿using DigiwayUWP.Models;
+using DigiwayUWP.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -21,11 +23,29 @@ namespace DigiwayUWP.Views
     /// <summary>
     /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
     /// </summary>
-    public sealed partial class LoginPage : Page
+    public sealed partial class PointsOfInterestPage : Page
     {
-        public LoginPage()
+        public PointsOfInterestPage()
         {
             this.InitializeComponent();
+            hamburgerMenuControl.ItemsSource = MenuItem.GetMainItems();
+        }
+
+        private void OnMenuItemClick(object sender, ItemClickEventArgs e)
+        {
+            var menuItem = e.ClickedItem as MenuItem;
+            Frame.Navigate(menuItem.PageType);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            BasicGeoposition namurPosition = new BasicGeoposition()
+            {
+                Latitude = 50.4667,
+                Longitude = 4.8667
+            };
+            Geopoint mapCenter = new Geopoint(namurPosition);
+            Map.Center = mapCenter;
         }
     }
 }

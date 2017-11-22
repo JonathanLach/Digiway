@@ -22,6 +22,7 @@ namespace DigiwayUWP.ViewModels
             SimpleIoc.Default.Register<LoginPageViewModel>();
             SimpleIoc.Default.Register<HomePageViewModel>();
             SimpleIoc.Default.Register<EventsListPageViewModel>();
+            SimpleIoc.Default.Register<PointsOfInterestPageViewModel>();
 
             NavigationService navigationPages = new NavigationService();
             SimpleIoc.Default.Register<INavigationService>(() => navigationPages);
@@ -32,6 +33,7 @@ namespace DigiwayUWP.ViewModels
             navigationPages.Configure("LoginPage", typeof(LoginPage));
             navigationPages.Configure("HomePage", typeof(HomePage));
             navigationPages.Configure("EventsListPage", typeof(EventsListPage));
+            navigationPages.Configure("PointsOfInterestPage", typeof(PointsOfInterestPage));
         }
 
         public EventsPageViewModel Events
@@ -63,6 +65,14 @@ namespace DigiwayUWP.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<ProfilePageViewModel>();
+            }
+        }
+
+        public PointsOfInterestPageViewModel PointsOfInterest
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<PointsOfInterestPageViewModel>();
             }
         }
     }

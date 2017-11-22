@@ -201,6 +201,24 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
+        private ICommand _getPOIView;
+        public ICommand GetPOIView
+        {
+            get
+            {
+                if (_getPOIView == null)
+                {
+                    _getPOIView = new RelayCommand(() => GetPointsOfInterestView());
+                }
+                return _getPOIView;
+            }
+        }
+
+        public void GetPointsOfInterestView()
+        {
+            _navigationService.NavigateTo("PointsOfInterestPage");
+        }
+
         public EventsPageViewModel(INavigationService navigationService = null)
         {
             _navigationService = navigationService;

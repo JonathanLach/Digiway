@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="DigiwayUWP.Views.PointsOfInterestPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DigiwayUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    DataContext="{Binding Source={StaticResource Locator}, Path=PointsOfInterest}"
+    mc:Ignorable="d">
+
+    <Grid Name="pageGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <controls:HamburgerMenu x:Name="hamburgerMenuControl"
+                                PaneBackground="Black"
+                                Foreground="White"
+                                ItemTemplate="{StaticResource DefaultTemplate}"
+                                ItemClick="OnMenuItemClick"
+                                OpenPaneLength="180">
+            <Maps:MapControl
+               x:Name="Map" 
+               MapServiceToken="IyxS023Xvt5KHJhcXShs~SRY0Trw92WYpZX-JtoTE3Q~AsDJWQeaaB6wZmCBSYQEv0xYJShxPhuMOVRL9QaxucwWwnO5MAYuU4nUid4QZlyX"
+               ZoomInteractionMode="GestureAndControl"
+               TiltInteractionMode="GestureAndControl"
+               ZoomLevel="14"
+               LandmarksVisible="True"
+            />
+        </controls:HamburgerMenu>
+    </Grid>
+</Page>
