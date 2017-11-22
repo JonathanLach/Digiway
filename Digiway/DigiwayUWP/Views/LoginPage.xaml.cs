@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DigiwayUWP.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,12 @@ namespace DigiwayUWP.Views
         public LoginPage()
         {
             this.InitializeComponent();
+        }
+
+        private void OnMenuItemClick(object sender, ItemClickEventArgs e)
+        {
+            var menuItem = e.ClickedItem as MenuItem;
+            Frame.Navigate(menuItem.PageType);
         }
     }
 }

@@ -10,5 +10,10 @@ namespace DigiwayUWP.Models
     {
         public User User { get; set; }
         public Company Company{ get; set; }
-}
+
+        public override string ToString()
+        {
+            return Company.Name;
+        }
+    }
 }

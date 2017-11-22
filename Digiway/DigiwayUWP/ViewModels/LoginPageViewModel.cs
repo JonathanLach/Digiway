@@ -1,5 +1,6 @@
 ﻿using DigiwayUWP.DataAccessObjects;
 using DigiwayUWP.Models;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using System;
@@ -14,7 +15,7 @@ using System.Windows.Input;
 
 namespace DigiwayUWP.ViewModels
 {
-    public class LoginPageViewModel : INotifyPropertyChanged
+    public class LoginPageViewModel : ViewModelBase, INotifyPropertyChanged
     {
 
         private string _login;
@@ -27,7 +28,7 @@ namespace DigiwayUWP.ViewModels
             set
             {
                 _login = value;
-                OnPropertyChanged("Login");
+                RaisePropertyChanged("Login");
             }
         }
 
@@ -41,7 +42,7 @@ namespace DigiwayUWP.ViewModels
             set
             {
                 _password = value;
-                OnPropertyChanged("Password");
+                RaisePropertyChanged("Password");
             }
         }
 
@@ -55,7 +56,7 @@ namespace DigiwayUWP.ViewModels
             set
             {
                 _loginError = value;
-                OnPropertyChanged("LoginError");
+                RaisePropertyChanged("LoginError");
             }
         }
 
@@ -95,7 +96,8 @@ namespace DigiwayUWP.ViewModels
             {
                 if (u.Login == Login && u.Password == hashedPassword)
                 {
-                    _navigationService.NavigateTo("MainPage", u);
+                    User.CurrentUser = u;
+                    _navigationService.NavigateTo("HomePage");
                 }
                 else
                 {
@@ -120,14 +122,5 @@ namespace DigiwayUWP.ViewModels
             return Sb.ToString();
         }
 
-        protected virtual void OnPropertyChanged(string PropertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
-
-
- 
 }

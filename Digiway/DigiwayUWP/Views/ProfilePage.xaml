@@ -5,8 +5,47 @@
     xmlns:local="using:DigiwayUWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Profile}"
     mc:Ignorable="d">
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="Profile" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <controls:HamburgerMenu x:Name="hamburgerMenuControl"
+                                PaneBackground="Black"
+                                ItemTemplate="{StaticResource DefaultTemplate}"
+                                ItemClick="OnMenuItemClick"
+                                OpenPaneLength="180">
+
+            <Grid>
+                <Grid.Background>
+                    <ImageBrush ImageSource="/Resources/EventsImage.jpg" Opacity="0.90"/>
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Profile" FontSize="30" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"/>
+                <StackPanel Orientation="Vertical" Background="White" BorderBrush="Black" BorderThickness="1"  Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <TextBlock Text="First name: "  Margin="0,0,0,0" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding CurrentUser.FirstName}" Foreground="DarkGoldenrod" HorizontalAlignment="Center" />
+                    <TextBlock Text="Last name: " HorizontalAlignment="Center" />
+                    <TextBlock Text="{Binding CurrentUser.LastName}" Foreground="DarkGoldenrod" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Address: " HorizontalAlignment="Center" />
+                    <TextBlock Text="{Binding AddressFormat}" Foreground="DarkGoldenrod" HorizontalAlignment="Center" />
+                    <TextBlock Text="Money: "  Margin="0,0,0,0" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding MoneyFormat}" Foreground="DarkGoldenrod" HorizontalAlignment="Center"/>
+                    <Rectangle Fill="Black" Height="1" Margin="0,30,0,0"/>
+                    <TextBlock Text="Companies:" HorizontalAlignment="Center" />
+                    <ListView  ItemsSource="{Binding CurrentUser.Companies}" HorizontalAlignment="Center" SelectionMode="None">
+                    </ListView>
+                </StackPanel>
+            </Grid>
+        </controls:HamburgerMenu>
     </Grid>
 </Page>

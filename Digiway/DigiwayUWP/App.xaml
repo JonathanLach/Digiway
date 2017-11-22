@@ -4,9 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vm="using:DigiwayUWP.ViewModels"
     xmlns:con="using:DigiwayUWP.Views"
+    xmlns:models="using:DigiwayUWP.Models"
+    xmlns:res="using:DigiwayUWP.Resources"
     RequestedTheme="Light">
     <Application.Resources>
-        <vm:ViewModelLocator x:Key="Locator"/>
-        <con:NativeTypeConverter x:Key="NativeTypeConverter"/>
+        <ResourceDictionary>
+            <vm:ViewModelLocator x:Key="Locator"/>
+            <ResourceDictionary.MergedDictionaries>
+                <res:DefaultTemplate/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

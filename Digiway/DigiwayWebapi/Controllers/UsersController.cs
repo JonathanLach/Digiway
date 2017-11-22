@@ -21,7 +21,8 @@ namespace DigiwayWebapi.Controllers
         [HttpGet]
         public async Task<IEnumerable<User>> Get()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users.Include(uc => uc.Companies).ThenInclude(c => c.Company)
+                        .ToListAsync();
         }
 
         // GET api/values/5

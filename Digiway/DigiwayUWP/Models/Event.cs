@@ -38,6 +38,11 @@ namespace DigiwayUWP.Models
             return await eService.GetEvents();
         }
 
+        public async Task UpdateEvent()
+        {
+            await eService.UpdateEvent(this);
+        }
+
         public static async Task<ObservableCollection<Company>> GetCompanies()
         {
             return await eService.GetCompanies();

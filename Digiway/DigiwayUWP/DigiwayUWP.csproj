@@ -111,7 +111,11 @@
     <Compile Include="Models\TransferRecord.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserCompany.cs" />
+    <Compile Include="Resources\DefaultTemplate.xaml.cs">
+      <DependentUpon>DefaultTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\EventsListPageViewModel.cs" />
+    <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="Views\EventsListPage.xaml.cs">
       <DependentUpon>EventsListPage.xaml</DependentUpon>
@@ -124,7 +128,6 @@
     <Compile Include="ViewModels\ActionRecordsPageViewModel.cs" />
     <Compile Include="ViewModels\AnalyticsPageViewModel.cs" />
     <Compile Include="ViewModels\EventsPageViewModel.cs" />
-    <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\ProfilePageViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\ActionRecordsPage.xaml.cs">
@@ -138,9 +141,6 @@
     </Compile>
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
@@ -170,6 +170,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Resources\DefaultTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="Views\ActionRecordsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -191,10 +196,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

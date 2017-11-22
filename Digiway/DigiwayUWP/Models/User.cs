@@ -22,6 +22,8 @@ namespace DigiwayUWP.Models
         public int AccessRights { get; set; }
         public double Money { get; set; }
 
+        public static User CurrentUser {get; set; }
+
         public virtual ICollection<UserCompany> Companies { get; set; }
         public virtual ICollection<ActionRecord> ActionRecords { get; set; }
 

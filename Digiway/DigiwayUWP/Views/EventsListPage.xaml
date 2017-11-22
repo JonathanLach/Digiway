@@ -6,28 +6,40 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:controls1="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=EventsList}">
 
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Resources/EventsImage.jpg" Opacity="0.90"/>
-        </Grid.Background>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="2.3*"/>
-            <ColumnDefinition Width="3*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-        </Grid.RowDefinitions>
-        <TextBlock Text="Events list" FontSize="30" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"/>
-        <ListView Grid.Row="1" Grid.Column="1" Background="White" BorderBrush="Black" BorderThickness="1" ItemsSource="{Binding Events}" SelectedItem="{Binding EventSelected}">
-        </ListView>
-        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="0,5,0,0">
-            <Button Content="Ajouter" Click="AddEventClick" HorizontalAlignment="Center" Width="100" Height="30" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
-        </StackPanel>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <controls1:HamburgerMenu x:Name="hamburgerMenuControl"
+                                PaneBackground="Black"
+                                Foreground="White"
+                                ItemTemplate="{StaticResource DefaultTemplate}"
+                                ItemClick="OnMenuItemClick"
+                                OpenPaneLength="180">
+
+            <Grid>
+                <Grid.Background>
+                    <ImageBrush ImageSource="/Resources/EventsImage.jpg" Opacity="0.90"/>
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2.3*"/>
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Events list" FontSize="30" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"/>
+                <ListView Grid.Row="1" Grid.Column="1" Background="White" BorderBrush="Black" BorderThickness="1" ItemsSource="{Binding Events, Mode=TwoWay}" SelectionMode="Single" SelectedItem="{Binding EventSelected, Mode=TwoWay}">
+                </ListView>
+                <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="0,5,0,0">
+                    <Button Content="Add" Command="{Binding AddNewEvent}" HorizontalAlignment="Left" Width="100" Height="30" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
+                    <Button Content="Edit" Command="{Binding EditEvent}" HorizontalAlignment="Right" Width="100" Height="30" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
+                </StackPanel>
+            </Grid>
+        </controls1:HamburgerMenu>
     </Grid>
 </Page>

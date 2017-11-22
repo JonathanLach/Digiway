@@ -15,32 +15,25 @@ namespace DigiwayUWP.ViewModels
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-            SimpleIoc.Default.Register<MainPageViewModel>();
             SimpleIoc.Default.Register<AnalyticsPageViewModel>();
             SimpleIoc.Default.Register<ActionRecordsPageViewModel>();
             SimpleIoc.Default.Register<EventsPageViewModel>();
             SimpleIoc.Default.Register<ProfilePageViewModel>();
             SimpleIoc.Default.Register<LoginPageViewModel>();
+            SimpleIoc.Default.Register<HomePageViewModel>();
             SimpleIoc.Default.Register<EventsListPageViewModel>();
 
             NavigationService navigationPages = new NavigationService();
             SimpleIoc.Default.Register<INavigationService>(() => navigationPages);
-            navigationPages.Configure("MainPage", typeof(MainPage));
             navigationPages.Configure("AnalyticsPage", typeof(AnalyticsPage));
             navigationPages.Configure("ActionRecordsPage", typeof(ActionRecordsPage));
             navigationPages.Configure("EventsPage", typeof(EventsPage));
             navigationPages.Configure("ProfilePage", typeof(ProfilePage));
             navigationPages.Configure("LoginPage", typeof(LoginPage));
+            navigationPages.Configure("HomePage", typeof(HomePage));
             navigationPages.Configure("EventsListPage", typeof(EventsListPage));
         }
 
-        public MainPageViewModel Main
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainPageViewModel>();
-            }
-        }
         public EventsPageViewModel Events
         {
             get
@@ -62,6 +55,14 @@ namespace DigiwayUWP.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<EventsListPageViewModel>();
+            }
+        }
+
+        public ProfilePageViewModel Profile
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ProfilePageViewModel>();
             }
         }
     }

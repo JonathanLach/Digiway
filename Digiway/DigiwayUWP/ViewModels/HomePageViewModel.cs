@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace DigiwayUWP.ViewModels
 {
-    public class ActionRecordsPageViewModel : ViewModelBase
+    public class HomePageViewModel : ViewModelBase
     {
+
     }
+
 }

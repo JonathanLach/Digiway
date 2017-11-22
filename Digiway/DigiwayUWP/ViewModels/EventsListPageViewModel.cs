@@ -1,6 +1,8 @@
 ﻿using DigiwayUWP.Models;
 using DigiwayUWP.Views;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,11 +16,10 @@ using Windows.UI.Xaml.Navigation;
 
 namespace DigiwayUWP.ViewModels
 {
-    public class EventsListPageViewModel : INotifyPropertyChanged
+    public class EventsListPageViewModel : ViewModelBase, INotifyPropertyChanged
     {
-
-        private ObservableCollection<Event> _eventSelected;
-        public ObservableCollection<Event> EventSelected
+        private Event _eventSelected;
+        public Event EventSelected
         {
             get
             {
@@ -26,10 +27,10 @@ namespace DigiwayUWP.ViewModels
             }
             set
             {
-                if (_eventSelected != value)
+                _eventSelected = value;
+                if (_eventSelected != null)
                 {
-                    _eventSelected = value;
-                    OnPropertyChanged("EventSelected");
+                    RaisePropertyChanged("EventSelected");
                 }
             }
         }
@@ -46,11 +47,17 @@ namespace DigiwayUWP.ViewModels
                 if (_events != value)
                 {
                     _events = value;
-                    OnPropertyChanged("Events");
+                    RaisePropertyChanged("Events");
                 }
             }
         }
-           
+
+        private INavigationService _navigationService;
+
+        public EventsListPageViewModel(INavigationService navigationService = null)
+        {
+            _navigationService = navigationService;
+        }
 
         private ICommand _addNewEvent;
         public ICommand AddNewEvent
@@ -63,11 +70,6 @@ namespace DigiwayUWP.ViewModels
                 }
                 return _addNewEvent;
             }
-        }
-
-        public void AddEvent()
-        {
-            MainPage.panelFrame.Navigate(typeof(EventsPage));
         }
 
         private ICommand _editEvent;
@@ -83,9 +85,17 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
+        public void AddEvent()
+        {
+            _navigationService.NavigateTo("EventsPage");
+        }
+
         public void EditEventSelected()
         {
-            MainPage.panelFrame.Navigate(typeof(EventsPage), EventSelected);
+            if (EventSelected != null)
+            {
+                _navigationService.NavigateTo("EventsPage", EventSelected);
+            }
         }
 
         private async void GetEvents()
@@ -93,17 +103,10 @@ namespace DigiwayUWP.ViewModels
             Events = await Event.GetEvents();
         }
 
-        protected virtual void OnPropertyChanged(string PropertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
-        }
-
         public void OnNavigatedTo(NavigationEventArgs e)
         {
             GetEvents();
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
     }
 }

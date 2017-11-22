@@ -1,4 +1,5 @@
 ﻿using DigiwayUWP.Models;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using System;
@@ -9,12 +10,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace DigiwayUWP.ViewModels
 {
-    public class EventsPageViewModel : INotifyPropertyChanged
+    public class EventsPageViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private INavigationService _navigationService;
+
+        public Event EventSelected {get; set;}
 
         private string _name;
         public string Name
@@ -26,7 +30,7 @@ namespace DigiwayUWP.ViewModels
             set
             {
                 _name = value;
-                OnPropertyChanged("Name");
+                RaisePropertyChanged("Name");
             }
         }
 
@@ -40,7 +44,7 @@ namespace DigiwayUWP.ViewModels
             set
             {
                 _address = value;
-                OnPropertyChanged("Address");
+                RaisePropertyChanged("Address");
             }
         }
 
@@ -54,7 +58,7 @@ namespace DigiwayUWP.ViewModels
             set
             {
                 _city = value;
-                OnPropertyChanged("City");
+                RaisePropertyChanged("City");
             }
         }
 
@@ -68,7 +72,7 @@ namespace DigiwayUWP.ViewModels
             set
             {
                 _eventDatePicker = value;
-                OnPropertyChanged("EventDatePicker");
+                RaisePropertyChanged("EventDatePicker");
             }
         }
 
@@ -82,7 +86,7 @@ namespace DigiwayUWP.ViewModels
             set
             {
                 _ticketPrice = value;
-                OnPropertyChanged("TicketPrice");
+                RaisePropertyChanged("TicketPrice");
             }
         }
 
@@ -96,7 +100,7 @@ namespace DigiwayUWP.ViewModels
             set
             {
                 _zip = value;
-                OnPropertyChanged("ZIP");
+                RaisePropertyChanged("ZIP");
             } 
         }
 
@@ -110,7 +114,7 @@ namespace DigiwayUWP.ViewModels
             set
             {
                 _description = value;
-                OnPropertyChanged("Description");
+                RaisePropertyChanged("Description");
             }
         }
 
@@ -128,7 +132,7 @@ namespace DigiwayUWP.ViewModels
                     return;
                 }
                 _categories = value;
-                OnPropertyChanged("Categories");
+                RaisePropertyChanged("Categories");
             }
         }
 
@@ -141,10 +145,10 @@ namespace DigiwayUWP.ViewModels
             }
             set
             {
-                if (_categorySelected != value)
+                _categorySelected = value;
+                if (_categorySelected != null)
                 {
-                    _categorySelected = value;
-                    OnPropertyChanged("CategorySelected");
+                    RaisePropertyChanged("CategorySelected");
                 }
             }
         }
@@ -163,7 +167,7 @@ namespace DigiwayUWP.ViewModels
                     return;
                 }
                 _companies = value;
-                OnPropertyChanged("Companies");
+                RaisePropertyChanged("Companies");
             }
         }
 
@@ -176,10 +180,10 @@ namespace DigiwayUWP.ViewModels
             }
             set
             {
-                if (_companySelected != value)
+                _companySelected = value;
+                if (_companySelected != null)
                 {
-                    _companySelected = value;
-                    OnPropertyChanged("CompanySelected");
+                    RaisePropertyChanged("CompanySelected");
                 }
             }
         }
@@ -230,16 +234,33 @@ namespace DigiwayUWP.ViewModels
                 TicketPrice = this.TicketPrice,
                 ZIP = this.ZIP
             };
-            await newEvent.AddEvent();
+
+            if (EventSelected == null)
+            {
+                await newEvent.AddEvent();
+            }
+            else
+            {
+                newEvent.EventId = EventSelected.EventId;
+                await newEvent.UpdateEvent();
+            }
         }
 
-
-        protected virtual void OnPropertyChanged(string PropertyName)
+        public void OnNavigatedTo(NavigationEventArgs e)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+            EventSelected = (Event)e.Parameter;
+            if (EventSelected != null)
+            {
+                Name = EventSelected.Name;
+                Address = EventSelected.Address;
+                City = EventSelected.City;
+                ZIP = EventSelected.ZIP;
+                Description = EventSelected.Description;
+                CompanySelected = EventSelected.Company;
+                CategorySelected = EventSelected.EventCategory;
+                TicketPrice = EventSelected.TicketPrice;
+            }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
     }
 }
