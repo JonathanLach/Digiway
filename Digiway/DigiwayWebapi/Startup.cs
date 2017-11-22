@@ -30,7 +30,7 @@ namespace DigiwayWebapi
             services.AddMvc().AddJsonOptions(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects; 
+                //options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects; 
             });
             services.AddDbContext<DigiwayContext>(options => options.UseSqlServer(connection));
         }

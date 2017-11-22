@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DigiwayUWP.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,6 +31,11 @@ namespace DigiwayUWP.Views
         private void AddEventClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(EventsPage));
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ((EventsListPageViewModel)DataContext).OnNavigatedTo(e);
         }
     }
 }

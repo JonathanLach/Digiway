@@ -25,10 +25,11 @@ namespace DigiwayUWP.Views
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public static Frame panelFrame;
         public MainPage()
         {
             this.InitializeComponent();
-
+            panelFrame = contentFrame;
             hamburgerMenuControl.ItemsSource = MenuItem.GetMainItems();
             contentFrame.Navigate(typeof(HomePage));
         }
