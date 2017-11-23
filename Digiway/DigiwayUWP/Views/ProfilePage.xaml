@@ -28,7 +28,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="2*"/>
-                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="4*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="Profile" FontSize="30" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"/>
                 <StackPanel Orientation="Vertical" Background="White" BorderBrush="Black" BorderThickness="1"  Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top">
@@ -44,6 +45,14 @@
                     <TextBlock Text="Companies:" HorizontalAlignment="Center" />
                     <ListView  ItemsSource="{Binding CurrentUser.Companies}" HorizontalAlignment="Center" SelectionMode="None">
                     </ListView>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,20">
+                    <TextBlock Text="Money: "/>
+                    <TextBox Text="{Binding MoneyTransaction, Mode=TwoWay}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center">
+                    <Button Content="Deposit" Command="{Binding DepositMoney}" HorizontalAlignment="Center" Width="100" Height="30" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
+                    <Button Content="Withdraw" Command="{Binding WithdrawMoney}" HorizontalAlignment="Center" Width="100" Height="30" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
                 </StackPanel>
             </Grid>
         </controls:HamburgerMenu>

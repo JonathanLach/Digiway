@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -32,8 +33,27 @@ namespace DigiwayWebapi.Models
         public int AccessRights { get; set; }
         [Required]
         public double Money { get; set; }
-
-        public virtual ICollection<UserCompany> Companies { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<UserCompany> Companies { get; set;}
+        [JsonIgnore]
         public virtual ICollection<ActionRecord> ActionRecords { get; set; }
+        [JsonProperty("companies")]
+        [NotMapped]
+        public virtual ICollection<UserCompany> GetCompaniesProxy
+        {
+            get
+            {
+                return Companies;
+            }
+        }
+        [JsonProperty("actionRecords")]
+        [NotMapped]
+        public virtual ICollection<ActionRecord> GetActionRecordsProxy
+        {
+            get
+            {
+                return ActionRecords;
+            }
+        }
     }
 }

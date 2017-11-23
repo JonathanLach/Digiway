@@ -19,5 +19,10 @@ namespace DigiwayUWP.DataAccessObjects
             var UserModel = JsonConvert.DeserializeObject<ObservableCollection<User>>(Jsonresponse);
             return UserModel;
         }
+
+        public async Task UpdateUser(User u)
+        {
+            await ClientService.client.PutAsJsonAsync("api/users", u);
+        }
     }
 }
