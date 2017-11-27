@@ -10,6 +10,7 @@ namespace DigiwayUWP.Models
 {
     public class ActionRecord
     {
+        public long ActionRecordId { get; set; }
         public DateTime RecordDate { get; set; }
         public long UserId { get; set; }
         public virtual User User { get; set; }

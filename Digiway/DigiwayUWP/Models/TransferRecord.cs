@@ -11,13 +11,14 @@ namespace DigiwayUWP.Models
     public class TransferRecord
     {
         public double TransferedValue { get; set; }
+        public long ActionRecordId { get; set; }
         public virtual ActionRecord ActionRecord { get; set; }
 
-        private static TransferRecordService pService = new TransferRecordService();
+        private static TransferRecordService tService = new TransferRecordService();
 
         public static async Task<ObservableCollection<TransferRecord>> GetTransferRecords()
         {
-            ObservableCollection<TransferRecord> recordsFound = await pService.GetTransferRecords();
+            ObservableCollection<TransferRecord> recordsFound = await tService.GetTransferRecords();
             var recordsKept = from record in recordsFound
                               where record.ActionRecord.User.UserId == User.CurrentUser.UserId
                               select record;
@@ -27,6 +28,23 @@ namespace DigiwayUWP.Models
         public override string ToString()
         {
             return ActionRecord + " " + TransferedValue;
+        }
+
+        public static async Task AddTransferRecord(double moneyTransfered)
+        {
+            ActionRecord aRecord = new ActionRecord()
+            {
+                RecordDate = DateTime.Today,
+                UserId = User.CurrentUser.UserId,
+                PurchaseRecords = null,
+            };
+            TransferRecord newRecord = new TransferRecord()
+            {
+                TransferedValue = moneyTransfered,
+                ActionRecord = aRecord
+            };
+            aRecord.Description = (moneyTransfered > 0) ? "Money deposit: " : "Money Withdraw: ";
+            await tService.AddTransferRecord(newRecord);
         }
     }
 }

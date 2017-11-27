@@ -105,6 +105,7 @@ namespace DigiwayUWP.ViewModels
             {
                 CurrentUser.Money -= MoneyTransaction;
                 MoneyFormat = CurrentUser.Money + " €";
+                await TransferRecord.AddTransferRecord(-CurrentUser.Money);
                 await CurrentUser.UpdateUser();
             }
         }
@@ -113,6 +114,7 @@ namespace DigiwayUWP.ViewModels
         {
             CurrentUser.Money += MoneyTransaction;
             MoneyFormat = CurrentUser.Money + " €";
+            await TransferRecord.AddTransferRecord(CurrentUser.Money);
             await CurrentUser.UpdateUser();
         }
 

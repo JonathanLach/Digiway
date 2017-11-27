@@ -13,6 +13,7 @@ namespace DigiwayWebapi.Models
         public long TransferRecordId { get; set; }
         [Required]
         public double TransferedValue { get; set; }
+        public long ActionRecordId { get; set; }
         public virtual ActionRecord ActionRecord { get; set; }
     }
 }

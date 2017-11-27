@@ -20,5 +20,10 @@ namespace DigiwayUWP.DataAccessObjects
             var TransferRecordModel = JsonConvert.DeserializeObject<ObservableCollection<TransferRecord>>(Jsonresponse);
             return TransferRecordModel;
         }
+
+        public async Task AddTransferRecord(TransferRecord tr)
+        {
+            await ClientService.client.PostAsJsonAsync("api/transferRecords", tr);
+        }
     }
 }
