@@ -1,4 +1,5 @@
 ﻿using DigiwayUWP.Models;
+using DigiwayUWP.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -33,6 +34,11 @@ namespace DigiwayUWP.Views
         {
             var menuItem = e.ClickedItem as MenuItem;
             Frame.Navigate(menuItem.PageType);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ((ActionRecordsPageViewModel)DataContext).OnNavigatedTo(e);
         }
     }
 }

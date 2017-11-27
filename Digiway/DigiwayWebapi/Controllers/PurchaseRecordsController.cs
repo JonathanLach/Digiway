@@ -24,6 +24,7 @@ namespace DigiwayWebapi.Controllers
             return await _context.PurchaseRecords.Include(p => p.Product)
                                                 .Include(e => e.Event)
                                                 .Include(ar => ar.ActionRecord)
+                                                .ThenInclude(u => u.User)
                                                 .ToListAsync();
         }
 

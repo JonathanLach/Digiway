@@ -8,6 +8,7 @@ using DigiwayWebapi.Models;
 
 namespace DigiwayWebapi.Controllers
 {
+    [Route("api/[controller]")]
     public class ActionRecordsController : Controller
     {
         private DigiwayContext _context;
@@ -20,7 +21,10 @@ namespace DigiwayWebapi.Controllers
         [HttpGet]
         public async Task<IEnumerable<ActionRecord>> Get()
         {
-            return await _context.ActionRecords.ToListAsync();
+            return await _context.ActionRecords.Include(u => u.User)
+                                                .Include(pr => pr.PurchaseRecords)
+                                                .Include(tr => tr.TransferRecords)
+                                                .ToListAsync();
         }
 
         // GET api/values/5

@@ -95,8 +95,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessObjects\ActionRecordService.cs" />
     <Compile Include="DataAccessObjects\ClientService.cs" />
     <Compile Include="DataAccessObjects\EventService.cs" />
+    <Compile Include="DataAccessObjects\PurchaseRecordService.cs" />
+    <Compile Include="DataAccessObjects\TransferRecordService.cs" />
     <Compile Include="DataAccessObjects\UserService.cs" />
     <Compile Include="Models\ActionRecord.cs" />
     <Compile Include="Models\Company.cs" />

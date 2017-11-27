@@ -21,7 +21,7 @@ namespace DigiwayWebapi.Controllers
         [HttpGet]
         public async Task<IEnumerable<TransferRecord>> Get()
         {
-            return await _context.TransferRecords.Include(ar => ar.ActionRecord).ToListAsync();
+            return await _context.TransferRecords.Include(ar => ar.ActionRecord).ThenInclude(u => u.User).ToListAsync();
         }
 
         // GET api/values/5

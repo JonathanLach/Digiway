@@ -75,5 +75,13 @@ namespace DigiwayUWP.ViewModels
                 return ServiceLocator.Current.GetInstance<PointsOfInterestPageViewModel>();
             }
         }
+
+        public ActionRecordsPageViewModel ActionRecords
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ActionRecordsPageViewModel>();
+            }
+        }
     }
 }

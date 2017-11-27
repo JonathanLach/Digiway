@@ -238,6 +238,13 @@ namespace DigiwayUWP.ViewModels
 
         private async Task AddEvent()
         {
+            ActionRecord addEvent = new ActionRecord()
+            {
+                UserId = User.CurrentUser.UserId,
+                RecordDate = DateTime.Today,
+                PurchaseRecords = null,
+                TransferRecords = null
+            };
             Event newEvent = new Event()
             {
                 Name = this.Name,
@@ -255,13 +262,16 @@ namespace DigiwayUWP.ViewModels
 
             if (EventSelected == null)
             {
+                addEvent.Description = "Ajout nouvel événement: " + newEvent;
                 await newEvent.AddEvent();
             }
             else
             {
+                addEvent.Description = "Edition de l'événement: " + newEvent;
                 newEvent.EventId = EventSelected.EventId;
                 await newEvent.UpdateEvent();
             }
+            await addEvent.AddActionRecord();
         }
 
         public void OnNavigatedTo(NavigationEventArgs e)
