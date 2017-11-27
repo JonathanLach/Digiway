@@ -29,9 +29,17 @@ namespace DigiwayUWP.Models
             return new ObservableCollection<ActionRecord>(recordsKept);
         }
 
-        public async Task AddActionRecord()
+        public static async Task AddActionRecord(string description)
         {
-            await aService.AddActionRecord(this);
+            ActionRecord newAction = new ActionRecord()
+            {
+                UserId = User.CurrentUser.UserId,
+                RecordDate = DateTime.Today,
+                Description = description,
+                PurchaseRecords = null,
+                TransferRecords = null
+            };
+            await aService.AddActionRecord(newAction);
         }
 
         public override string ToString()

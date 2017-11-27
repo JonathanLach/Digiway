@@ -97,6 +97,7 @@ namespace DigiwayUWP.ViewModels
                 if (u.Login == Login && u.Password == hashedPassword)
                 {
                     User.CurrentUser = u;
+                    await ActionRecord.AddActionRecord("Logged in");
                     _navigationService.NavigateTo("HomePage");
                 }
                 else

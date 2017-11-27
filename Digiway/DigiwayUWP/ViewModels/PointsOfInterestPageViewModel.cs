@@ -29,6 +29,7 @@ namespace DigiwayUWP.ViewModels
 
         public void OnNavigatedTo(NavigationEventArgs e)
         {
+
         }
     }
 }
