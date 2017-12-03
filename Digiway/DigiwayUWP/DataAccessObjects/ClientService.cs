@@ -16,7 +16,7 @@ namespace DigiwayUWP.DataAccessObjects
 
         public static async Task RunAsync()
         {
-            client.BaseAddress = new Uri("http://localhost:50222/");
+            client.BaseAddress = new Uri("http://digiwaydata.azurewebsites.net/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }

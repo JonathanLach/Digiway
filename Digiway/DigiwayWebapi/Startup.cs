@@ -26,13 +26,12 @@ namespace DigiwayWebapi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Data Source = vm-sql2.iesn.Be\Stu3ig; Initial Catalog = 1718_etu31944_DB; User Id = 1718_etu31944; Password = ReuVA9^75sw";
             services.AddMvc().AddJsonOptions(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 //options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects; 
             });
-            services.AddDbContext<DigiwayContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<DigiwayContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DigiwayDBConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -222,18 +222,16 @@ namespace DigiwayUWP.ViewModels
         public EventsPageViewModel(INavigationService navigationService = null)
         {
             _navigationService = navigationService;
-            GetEventCategories();
-            GetCompanies();
         }
 
-        private async void GetEventCategories()
+        private async Task<ObservableCollection<EventCategory>> GetEventCategories()
         {
-            Categories = await EventCategory.GetEventCategories();
+            return await EventCategory.GetEventCategories();
         }
 
-        private async void GetCompanies()
+        private async Task<ObservableCollection<Company>> GetCompanies()
         {
-            Companies = await Event.GetCompanies();
+            return await Event.GetCompanies();
         }
 
         private async Task AddEvent()
@@ -267,6 +265,12 @@ namespace DigiwayUWP.ViewModels
                 await newEvent.UpdateEvent();
             }
             await ActionRecord.AddActionRecord(actionDescription);
+        }
+
+        private async Task setBoxValues()
+        {
+            Categories = await GetEventCategories();
+            Companies = await GetCompanies();
         }
 
         public void OnNavigatedTo(NavigationEventArgs e)

@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:50221/",
-      "sslPort": 0
+      "applicationUrl": "http://digiwaydata.azurewebsites.net/",
+      "sslPort": 1443
     }
   },
   "profiles": {
@@ -21,7 +21,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:50222/"
+      "applicationUrl": "http://digiwaydata.azurewebsites.net/"
     }
   }
 }

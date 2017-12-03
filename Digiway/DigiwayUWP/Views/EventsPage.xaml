@@ -69,11 +69,11 @@
         </StackPanel>-->
                 <StackPanel Orientation="Vertical" Grid.Row="7" Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
                     <TextBlock Text="Category: "/>
-                    <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding CategorySelected, Mode=TwoWay}"/>
+                    <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding CategorySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Row="8" Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
                     <TextBlock Text="Company: "/>
-                    <ComboBox ItemsSource="{Binding Companies}" SelectedItem="{Binding CompanySelected, Mode=TwoWay}"/>
+                    <ComboBox ItemsSource="{Binding Companies}" SelectedItem="{Binding CompanySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Row="9" Grid.Column="1"  VerticalAlignment="Center" Margin="0,5,0,0">
                     <Button Content="Points of interest" Command="{Binding GetPOIView}" HorizontalAlignment="Center" Width="150" Height="30" BorderBrush="LightGray" Background="DarkGray" Margin="0,0,0,30" BorderThickness="1"/>
