@@ -1,4 +1,5 @@
-﻿using DigiwayUWP.DataAccessObjects;
+﻿using DigiwayUWP.DAOInterfaces;
+using DigiwayUWP.DataAccessObjects;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,7 +30,7 @@ namespace DigiwayUWP.Models
         public virtual ICollection<ActionRecord> ActionRecords { get; set; }
         public virtual ICollection<Friendship> Friends { get; set; }
 
-        public static UserService userService = new UserService();
+        public static IUserDAO userService = new UserService();
 
         public static async Task<ObservableCollection<User>> GetUsers()
         {

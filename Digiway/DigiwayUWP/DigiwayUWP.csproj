@@ -95,6 +95,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DAOInterfaces\IActionRecordDAO.cs" />
+    <Compile Include="DAOInterfaces\IEventDAO.cs" />
+    <Compile Include="DAOInterfaces\IPurchaseRecordDAO.cs" />
+    <Compile Include="DAOInterfaces\ITransferRecordDAO.cs" />
+    <Compile Include="DAOInterfaces\IUserDAO.cs" />
     <Compile Include="DataAccessObjects\ActionRecordService.cs" />
     <Compile Include="DataAccessObjects\ClientService.cs" />
     <Compile Include="DataAccessObjects\EventService.cs" />

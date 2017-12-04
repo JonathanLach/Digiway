@@ -1,4 +1,5 @@
-﻿using DigiwayUWP.DataAccessObjects;
+﻿using DigiwayUWP.DAOInterfaces;
+using DigiwayUWP.DataAccessObjects;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,7 +19,7 @@ namespace DigiwayUWP.Models
         public virtual ActionRecord ActionRecord { get; set; }
         public virtual Product Product { get; set; }
 
-        private static PurchaseRecordService pService = new PurchaseRecordService();
+        private static IPurchaseRecordDAO pService = new PurchaseRecordService();
 
         public static async Task<ObservableCollection<PurchaseRecord>> GetPurchaseRecords()
         {

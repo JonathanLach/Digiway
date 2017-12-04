@@ -1,4 +1,5 @@
-﻿using DigiwayUWP.Models;
+﻿using DigiwayUWP.DAOInterfaces;
+using DigiwayUWP.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -13,39 +14,42 @@ using System.Threading.Tasks;
 
 namespace DigiwayUWP.DataAccessObjects
 {
-    public class EventService
+    public class EventService : IEventDAO
     {
+        public static string eventURL = "api/events";
+        public static string eventCategoryURL = "api/eventCategories";
+        public static string companyURL = "api/companies";
 
         public async Task AddEvent(Event e)
         {
-            await ClientService.client.PostAsJsonAsync("api/events", e);
+            await ClientService.client.PostAsJsonAsync(eventURL, e);
         }
 
         public async Task UpdateEvent(Event e)
         {
-            await ClientService.client.PutAsJsonAsync("api/events", e);
+            await ClientService.client.PutAsJsonAsync(eventURL, e);
         }
 
         public async Task<ObservableCollection<Event>> GetEvents()
         {
-            HttpResponseMessage responseMessage = await ClientService.client.GetAsync("api/events");
-            var Jsonresponse = await ClientService.client.GetStringAsync("api/events");
+            HttpResponseMessage responseMessage = await ClientService.client.GetAsync(eventURL);
+            var Jsonresponse = await ClientService.client.GetStringAsync(eventURL);
             var EventModel = JsonConvert.DeserializeObject<ObservableCollection<Event>>(Jsonresponse);
             return EventModel;
         }
 
         public async Task<ObservableCollection<EventCategory>> GetEventCategories()
         {
-            HttpResponseMessage responseMessage = await ClientService.client.GetAsync("api/eventCategories");
-            var Jsonresponse = await ClientService.client.GetStringAsync("api/eventCategories");
+            HttpResponseMessage responseMessage = await ClientService.client.GetAsync(eventCategoryURL);
+            var Jsonresponse = await ClientService.client.GetStringAsync(eventCategoryURL);
             var CategoryModel = JsonConvert.DeserializeObject<ObservableCollection<EventCategory>>(Jsonresponse);
             return CategoryModel;
         }
 
         public async Task<ObservableCollection<Company>> GetCompanies()
         {
-            HttpResponseMessage responseMessage = await ClientService.client.GetAsync("api/companies");
-            var Jsonresponse = await ClientService.client.GetStringAsync("api/companies");
+            HttpResponseMessage responseMessage = await ClientService.client.GetAsync(companyURL);
+            var Jsonresponse = await ClientService.client.GetStringAsync(companyURL);
             var CompanyModel = JsonConvert.DeserializeObject<ObservableCollection<Company>>(Jsonresponse);
             return CompanyModel;
         }

@@ -1,4 +1,5 @@
-﻿using DigiwayUWP.DataAccessObjects;
+﻿using DigiwayUWP.DAOInterfaces;
+using DigiwayUWP.DataAccessObjects;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,7 +27,7 @@ namespace DigiwayUWP.Models
         public virtual ICollection<PointOfInterest> PointsOfInterest { get; set; }
         public virtual ICollection<PurchaseRecord> PurchaseRecords { get; set; }
 
-        private static EventService eService = new EventService();
+        private static IEventDAO eService = new EventService();
 
         public async Task AddEvent()
         {

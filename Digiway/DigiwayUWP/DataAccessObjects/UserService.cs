@@ -1,4 +1,5 @@
-﻿using DigiwayUWP.Models;
+﻿using DigiwayUWP.DAOInterfaces;
+using DigiwayUWP.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,19 +11,20 @@ using System.Threading.Tasks;
 
 namespace DigiwayUWP.DataAccessObjects
 {
-    public class UserService
+    public class UserService : IUserDAO
     {
+        public static string userURL = "api/users";
         public async Task<ObservableCollection<User>> GetUsers()
         {
-            HttpResponseMessage responseMessage = await ClientService.client.GetAsync("api/users");
-            var Jsonresponse = await ClientService.client.GetStringAsync("api/users");
+            HttpResponseMessage responseMessage = await ClientService.client.GetAsync(userURL);
+            var Jsonresponse = await ClientService.client.GetStringAsync(userURL);
             var UserModel = JsonConvert.DeserializeObject<ObservableCollection<User>>(Jsonresponse);
             return UserModel;
         }
 
         public async Task UpdateUser(User u)
         {
-            await ClientService.client.PutAsJsonAsync("api/users", u);
+            await ClientService.client.PutAsJsonAsync(userURL, u);
         }
     }
 }

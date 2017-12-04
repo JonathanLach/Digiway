@@ -1,4 +1,5 @@
-﻿using DigiwayUWP.DataAccessObjects;
+﻿using DigiwayUWP.DAOInterfaces;
+using DigiwayUWP.DataAccessObjects;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,7 +15,7 @@ namespace DigiwayUWP.Models
         public long ActionRecordId { get; set; }
         public virtual ActionRecord ActionRecord { get; set; }
 
-        private static TransferRecordService tService = new TransferRecordService();
+        private static ITransferRecordDAO tService = new TransferRecordService();
 
         public static async Task<ObservableCollection<TransferRecord>> GetTransferRecords()
         {
