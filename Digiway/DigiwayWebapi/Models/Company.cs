@@ -15,7 +15,7 @@ namespace DigiwayWebapi.Models
         [Required]
         public string Address { get; set; }
         [Required]
-        public int ZIP { get; set; }
+        public string ZIP { get; set; }
         [Required]
         public string City { get; set; }
         [Required]

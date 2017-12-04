@@ -17,7 +17,7 @@ namespace DigiwayUWP.Models
         public string FirstName { get; set; }
         public string IBANAccount { get; set; }
         public string Address { get; set; }
-        public int ZIP { get; set; }
+        public string ZIP { get; set; }
         public string City { get; set; }
         public int TelNumber { get; set; }
         public int AccessRights { get; set; }
@@ -27,8 +27,7 @@ namespace DigiwayUWP.Models
 
         public virtual ICollection<UserCompany> Companies { get; set; }
         public virtual ICollection<ActionRecord> ActionRecords { get; set; }
-
-        //public virtual ICollection<Friendship> Friends { get; set; }
+        public virtual ICollection<Friendship> Friends { get; set; }
 
         public static UserService userService = new UserService();
 

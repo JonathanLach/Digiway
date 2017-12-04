@@ -25,7 +25,7 @@ namespace DigiwayWebapi.Models
         public string FirstName { get; set; }
         public string IBANAccount { get; set; }
         public string Address { get; set; }
-        public int ZIP { get; set; }
+        public string ZIP { get; set; }
         public string City { get; set; }
         [Required]
         public int TelNumber { get; set; }
@@ -33,6 +33,7 @@ namespace DigiwayWebapi.Models
         public int AccessRights { get; set; }
         [Required]
         public double Money { get; set; }
+        public virtual ICollection<Friendship> Friends { get; set; }
         [JsonIgnore]
         public virtual ICollection<UserCompany> Companies { get; set;}
         [JsonIgnore]

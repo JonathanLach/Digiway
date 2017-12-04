@@ -62,8 +62,8 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
-        private DatePicker _eventDatePicker;
-        public DatePicker EventDatePicker
+        private DateTimeOffset _eventDatePicker;
+        public DateTimeOffset EventDatePicker
         {
             get
             {
@@ -90,8 +90,8 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
-        private int _zip;
-        public int ZIP
+        private string _zip;
+        public string ZIP
         {
             get
             {
@@ -232,7 +232,7 @@ namespace DigiwayUWP.ViewModels
                 Address = this.Address,
                 City = this.City,
                 Description = this.Description,
-                EventDate = Convert.ToDateTime(EventDatePicker),
+                EventDate = EventDatePicker.DateTime,
                 EventCategoryId = CategorySelected.EventCategoryId,
                 CompanyId = CompanySelected.CompanyId,
                 PointsOfInterest = null,
@@ -276,6 +276,7 @@ namespace DigiwayUWP.ViewModels
             if (EventSelected != null)
             {
                 Name = EventSelected.Name;
+                EventDatePicker = EventSelected.EventDate;
                 Address = EventSelected.Address;
                 City = EventSelected.City;
                 ZIP = EventSelected.ZIP;
@@ -283,6 +284,10 @@ namespace DigiwayUWP.ViewModels
                 CompanySelected = Companies.Where(u => u.CompanyId == EventSelected.CompanyId).First();
                 CategorySelected = Categories.Where(u => u.EventCategoryId == EventSelected.EventCategoryId).First();
                 TicketPrice = EventSelected.TicketPrice;
+            }
+            else
+            {
+                EventDatePicker = DateTime.Today;
             }
         }
 
