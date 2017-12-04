@@ -79,8 +79,8 @@ namespace DigiwayWebapi.Controllers
             existingEvent.Description = e.Description;
             existingEvent.Address = e.Address;
             existingEvent.City = e.City;
-            existingEvent.Company = e.Company;
-            existingEvent.EventCategory = e.EventCategory;
+            existingEvent.CompanyId = e.CompanyId;
+            existingEvent.EventCategoryId = e.EventCategoryId;
             existingEvent.EventDate = e.EventDate;
             existingEvent.PurchaseRecords = e.PurchaseRecords;
             await _context.SaveChangesAsync();
