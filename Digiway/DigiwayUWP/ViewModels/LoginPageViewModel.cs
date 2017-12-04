@@ -90,7 +90,7 @@ namespace DigiwayUWP.ViewModels
 
         public async Task Connection()
         {
-            string hashedPassword = hashPassword(Password);
+            string hashedPassword = HashPassword(Password);
             ObservableCollection<User> users = await User.GetUsers();
             foreach (User u in users)
             {
@@ -107,11 +107,11 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
-        public static String hashPassword(string value)
+        public static String HashPassword(string value)
         {
             StringBuilder Sb = new StringBuilder();
 
-            using (var hash = SHA256.Create())
+            using (var hash = SHA512.Create())
             {
                 Encoding enc = Encoding.UTF8;
                 Byte[] result = hash.ComputeHash(enc.GetBytes(value));
@@ -119,7 +119,6 @@ namespace DigiwayUWP.ViewModels
                 foreach (Byte b in result)
                     Sb.Append(b.ToString("x2"));
             }
-
             return Sb.ToString();
         }
 

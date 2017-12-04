@@ -63,26 +63,26 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
-        private async void GetActionRecords()
+        private async Task GetActionRecords()
         {
             ActionRecords = await ActionRecord.GetActionRecords();
         }
 
-        private async void GetPurchaseRecords()
+        private async Task GetPurchaseRecords()
         {
             PurchaseRecords = await PurchaseRecord.GetPurchaseRecords();
         }
 
-        private async void GetTransferRecords()
+        private async Task GetTransferRecords()
         {
             TransferRecords = await TransferRecord.GetTransferRecords();
         }
 
-        public void OnNavigatedTo(NavigationEventArgs e)
+        public async Task OnNavigatedTo(NavigationEventArgs e)
         {
-            GetActionRecords();
-            GetPurchaseRecords();
-            GetTransferRecords();
+            await GetActionRecords();
+            await GetPurchaseRecords();
+            await GetTransferRecords();
         }
 
     }
