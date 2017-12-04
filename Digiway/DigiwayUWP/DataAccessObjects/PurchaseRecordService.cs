@@ -13,7 +13,7 @@ namespace DigiwayUWP.DataAccessObjects
 {
     public class PurchaseRecordService : IPurchaseRecordDAO
     {
-        public static string purchaseRecordURL = "api/purchaseRecords";
+        private static string purchaseRecordURL = "api/purchaseRecords";
         public async Task<ObservableCollection<PurchaseRecord>> GetPurchaseRecords()
         {
             HttpResponseMessage responseMessage = await ClientService.client.GetAsync(purchaseRecordURL);

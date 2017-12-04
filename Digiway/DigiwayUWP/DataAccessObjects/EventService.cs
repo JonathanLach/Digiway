@@ -16,9 +16,9 @@ namespace DigiwayUWP.DataAccessObjects
 {
     public class EventService : IEventDAO
     {
-        public static string eventURL = "api/events";
-        public static string eventCategoryURL = "api/eventCategories";
-        public static string companyURL = "api/companies";
+        private static string eventURL = "api/events";
+        private static string eventCategoryURL = "api/eventCategories";
+        private static string companyURL = "api/companies";
 
         public async Task AddEvent(Event e)
         {

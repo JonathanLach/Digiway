@@ -17,16 +17,15 @@ namespace DigiwayWebapi.Controllers
         {
             this._context = context;
         }
-        // GET api/values
+
         [HttpGet]
         public async Task<IEnumerable<Company>> Get()
         {
             return await _context.Companies.Include(u => u.Users).ToListAsync();
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(long id)
+        [HttpGet("id/{id}")]
+        public async Task<IActionResult> GetById(long id)
         {
             var existingCompany = await _context.Companies.Include(u => u.Users)
                                                         .Where(p => p.CompanyId == id)

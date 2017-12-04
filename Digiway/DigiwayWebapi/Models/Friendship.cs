@@ -4,12 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace DigiwayWebapi.Models
+/*namespace DigiwayWebapi.Models
 {
     public class Friendship
     {
+        public long FriendshipId { get; set; }
         public User User { get; set; }
         public User Friend { get; set; }
         public bool IsAwaiting { get; set; }
     }
-}
+}*/

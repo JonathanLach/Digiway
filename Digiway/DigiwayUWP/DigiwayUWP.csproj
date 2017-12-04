@@ -106,6 +106,7 @@
     <Compile Include="DataAccessObjects\PurchaseRecordService.cs" />
     <Compile Include="DataAccessObjects\TransferRecordService.cs" />
     <Compile Include="DataAccessObjects\UserService.cs" />
+    <Compile Include="Exceptions\UserNotFoundException.cs" />
     <Compile Include="Models\ActionRecord.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Event.cs" />

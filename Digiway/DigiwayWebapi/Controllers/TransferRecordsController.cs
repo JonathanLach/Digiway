@@ -25,8 +25,8 @@ namespace DigiwayWebapi.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(long id)
+        [HttpGet("id/{id}")]
+        public async Task<IActionResult> GetById(long id)
         {
             var existingTransferRecord = await _context.TransferRecords.Include(ar => ar.ActionRecord).FirstOrDefaultAsync();
             if (existingTransferRecord == null)

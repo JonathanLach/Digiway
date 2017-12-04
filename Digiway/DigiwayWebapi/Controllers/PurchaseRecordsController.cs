@@ -29,8 +29,8 @@ namespace DigiwayWebapi.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(long id)
+        [HttpGet("id/{id}")]
+        public async Task<IActionResult> GetById(long id)
         {
             var existingPurchaseRecord = await _context.PurchaseRecords.Include(p => p.Product)
                                                                         .Include(e => e.Event)

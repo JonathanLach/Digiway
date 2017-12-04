@@ -1,4 +1,5 @@
 ﻿using DigiwayUWP.DataAccessObjects;
+using DigiwayUWP.Exceptions;
 using DigiwayUWP.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -91,10 +92,10 @@ namespace DigiwayUWP.ViewModels
         public async Task Connection()
         {
             string hashedPassword = HashPassword(Password);
-            ObservableCollection<User> users = await User.GetUsers();
-            foreach (User u in users)
+            try
             {
-                if (u.Login == Login && u.Password == hashedPassword)
+                User u = await User.GetUserByUsername(Login);
+                if (u.Password == hashedPassword)
                 {
                     User.CurrentUser = u;
                     await ActionRecord.AddActionRecord("Logged in");
@@ -102,9 +103,14 @@ namespace DigiwayUWP.ViewModels
                 }
                 else
                 {
-                    LoginError = "Login ou mot de passe incorrect";
+                    LoginError = "Incorrect password";
                 }
             }
+            catch (UserNotFoundException e)
+            {
+                LoginError = e.Message;
+            }
+
         }
 
         public static String HashPassword(string value)

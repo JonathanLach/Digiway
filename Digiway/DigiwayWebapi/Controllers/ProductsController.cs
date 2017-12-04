@@ -25,8 +25,8 @@ namespace DigiwayWebapi.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(long id)
+        [HttpGet("id/{id}")]
+        public async Task<IActionResult> GetById(long id)
         {
             var existingProduct = await _context.Products.Include(pc => pc.ProductCategory)
                                                     .Where(p => p.ProductId == id)

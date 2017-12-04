@@ -13,5 +13,7 @@ namespace DigiwayUWP.DAOInterfaces
         Task<ObservableCollection<User>> GetUsers();
 
         Task UpdateUser(User u);
+
+        Task<User> getUserByUsername(string userName);
     }
 }

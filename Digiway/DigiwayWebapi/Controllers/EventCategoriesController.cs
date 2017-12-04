@@ -25,8 +25,8 @@ namespace DigiwayWebapi.Controllers
         }
 
             // GET api/values/5
-            [HttpGet("{id}")]
-            public async Task<IActionResult> Get(long id)
+            [HttpGet("id/{id}")]
+            public async Task<IActionResult> GetById(long id)
             {
                 var existingEventCategory = await _context.EventCategories
                                     .Where(e => e.EventCategoryId == id)

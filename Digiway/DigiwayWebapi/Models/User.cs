@@ -33,7 +33,7 @@ namespace DigiwayWebapi.Models
         public int AccessRights { get; set; }
         [Required]
         public double Money { get; set; }
-        public virtual ICollection<Friendship> Friends { get; set; }
+        //public virtual ICollection<Friendship> Friends { get; set; }
         [JsonIgnore]
         public virtual ICollection<UserCompany> Companies { get; set;}
         [JsonIgnore]

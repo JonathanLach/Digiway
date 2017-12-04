@@ -13,7 +13,7 @@ namespace DigiwayUWP.DataAccessObjects
 {
     public class TransferRecordService : ITransferRecordDAO
     {
-        public static string transferRecordURL = "api/transferRecords";
+        private static string transferRecordURL = "api/transferRecords";
         public async Task<ObservableCollection<TransferRecord>> GetTransferRecords()
         {
             HttpResponseMessage responseMessage = await ClientService.client.GetAsync(transferRecordURL);

@@ -17,7 +17,7 @@ namespace DigiwayWebapi.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
+        [HttpGet("id/{id}")]
         public string Get(int id)
         {
             return "value";

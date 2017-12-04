@@ -25,11 +25,22 @@ namespace DigiwayWebapi.Controllers
                         .ToListAsync();
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(long id)
+        [HttpGet("username/{userName}")]
+        public async Task<IActionResult> GetByUsername(string userName)
         {
-            var existingUser = await _context.Users.FirstOrDefaultAsync();
+            var existingUser = await _context.Users.Where(u=> u.Login == userName).FirstOrDefaultAsync();
+            if (existingUser == null)
+            {
+                return NotFound();
+            }
+            return new ObjectResult(existingUser);
+        }
+
+        // GET api/values/5
+        [HttpGet("id/{id}")]
+        public async Task<IActionResult> GetById(long id)
+        {
+            var existingUser = await _context.Users.Where(u=> u.UserId == id).FirstOrDefaultAsync();
             if (existingUser == null)
             {
                 return NotFound();
