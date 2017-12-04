@@ -224,16 +224,6 @@ namespace DigiwayUWP.ViewModels
             _navigationService = navigationService;
         }
 
-        private async Task<ObservableCollection<EventCategory>> GetEventCategories()
-        {
-            return await EventCategory.GetEventCategories();
-        }
-
-        private async Task<ObservableCollection<Company>> GetCompanies()
-        {
-            return await Event.GetCompanies();
-        }
-
         private async Task AddEvent()
         {
             Event newEvent = new Event()
@@ -267,14 +257,21 @@ namespace DigiwayUWP.ViewModels
             await ActionRecord.AddActionRecord(actionDescription);
         }
 
-        private async Task setBoxValues()
+        private async Task GetCompanies()
         {
-            Categories = await GetEventCategories();
-            Companies = await GetCompanies();
+            Companies = await Event.GetCompanies();
         }
 
-        public void OnNavigatedTo(NavigationEventArgs e)
+        private async Task GetCategories()
         {
+            Categories = await EventCategory.GetEventCategories();
+        }
+
+
+        public async Task OnNavigatedTo(NavigationEventArgs e)
+        {
+            await GetCompanies();
+            await GetCategories();
             EventSelected = (Event)e.Parameter;
             if (EventSelected != null)
             {
@@ -283,8 +280,8 @@ namespace DigiwayUWP.ViewModels
                 City = EventSelected.City;
                 ZIP = EventSelected.ZIP;
                 Description = EventSelected.Description;
-                CompanySelected = EventSelected.Company;
-                CategorySelected = EventSelected.EventCategory;
+                CompanySelected = Companies.Where(u => u.CompanyId == EventSelected.CompanyId).First();
+                CategorySelected = Categories.Where(u => u.EventCategoryId == EventSelected.EventCategoryId).First();
                 TicketPrice = EventSelected.TicketPrice;
             }
         }
