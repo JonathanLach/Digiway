@@ -17,6 +17,7 @@ namespace DigiwayUWP.Models
         public string ZIP { get; set; }
         public string City { get; set; }
         public DateTime EventDate { get; set; }
+        public string FormattedDate { get; set; }
         public double TicketPrice { get; set; }
         public string Description { get; set; }
         public long CompanyId { get; set; }
