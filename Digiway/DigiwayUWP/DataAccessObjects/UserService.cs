@@ -37,9 +37,13 @@ namespace DigiwayUWP.DataAccessObjects
             {
                 throw new UserNotFoundException();
             }
+            else if (responseMessage.StatusCode == HttpStatusCode.Forbidden || responseMessage.StatusCode >= HttpStatusCode.InternalServerError)
+            {
+                throw new DAOConnectionException();
+            }
             else
             {
-                var Jsonresponse = await ClientService.client.GetStringAsync(userByNicknameURL + userName);
+                var Jsonresponse = await responseMessage.Content.ReadAsStringAsync();
                 var UserModel = JsonConvert.DeserializeObject<User>(Jsonresponse);
                 return UserModel;
             }

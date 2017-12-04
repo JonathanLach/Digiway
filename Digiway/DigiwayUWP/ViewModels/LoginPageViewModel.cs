@@ -106,11 +106,10 @@ namespace DigiwayUWP.ViewModels
                     LoginError = "Incorrect password";
                 }
             }
-            catch (UserNotFoundException e)
+            catch (Exception e)
             {
                 LoginError = e.Message;
             }
-
         }
 
         public static String HashPassword(string value)
