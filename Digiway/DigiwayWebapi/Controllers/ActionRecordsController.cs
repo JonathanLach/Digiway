@@ -28,7 +28,7 @@ namespace DigiwayWebapi.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("id/{id}")]
+        [HttpGet("id/{id}", Name ="GetActionById")]
         public async Task<IActionResult> GetById(long id)
         {
             var existingActionRecord = await _context.ActionRecords.FindAsync(id);
@@ -49,7 +49,7 @@ namespace DigiwayWebapi.Controllers
             }
             await _context.ActionRecords.AddAsync(actionRecord);
             await _context.SaveChangesAsync();
-            return CreatedAtRoute("DigiwayWebapi", new { id = actionRecord.ActionRecordId }, actionRecord);
+            return CreatedAtRoute("GetActionById", new { id = actionRecord.ActionRecordId }, actionRecord);
         }
 
         // PUT api/values/5

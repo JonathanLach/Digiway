@@ -29,7 +29,7 @@ namespace DigiwayWebapi.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("id/{id}")]
+        [HttpGet("id/{id}", Name ="GetPurchaseById")]
         public async Task<IActionResult> GetById(long id)
         {
             var existingPurchaseRecord = await _context.PurchaseRecords.Include(p => p.Product)
@@ -53,7 +53,7 @@ namespace DigiwayWebapi.Controllers
             }
             await _context.PurchaseRecords.AddAsync(purchaseRecord);
             await _context.SaveChangesAsync();
-            return CreatedAtRoute("DigiwayWebapi", new { id = purchaseRecord.PurchaseRecordId }, purchaseRecord);
+            return CreatedAtRoute("GetPurchaseById", new { id = purchaseRecord.PurchaseRecordId }, purchaseRecord);
         }
 
         // PUT api/values/5

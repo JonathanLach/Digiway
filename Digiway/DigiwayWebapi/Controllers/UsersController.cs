@@ -37,7 +37,7 @@ namespace DigiwayWebapi.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("id/{id}")]
+        [HttpGet("id/{id}", Name = "GetUserById")]
         public async Task<IActionResult> GetById(long id)
         {
             var existingUser = await _context.Users.Where(u=> u.UserId == id).FirstOrDefaultAsync();
@@ -59,7 +59,7 @@ namespace DigiwayWebapi.Controllers
             u.Money = 0;
             await _context.Users.AddAsync(u);
             await _context.SaveChangesAsync();
-            return CreatedAtRoute("DigiwayWebapi", new { id = u.UserId }, u);
+            return CreatedAtRoute("GetUserById", new {id = u.UserId }, u);
         }
 
         // PUT api/values/5
@@ -86,7 +86,6 @@ namespace DigiwayWebapi.Controllers
             existingUser.IBANAccount = u.IBANAccount;
             existingUser.LastName = u.LastName;
             existingUser.Login = u.Login;
-            existingUser.Money = u.Money;
             existingUser.Password = u.Password;
             existingUser.TelNumber = u.TelNumber;
             existingUser.ZIP = u.ZIP;

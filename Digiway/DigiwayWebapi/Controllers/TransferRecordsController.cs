@@ -25,7 +25,7 @@ namespace DigiwayWebapi.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("id/{id}")]
+        [HttpGet("id/{id}", Name ="GetTransferById")]
         public async Task<IActionResult> GetById(long id)
         {
             var existingTransferRecord = await _context.TransferRecords.Include(ar => ar.ActionRecord).FirstOrDefaultAsync();
@@ -46,7 +46,7 @@ namespace DigiwayWebapi.Controllers
             }
             await _context.TransferRecords.AddAsync(transferRecord);
             await _context.SaveChangesAsync();
-            return CreatedAtRoute("DigiwayWebapi", new { id = transferRecord.TransferRecordId }, transferRecord);
+            return CreatedAtRoute("GetTransferById", new {id = transferRecord.TransferRecordId }, transferRecord);
         }
 
         // PUT api/values/5

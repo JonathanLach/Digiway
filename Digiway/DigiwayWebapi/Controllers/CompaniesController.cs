@@ -24,7 +24,7 @@ namespace DigiwayWebapi.Controllers
             return await _context.Companies.Include(u => u.Users).ToListAsync();
         }
 
-        [HttpGet("id/{id}")]
+        [HttpGet("id/{id}", Name ="GetCompanyById")]
         public async Task<IActionResult> GetById(long id)
         {
             var existingCompany = await _context.Companies.Include(u => u.Users)
@@ -47,7 +47,7 @@ namespace DigiwayWebapi.Controllers
             }
             await _context.Companies.AddAsync(company);
             await _context.SaveChangesAsync();
-            return CreatedAtRoute("DigiwayWebapi", new { id = company.CompanyId }, company);
+            return CreatedAtRoute("GetCompanyById", new { id = company.CompanyId }, company);
         }
 
         // PUT api/values/5

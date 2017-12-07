@@ -101,7 +101,7 @@ namespace DigiwayUWP.ViewModels
 
         public async Task Withdraw()
         {
-            if (CurrentUser.Money - MoneyTransaction > 0)
+            if (CurrentUser.Money - MoneyTransaction >= 0)
             {
                 CurrentUser.Money -= MoneyTransaction;
                 MoneyFormat = CurrentUser.Money + " €";

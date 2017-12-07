@@ -29,7 +29,7 @@ namespace DigiwayWebapi.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("id/{id}")]
+        [HttpGet("id/{id}", Name = "GetEventById")]
         public async Task<IActionResult> GetById(long id)
         {
             var existingEvent = await _context.Events
@@ -55,7 +55,7 @@ namespace DigiwayWebapi.Controllers
             }
             await _context.Events.AddAsync(e);
             await _context.SaveChangesAsync();
-            return CreatedAtRoute("DigiwayWebapi", new { id = e.EventId }, e);
+            return CreatedAtRoute("GetEventById", new { id = e.EventId }, e);
         }
 
         // PUT api/values/5

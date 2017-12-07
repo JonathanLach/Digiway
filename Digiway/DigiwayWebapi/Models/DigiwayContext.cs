@@ -13,6 +13,7 @@ namespace DigiwayWebapi.Models
         {
             modelBuilder.HasDefaultSchema("digiway");
             modelBuilder.Entity<UserCompany>().HasKey(table => new { table.UserId, table.CompanyId });
+            modelBuilder.Entity<User>().Property(u => u.Money).HasDefaultValue(0);
             //modelBuilder.Entity<User>().HasMany(u => u.Friends).WithOne(f => f.User).OnDelete(DeleteBehavior.SetNull);
             //modelBuilder.Entity<Friendship>().HasOne(fr => fr.User).WithMany(u => u.Friends).OnDelete(DeleteBehavior.Cascade);
         }

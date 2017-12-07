@@ -25,7 +25,7 @@ namespace DigiwayWebapi.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("id/{id}")]
+        [HttpGet("id/{id}", Name ="GetProductById")]
         public async Task<IActionResult> GetById(long id)
         {
             var existingProduct = await _context.Products.Include(pc => pc.ProductCategory)
@@ -48,7 +48,7 @@ namespace DigiwayWebapi.Controllers
             }
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
-            return CreatedAtRoute("DigiwayWebapi", new { id = product.ProductId }, product);
+            return CreatedAtRoute("GetProductById", new { id = product.ProductId }, product);
         }
 
         // PUT api/values/5

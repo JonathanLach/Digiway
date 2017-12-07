@@ -33,6 +33,7 @@ namespace DigiwayWebapi.Models
         [Required]
         public int AccessRights { get; set; }
         [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public double Money { get; set; }
         //public virtual ICollection<Friendship> Friends { get; set; }
         [JsonIgnore]
