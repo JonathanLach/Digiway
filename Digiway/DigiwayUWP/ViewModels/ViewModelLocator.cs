@@ -26,6 +26,7 @@ namespace DigiwayUWP.ViewModels
 
             NavigationService navigationPages = new NavigationService();
             SimpleIoc.Default.Register<INavigationService>(() => navigationPages);
+            SimpleIoc.Default.Register<IDialogService, DialogService>();
             navigationPages.Configure("AnalyticsPage", typeof(AnalyticsPage));
             navigationPages.Configure("ActionRecordsPage", typeof(ActionRecordsPage));
             navigationPages.Configure("EventsPage", typeof(EventsPage));

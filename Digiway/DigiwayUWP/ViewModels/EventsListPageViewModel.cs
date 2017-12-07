@@ -54,10 +54,12 @@ namespace DigiwayUWP.ViewModels
         }
 
         private INavigationService _navigationService;
+        private IDialogService _dialogService;
 
-        public EventsListPageViewModel(INavigationService navigationService = null)
+        public EventsListPageViewModel(INavigationService navigationService = null, IDialogService dialogService = null)
         {
             _navigationService = navigationService;
+            _dialogService = dialogService;
         }
 
         private ICommand _addNewEvent;
@@ -80,7 +82,7 @@ namespace DigiwayUWP.ViewModels
             {
                 if (_editEvent == null)
                 {
-                    _editEvent = new RelayCommand(() => EditEventSelected());
+                    _editEvent = new RelayCommand(async () => await EditEventSelected());
                 }
                 return _editEvent;
             }
@@ -91,11 +93,15 @@ namespace DigiwayUWP.ViewModels
             _navigationService.NavigateTo("EventsPage");
         }
 
-        public void EditEventSelected()
+        public async Task EditEventSelected()
         {
             if (EventSelected != null)
             {
                 _navigationService.NavigateTo("EventsPage", EventSelected);
+            }
+            else
+            {
+                await _dialogService.ShowMessage("No event selected", "Selection error");
             }
         }
 

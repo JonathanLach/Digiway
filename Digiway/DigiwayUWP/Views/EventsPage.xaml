@@ -23,7 +23,7 @@
                 </Grid.Background>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="2.3*"/>
+                    <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -46,7 +46,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Margin="0,5,0,0">
                     <TextBlock Text="Date: "/>
-                    <DatePicker Date="{Binding EventDatePicker, Mode=TwoWay}"/>
+                    <DatePicker HorizontalAlignment="Stretch" Date="{Binding EventDatePicker, Mode=TwoWay}"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" Margin="0,5,0,0">
                     <TextBlock Text="Address: "/>
@@ -64,15 +64,15 @@
                     <TextBlock Text="Ticket Price: "/>
                     <TextBox Text="{Binding TicketPrice, Mode=TwoWay}"/>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Row="7" Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                <StackPanel Orientation="Vertical" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,5,0,0">
                     <TextBlock Text="Category: "/>
-                    <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding CategorySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <ComboBox ItemsSource="{Binding Categories}" HorizontalAlignment="Stretch" SelectedItem="{Binding CategorySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Row="8" Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                <StackPanel Orientation="Vertical" Grid.Row="8" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,5,0,0">
                     <TextBlock Text="Company: "/>
-                    <ComboBox ItemsSource="{Binding Companies}" SelectedItem="{Binding CompanySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <ComboBox ItemsSource="{Binding Companies}" HorizontalAlignment="Stretch" SelectedItem="{Binding CompanySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
-                <StackPanel Orientation="Vertical"  Grid.Row="9" Grid.Column="1" VerticalAlignment="Top" Margin="20,0,20,0">
+                <StackPanel Orientation="Vertical"  Grid.Row="9" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
                     <TextBlock Text="Description: "/>
                     <TextBox Text="{Binding Description, Mode=TwoWay}" AcceptsReturn="True"  ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" PlaceholderText="Describe your event" Height="100" MaxHeight="300"/>
                 </StackPanel>

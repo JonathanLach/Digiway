@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Formatting;
@@ -12,6 +13,7 @@ namespace DigiwayUWP.DataAccessObjects
 {
     public static class ClientService
     {
+
         public static HttpClient client = new HttpClient();
 
         public static async Task RunAsync()
