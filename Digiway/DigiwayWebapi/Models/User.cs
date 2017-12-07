@@ -18,8 +18,6 @@ namespace DigiwayWebapi.Models
         [Required]
         public string Password { get; set; }
         [Required]
-        public string Hashcode { get; set; }
-        [Required]
         public string LastName { get; set; }
         [Required]
         public string FirstName { get; set; }

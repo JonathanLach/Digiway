@@ -34,7 +34,6 @@ namespace DigiwayDBGenerator
                 BirthDate = new DateTime(1996, 10, 30),
                 IBANAccount =null,
                 TelNumber= "9774d56d682e549d",
-                Hashcode ="pqk1451ds45",
             };
             User testUser2 = new User()
             {
@@ -50,7 +49,6 @@ namespace DigiwayDBGenerator
                 BirthDate = new DateTime(2010, 10, 10),
                 IBANAccount=null,
                 TelNumber= "9774d56d682e549c",
-                Hashcode ="emach14751dqad4"
             };
             /*Friendship testFriendship = new Friendship()
             {

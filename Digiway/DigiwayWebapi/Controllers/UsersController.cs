@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DigiwayWebapi.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace DigiwayWebapi.Controllers
 {
@@ -56,9 +57,15 @@ namespace DigiwayWebapi.Controllers
             {
                 return BadRequest();
             }
-            u.Money = 0;
             await _context.Users.AddAsync(u);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                return StatusCode((int)HttpStatusCode.Conflict);
+            }
             return CreatedAtRoute("GetUserById", new {id = u.UserId }, u);
         }
 
@@ -82,7 +89,6 @@ namespace DigiwayWebapi.Controllers
             existingUser.AccessRights = u.AccessRights;
             existingUser.ActionRecords = u.ActionRecords;
             existingUser.FirstName = u.FirstName;
-            existingUser.Hashcode = u.Hashcode;
             existingUser.IBANAccount = u.IBANAccount;
             existingUser.LastName = u.LastName;
             existingUser.Login = u.Login;
