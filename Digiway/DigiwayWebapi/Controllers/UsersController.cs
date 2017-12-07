@@ -56,6 +56,7 @@ namespace DigiwayWebapi.Controllers
             {
                 return BadRequest();
             }
+            u.Money = 0;
             await _context.Users.AddAsync(u);
             await _context.SaveChangesAsync();
             return CreatedAtRoute("DigiwayWebapi", new { id = u.UserId }, u);

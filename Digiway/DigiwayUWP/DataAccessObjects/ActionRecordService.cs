@@ -17,9 +17,7 @@ namespace DigiwayUWP.DataAccessObjects
         public async Task<ObservableCollection<ActionRecord>> GetActionRecords()
         {
             HttpResponseMessage responseMessage = await ClientService.client.GetAsync(actionRecordsURL);
-            var Jsonresponse = await ClientService.client.GetStringAsync(actionRecordsURL);
-            var actionRecordModel = JsonConvert.DeserializeObject<ObservableCollection<ActionRecord>>(Jsonresponse);
-            return actionRecordModel;
+            return await DeserializerService<ObservableCollection<ActionRecord>>.getObjectModelAsync(responseMessage);
         }
 
         public async Task AddActionRecord(ActionRecord ar)

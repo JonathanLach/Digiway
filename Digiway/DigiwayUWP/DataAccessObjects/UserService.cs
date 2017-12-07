@@ -17,12 +17,11 @@ namespace DigiwayUWP.DataAccessObjects
     {
         private static string userURL = "api/users";
         private static string userByNicknameURL = userURL + "/username/";
+
         public async Task<ObservableCollection<User>> GetUsers()
         {
             HttpResponseMessage responseMessage = await ClientService.client.GetAsync(userURL);
-            var Jsonresponse = await ClientService.client.GetStringAsync(userURL);
-            var UserModel = JsonConvert.DeserializeObject<ObservableCollection<User>>(Jsonresponse);
-            return UserModel;
+            return await DeserializerService<ObservableCollection<User>>.getObjectModelAsync(responseMessage);
         }
 
         public async Task UpdateUser(User u)
@@ -43,9 +42,7 @@ namespace DigiwayUWP.DataAccessObjects
             }
             else
             {
-                var Jsonresponse = await responseMessage.Content.ReadAsStringAsync();
-                var UserModel = JsonConvert.DeserializeObject<User>(Jsonresponse);
-                return UserModel;
+                return await DeserializerService<User>.getObjectModelAsync(responseMessage);
             }
         }
     }

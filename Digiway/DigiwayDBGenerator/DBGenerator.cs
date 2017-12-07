@@ -1,6 +1,7 @@
 using DigiwayWebapi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Threading.Tasks;
 
 namespace DigiwayDBGenerator
@@ -21,33 +22,35 @@ namespace DigiwayDBGenerator
             _context.Database.EnsureCreated();
             User testUser = new User()
             {
-                FirstName= "Jonathan",
-                LastName="Lachapelle",
-                Address="Rue du puit 18",
-                ZIP="6000",
-                City="CHarleroi",
-                Login="jlachapelle",
-                Password= "ee26b0dd4af7e749aa1a8ee3c10ae9923f618980772e473f8819a5d4940e0db27ac185f8a0e1d5f84f88bc887fd67b143732c304cc5fa9ad8e6f57f50028a8ff",
-                AccessRights =7,
-                IBANAccount=null,
-                Money=0,
-                TelNumber=0476064613,
-                Hashcode="pqk1451ds45",
+                FirstName = "Jonathan",
+                LastName = "Lachapelle",
+                Address = "Rue du puit 18",
+                ZIP = "6000",
+                City = "CHarleroi",
+                Login = "jlachapelle",
+                Password = "ee26b0dd4af7e749aa1a8ee3c10ae9923f618980772e473f8819a5d4940e0db27ac185f8a0e1d5f84f88bc887fd67b143732c304cc5fa9ad8e6f57f50028a8ff",
+                AccessRights = 7,
+                Money = 0,
+                BirthDate = new DateTime(1996, 10, 30),
+                IBANAccount =null,
+                TelNumber= "9774d56d682e549d",
+                Hashcode ="pqk1451ds45",
             };
             User testUser2 = new User()
             {
-                FirstName="Antoine",
-                LastName="Maréchal",
-                Address="Rue de Namur",
-                ZIP="5000",
-                City="Namur",
-                Login="amarechal",
-                Password= "ee26b0dd4af7e749aa1a8ee3c10ae9923f618980772e473f8819a5d4940e0db27ac185f8a0e1d5f84f88bc887fd67b143732c304cc5fa9ad8e6f57f50028a8ff",
-                AccessRights=7,
+                FirstName = "Antoine",
+                LastName = "Maréchal",
+                Address = "Rue de Namur",
+                ZIP = "5000",
+                Money = 0,
+                City = "Namur",
+                Login = "amarechal",
+                Password = "ee26b0dd4af7e749aa1a8ee3c10ae9923f618980772e473f8819a5d4940e0db27ac185f8a0e1d5f84f88bc887fd67b143732c304cc5fa9ad8e6f57f50028a8ff",
+                AccessRights = 7,
+                BirthDate = new DateTime(2010, 10, 10),
                 IBANAccount=null,
-                Money=0,
-                TelNumber=0476064613,
-                Hashcode="emach14751dqad4"
+                TelNumber= "9774d56d682e549c",
+                Hashcode ="emach14751dqad4"
             };
             /*Friendship testFriendship = new Friendship()
             {
@@ -57,7 +60,7 @@ namespace DigiwayDBGenerator
             };*/
             ActionRecord testActionRecord = new ActionRecord()
             {
-                RecordDate = new System.DateTime(2017, 11, 11),
+                RecordDate = new DateTime(2017, 11, 11),
                 User = testUser
             };
 

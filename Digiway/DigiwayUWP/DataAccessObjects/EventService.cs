@@ -33,25 +33,19 @@ namespace DigiwayUWP.DataAccessObjects
         public async Task<ObservableCollection<Event>> GetEvents()
         {
             HttpResponseMessage responseMessage = await ClientService.client.GetAsync(eventURL);
-            var Jsonresponse = await ClientService.client.GetStringAsync(eventURL);
-            var EventModel = JsonConvert.DeserializeObject<ObservableCollection<Event>>(Jsonresponse);
-            return EventModel;
+            return await DeserializerService<ObservableCollection<Event>>.getObjectModelAsync(responseMessage);
         }
 
         public async Task<ObservableCollection<EventCategory>> GetEventCategories()
         {
             HttpResponseMessage responseMessage = await ClientService.client.GetAsync(eventCategoryURL);
-            var Jsonresponse = await ClientService.client.GetStringAsync(eventCategoryURL);
-            var CategoryModel = JsonConvert.DeserializeObject<ObservableCollection<EventCategory>>(Jsonresponse);
-            return CategoryModel;
+            return await DeserializerService<ObservableCollection<EventCategory>>.getObjectModelAsync(responseMessage);
         }
 
         public async Task<ObservableCollection<Company>> GetCompanies()
         {
             HttpResponseMessage responseMessage = await ClientService.client.GetAsync(companyURL);
-            var Jsonresponse = await ClientService.client.GetStringAsync(companyURL);
-            var CompanyModel = JsonConvert.DeserializeObject<ObservableCollection<Company>>(Jsonresponse);
-            return CompanyModel;
+            return await DeserializerService<ObservableCollection<Company>>.getObjectModelAsync(responseMessage);
         }
 
     }

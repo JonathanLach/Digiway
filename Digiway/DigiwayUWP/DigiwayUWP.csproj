@@ -102,6 +102,7 @@
     <Compile Include="DAOInterfaces\IUserDAO.cs" />
     <Compile Include="DataAccessObjects\ActionRecordService.cs" />
     <Compile Include="DataAccessObjects\ClientService.cs" />
+    <Compile Include="DataAccessObjects\DeserializerService.cs" />
     <Compile Include="DataAccessObjects\EventService.cs" />
     <Compile Include="DataAccessObjects\PurchaseRecordService.cs" />
     <Compile Include="DataAccessObjects\TransferRecordService.cs" />

@@ -23,12 +23,13 @@ namespace DigiwayWebapi.Models
         public string LastName { get; set; }
         [Required]
         public string FirstName { get; set; }
+        public DateTime BirthDate { get; set; }
         public string IBANAccount { get; set; }
         public string Address { get; set; }
         public string ZIP { get; set; }
         public string City { get; set; }
         [Required]
-        public int TelNumber { get; set; }
+        public string TelNumber { get; set; }
         [Required]
         public int AccessRights { get; set; }
         [Required]

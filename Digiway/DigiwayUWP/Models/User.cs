@@ -16,11 +16,12 @@ namespace DigiwayUWP.Models
         public string Hashcode { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
+        public DateTime BirthDate { get; set; }
         public string IBANAccount { get; set; }
         public string Address { get; set; }
         public string ZIP { get; set; }
         public string City { get; set; }
-        public int TelNumber { get; set; }
+        public string TelNumber { get; set; }
         public int AccessRights { get; set; }
         public double Money { get; set; }
 

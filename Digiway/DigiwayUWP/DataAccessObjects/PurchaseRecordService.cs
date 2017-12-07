@@ -17,9 +17,7 @@ namespace DigiwayUWP.DataAccessObjects
         public async Task<ObservableCollection<PurchaseRecord>> GetPurchaseRecords()
         {
             HttpResponseMessage responseMessage = await ClientService.client.GetAsync(purchaseRecordURL);
-            var Jsonresponse = await ClientService.client.GetStringAsync(purchaseRecordURL);
-            var purchaseRecordModel = JsonConvert.DeserializeObject<ObservableCollection<PurchaseRecord>>(Jsonresponse);
-            return purchaseRecordModel;
+            return await DeserializerService<ObservableCollection<PurchaseRecord>>.getObjectModelAsync(responseMessage);
         }
     }
 }
