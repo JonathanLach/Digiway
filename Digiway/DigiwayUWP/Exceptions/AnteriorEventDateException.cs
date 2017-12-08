@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DigiwayUWP.Exceptions
 {
-    public class UserNotFoundException : LoginException
+    public class AnteriorEventDateException : EventFormException
     {
-        private string _message = "Incorrect Username";
+        private string _message = "The event date can't be in the past.";
         public override string Message
         {
             get { return _message; }

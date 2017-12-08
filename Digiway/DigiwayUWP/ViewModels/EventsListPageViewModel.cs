@@ -88,9 +88,45 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
+        private ICommand _deleteEvent;
+        public ICommand DeleteEvent
+        {
+            get
+            {
+                if (_deleteEvent == null)
+                {
+                    _deleteEvent = new RelayCommand(async () => await DeleteEventSelected());
+                }
+                return _deleteEvent;
+            }
+        }
+
         public void AddEvent()
         {
             _navigationService.NavigateTo("EventsPage");
+        }
+
+        public async Task DeleteEventSelected()
+        {
+            if (EventSelected != null)
+            {
+                await _dialogService.ShowMessage("Are you sure you want to delete the selected event?",
+                        "Confirmation",
+                        buttonConfirmText: "Yes", buttonCancelText: "No",
+                        afterHideCallback: async (confirmed) =>
+                        {
+                            if (confirmed)
+                            {
+                                await EventSelected.DeleteEvent();
+                                await _dialogService.ShowMessage("Event Deleted!", "EventManager");
+                                _navigationService.NavigateTo("EventsListPage");
+                            }
+                        });
+            }
+            else
+            {
+                await _dialogService.ShowMessage("No event selected", "Selection error");
+            }
         }
 
         public async Task EditEventSelected()

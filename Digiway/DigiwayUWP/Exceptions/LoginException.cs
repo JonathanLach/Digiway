@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace DigiwayUWP.Exceptions
 {
-    public class UserNotFoundException : LoginException
+    public class LoginException : Exception
     {
-        private string _message = "Incorrect Username";
+        private string _message = "Sign in failed";
         public override string Message
         {
             get { return _message; }
+        }
+
+        private string _title = "Login Error";
+        public string Title
+        {
+            get { return _title; }
         }
     }
 }

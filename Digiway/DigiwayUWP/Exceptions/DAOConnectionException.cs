@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DigiwayUWP.Exceptions
 {
-    public class DAOConnectionException : Exception
+    public class DAOConnectionException : DAOException
     {
         private string _message = "Connection to the service impossible";
         public override string Message

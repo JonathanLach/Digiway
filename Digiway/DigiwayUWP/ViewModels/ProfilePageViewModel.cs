@@ -57,8 +57,8 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
-        private double _moneyTransaction;
-        public double MoneyTransaction
+        private decimal _moneyTransaction;
+        public decimal MoneyTransaction
         {
             get
             {

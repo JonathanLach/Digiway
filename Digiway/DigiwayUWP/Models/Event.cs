@@ -18,7 +18,7 @@ namespace DigiwayUWP.Models
         public string City { get; set; }
         public DateTime EventDate { get; set; }
         public string FormattedDate { get; set; }
-        public double TicketPrice { get; set; }
+        public decimal TicketPrice { get; set; }
         public string Description { get; set; }
         public long CompanyId { get; set; }
         public virtual Company Company { get; set; }
@@ -54,6 +54,11 @@ namespace DigiwayUWP.Models
         {
             IFormatProvider culture = new System.Globalization.CultureInfo("en-US");
             return Name + "\t" + EventDate.GetDateTimeFormats('D', culture).GetValue(1) + "\t" + EventCategory;
+        }
+
+        public async Task DeleteEvent()
+        {
+            await eService.DeleteEvent(this);
         }
     }
 }

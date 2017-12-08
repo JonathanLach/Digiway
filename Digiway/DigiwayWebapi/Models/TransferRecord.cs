@@ -12,7 +12,7 @@ namespace DigiwayWebapi.Models
         [ScaffoldColumn(false)]
         public long TransferRecordId { get; set; }
         [Required]
-        public double TransferedValue { get; set; }
+        public decimal TransferedValue { get; set; }
         public long ActionRecordId { get; set; }
         public virtual ActionRecord ActionRecord { get; set; }
     }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DigiwayUWP.Exceptions
 {
-    public class UserNotFoundException : LoginException
+    public class NoCategorySelectedException : EventFormException
     {
-        private string _message = "Incorrect Username";
+        private string _message = "No category selected";
         public override string Message
         {
             get { return _message; }

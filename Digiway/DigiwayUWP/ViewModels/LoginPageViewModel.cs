@@ -47,21 +47,6 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
-        private string _loginError;
-        public string LoginError
-        {
-            get
-            {
-                return _loginError;
-            }
-            set
-            {
-                _loginError = value;
-                RaisePropertyChanged("LoginError");
-            }
-        }
-
-
         private ICommand _signIn;
         public ICommand SignIn
         {
@@ -76,10 +61,12 @@ namespace DigiwayUWP.ViewModels
         }
 
         private INavigationService _navigationService;
+        private IDialogService _dialogService;
 
-        public LoginPageViewModel(INavigationService navigationService)
+        public LoginPageViewModel(INavigationService navigationService, IDialogService dialogService)
         {
             _navigationService = navigationService;
+            _dialogService = dialogService;
             InitializeHttpClient();
         }
 
@@ -103,12 +90,12 @@ namespace DigiwayUWP.ViewModels
                 }
                 else
                 {
-                    LoginError = "Incorrect password";
+                    throw new IncorrectPasswordException();
                 }
             }
-            catch (Exception e)
+            catch (LoginException e)
             {
-                LoginError = e.Message;
+                await _dialogService.ShowMessage(e.Message, e.Title);
             }
         }
 

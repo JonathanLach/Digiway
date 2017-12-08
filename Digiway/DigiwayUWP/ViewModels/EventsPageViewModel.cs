@@ -1,4 +1,5 @@
-﻿using DigiwayUWP.Models;
+﻿using DigiwayUWP.Exceptions;
+using DigiwayUWP.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
@@ -7,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
@@ -17,8 +19,9 @@ namespace DigiwayUWP.ViewModels
     public class EventsPageViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private INavigationService _navigationService;
+        private IDialogService _dialogService;
 
-        public Event EventSelected {get; set;}
+        public Event EventSelected { get; set; }
 
         private string _name;
         public string Name
@@ -101,7 +104,7 @@ namespace DigiwayUWP.ViewModels
             {
                 _zip = value;
                 RaisePropertyChanged("ZIP");
-            } 
+            }
         }
 
         private string _description;
@@ -219,42 +222,75 @@ namespace DigiwayUWP.ViewModels
             _navigationService.NavigateTo("PointsOfInterestPage");
         }
 
-        public EventsPageViewModel(INavigationService navigationService = null)
+        public EventsPageViewModel(INavigationService navigationService = null, IDialogService dialogService = null)
         {
             _navigationService = navigationService;
+            _dialogService = dialogService;
         }
 
         private async Task AddEvent()
         {
-            Event newEvent = new Event()
-            {
-                Name = this.Name,
-                Address = this.Address,
-                City = this.City,
-                Description = this.Description,
-                EventDate = EventDatePicker.DateTime,
-                EventCategoryId = CategorySelected.EventCategoryId,
-                CompanyId = CompanySelected.CompanyId,
-                PointsOfInterest = null,
-                PurchaseRecords = null,
-                TicketPrice = this.TicketPrice,
-                ZIP = this.ZIP
-            };
 
-            string actionDescription;
+            try
+            {
+                if (EventDatePicker.DateTime < DateTime.Today)
+                {
+                    throw new AnteriorEventDateException();
+                }
+                if (CompanySelected == null)
+                {
+                    throw new NoCompanySelectedException();
+                }
+                if (CategorySelected == null)
+                {
+                    throw new NoCompanySelectedException();
+                }
+                if (TicketPrice < 0)
+                {
+                    throw new NegativePriceException();
+                }
+                if (ZIP.Length != 4 || !Regex.IsMatch(ZIP, @"^\d+$"))
+                {
+                    throw new NotBelgianEventException();
+                }
 
-            if (EventSelected == null)
+                Event newEvent = new Event()
+                {
+                    Name = this.Name,
+                    Address = this.Address,
+                    City = this.City,
+                    Description = this.Description,
+                    EventDate = EventDatePicker.DateTime,
+                    EventCategoryId = CategorySelected.EventCategoryId,
+                    CompanyId = CompanySelected.CompanyId,
+                    PointsOfInterest = null,
+                    PurchaseRecords = null,
+                    TicketPrice = (decimal)this.TicketPrice,
+                    ZIP = this.ZIP
+                };
+
+
+                string actionDescription;
+
+                if (EventSelected == null)
+                {
+                    actionDescription = "Ajout nouvel événement: " + newEvent.Name;
+                    await newEvent.AddEvent();
+                    await _dialogService.ShowMessage("Event Added!", "Event Manager");
+                }
+                else
+                {
+                    actionDescription = "Edition de l'événement: " + newEvent.Name;
+                    newEvent.EventId = EventSelected.EventId;
+                    await newEvent.UpdateEvent();
+                    await _dialogService.ShowMessage("Event Modified!", "Event Manager");
+                }
+                await ActionRecord.AddActionRecord(actionDescription);
+                _navigationService.NavigateTo("EventsListPage");
+            } catch (EventFormException e)
             {
-                actionDescription = "Ajout nouvel événement: " + newEvent.Name;
-                await newEvent.AddEvent();
+                await _dialogService.ShowMessage(e.Message, e.Title);
             }
-            else
-            {
-                actionDescription = "Edition de l'événement: " + newEvent.Name;
-                newEvent.EventId = EventSelected.EventId;
-                await newEvent.UpdateEvent();
-            }
-            await ActionRecord.AddActionRecord(actionDescription);
         }
 
         private async Task GetCompanies()
@@ -270,24 +306,32 @@ namespace DigiwayUWP.ViewModels
 
         public async Task OnNavigatedTo(NavigationEventArgs e)
         {
-            await GetCompanies();
-            await GetCategories();
-            EventSelected = (Event)e.Parameter;
-            if (EventSelected != null)
+            try
             {
-                Name = EventSelected.Name;
-                EventDatePicker = EventSelected.EventDate;
-                Address = EventSelected.Address;
-                City = EventSelected.City;
-                ZIP = EventSelected.ZIP;
-                Description = EventSelected.Description;
-                CompanySelected = Companies.Where(u => u.CompanyId == EventSelected.CompanyId).First();
-                CategorySelected = Categories.Where(u => u.EventCategoryId == EventSelected.EventCategoryId).First();
-                TicketPrice = EventSelected.TicketPrice;
+                await GetCompanies();
+                await GetCategories();
+                EventSelected = (Event)e.Parameter;
+                if (EventSelected != null)
+                {
+                    Name = EventSelected.Name;
+                    EventDatePicker = EventSelected.EventDate;
+                    Address = EventSelected.Address;
+                    City = EventSelected.City;
+                    ZIP = EventSelected.ZIP;
+                    Description = EventSelected.Description;
+                    CompanySelected = Companies.Where(u => u.CompanyId == EventSelected.CompanyId).First();
+                    CategorySelected = Categories.Where(u => u.EventCategoryId == EventSelected.EventCategoryId).First();
+                    TicketPrice = decimal.ToDouble(EventSelected.TicketPrice);
+                }
+                else
+                {
+                    EventDatePicker = DateTime.Today;
+                }
             }
-            else
+            catch (DAOConnectionException ex)
             {
-                EventDatePicker = DateTime.Today;
+                await _dialogService.ShowMessage(ex.Message, ex.Title);
+                _navigationService.NavigateTo("EventsListPage");
             }
         }
 

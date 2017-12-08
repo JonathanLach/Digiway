@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace DigiwayUWP.Exceptions
 {
-    public class UserNotFoundException : LoginException
+    public class DAOException : Exception
     {
-        private string _message = "Incorrect Username";
+        private string _title = "Data Access Error";
+        public string Title
+        {
+            get { return _title; }
+        }
+
+        private string _message = "Error with the service";
         public override string Message
         {
             get { return _message; }

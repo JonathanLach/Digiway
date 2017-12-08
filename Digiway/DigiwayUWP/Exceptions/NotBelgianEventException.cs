@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DigiwayUWP.Exceptions
 {
-    public class UserNotFoundException : LoginException
+    public class NotBelgianEventException : EventFormException
     {
-        private string _message = "Incorrect Username";
+        private string _message = "The ZIP must be Belgian (4 digits). Abroad events are not allowed yet.";
         public override string Message
         {
             get { return _message; }

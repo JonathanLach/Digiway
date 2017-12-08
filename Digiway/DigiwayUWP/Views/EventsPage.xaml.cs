@@ -30,6 +30,7 @@ namespace DigiwayUWP.Views
         {
             this.InitializeComponent();
             hamburgerMenuControl.ItemsSource = MenuItem.GetMainItems();
+
         }
 
         private void OnMenuItemClick(object sender, ItemClickEventArgs e)

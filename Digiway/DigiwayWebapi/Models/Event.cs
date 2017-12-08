@@ -20,7 +20,7 @@ namespace DigiwayWebapi.Models
         [Required]
         public DateTime EventDate { get; set; }
         [Required]
-        public double TicketPrice { get; set; }
+        public decimal TicketPrice { get; set; }
         public string Description { get; set; }
         public long CompanyId { get; set; }
         public virtual Company Company { get; set; }

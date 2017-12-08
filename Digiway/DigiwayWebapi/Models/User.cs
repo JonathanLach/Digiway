@@ -32,7 +32,7 @@ namespace DigiwayWebapi.Models
         public int AccessRights { get; set; }
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public double Money { get; set; }
+        public decimal Money { get; set; }
         //public virtual ICollection<Friendship> Friends { get; set; }
         [JsonIgnore]
         public virtual ICollection<UserCompany> Companies { get; set;}

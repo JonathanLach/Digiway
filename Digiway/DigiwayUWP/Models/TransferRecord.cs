@@ -11,7 +11,7 @@ namespace DigiwayUWP.Models
 {
     public class TransferRecord
     {
-        public double TransferedValue { get; set; }
+        public decimal TransferedValue { get; set; }
         public long ActionRecordId { get; set; }
         public virtual ActionRecord ActionRecord { get; set; }
 
@@ -31,7 +31,7 @@ namespace DigiwayUWP.Models
             return ActionRecord + " " + TransferedValue;
         }
 
-        public static async Task AddTransferRecord(double moneyTransfered)
+        public static async Task AddTransferRecord(decimal moneyTransfered)
         {
             ActionRecord aRecord = new ActionRecord()
             {

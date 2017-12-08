@@ -5,8 +5,8 @@
     xmlns:local="using:DigiwayUWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:WinRTXamlToolkit.Controls"
     xmlns:controls1="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:controls2="using:WinRTXamlToolkit.Controls"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=Events}">
 
@@ -62,7 +62,8 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Row="6" Grid.Column="1" VerticalAlignment="Top" Margin="0,5,0,0">
                     <TextBlock Text="Ticket Price (€): "/>
-                    <controls:NumericUpDown Value="{Binding TicketPrice}" Name="Test" HorizontalAlignment="Stretch" Minimum="0" Maximum="1000" />
+                    <TextBox Text="{Binding TicketPrice, Mode=TwoWay}" />
+                    <!-- <controls2:NumericUpDown Value="{Binding TicketPrice}" Name="Price" HorizontalAlignment="Stretch" Minimum="0" Maximum="1000" /> -->
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,5,0,0">
                     <TextBlock Text="Category: "/>
