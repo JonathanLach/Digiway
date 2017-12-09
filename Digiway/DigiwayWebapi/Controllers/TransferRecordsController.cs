@@ -51,7 +51,7 @@ namespace DigiwayWebapi.Controllers
 
         // PUT api/values/5
         [HttpPut]
-        public async Task<IActionResult> Put(int id, [FromBody]TransferRecord transferRecord)
+        public async Task<IActionResult> Put(long id, [FromBody]TransferRecord transferRecord)
         {
             if (!ModelState.IsValid || transferRecord == null)
             {
@@ -69,10 +69,11 @@ namespace DigiwayWebapi.Controllers
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete("id/{id}")]
+        public async Task<IActionResult> Delete(long id)
         {
-            var existingTransferRecord = await _context.TransferRecords.FindAsync(id);
+            var existingTransferRecord = await _context.TransferRecords.FirstOrDefaultAsync(tr => tr.TransferRecordId == id);
+
             if (existingTransferRecord == null)
             {
                 return NotFound();

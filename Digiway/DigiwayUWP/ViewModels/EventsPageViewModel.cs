@@ -228,32 +228,57 @@ namespace DigiwayUWP.ViewModels
             _dialogService = dialogService;
         }
 
+        private void VerificationEvent()
+        {
+            if (EventDatePicker.DateTime < DateTime.Today)
+            {
+                throw new AnteriorEventDateException();
+            }
+            if (CompanySelected == null)
+            {
+                throw new NoCompanySelectedException();
+            }
+            if (CategorySelected == null)
+            {
+                throw new NoCategorySelectedException();
+            }
+            if (TicketPrice < 0)
+            {
+                throw new NegativePriceException();
+            }
+            if (Name == null || Name == "")
+            {
+                throw new EmptyFieldException("Name");
+            }
+            if (Address == null || Address == "")
+            {
+                throw new EmptyFieldException("Address");
+            }
+            if (ZIP == null || ZIP == "")
+            {
+                throw new EmptyFieldException("ZIP");
+            }
+            if (ZIP.Length != 4 || !IsDigit(ZIP))
+            {
+                throw new NotBelgianEventException();
+            }
+            if (City == null || City == "")
+            {
+                throw new EmptyFieldException("City");
+            }
+        }
+
+        private bool IsDigit(string s)
+        {
+            return Regex.IsMatch(s, @"^\d+$");
+        }
+
         private async Task AddEvent()
         {
 
             try
             {
-                if (EventDatePicker.DateTime < DateTime.Today)
-                {
-                    throw new AnteriorEventDateException();
-                }
-                if (CompanySelected == null)
-                {
-                    throw new NoCompanySelectedException();
-                }
-                if (CategorySelected == null)
-                {
-                    throw new NoCompanySelectedException();
-                }
-                if (TicketPrice < 0)
-                {
-                    throw new NegativePriceException();
-                }
-                if (ZIP.Length != 4 || !Regex.IsMatch(ZIP, @"^\d+$"))
-                {
-                    throw new NotBelgianEventException();
-                }
-
+                VerificationEvent();
                 Event newEvent = new Event()
                 {
                     Name = this.Name,

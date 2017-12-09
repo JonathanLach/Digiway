@@ -53,7 +53,7 @@ namespace DigiwayWebapi.Controllers
 
             // PUT api/values/5
             [HttpPut]
-            public async Task<IActionResult> Put(int id, [FromBody]EventCategory e)
+            public async Task<IActionResult> Put(long id, [FromBody]EventCategory e)
             {
                 if (!ModelState.IsValid || e == null)
                 {
@@ -71,11 +71,11 @@ namespace DigiwayWebapi.Controllers
             }
 
             // DELETE api/values/5
-            [HttpDelete("{id}")]
-            public async Task<IActionResult> Delete(int id)
+            [HttpDelete("id/{id}")]
+            public async Task<IActionResult> Delete(long id)
             {
-                var existingEventCategory = await _context.EventCategories.FindAsync(id);
-                if (existingEventCategory == null)
+                var existingEventCategory = await _context.EventCategories.FirstOrDefaultAsync(ec => ec.EventCategoryId == id);
+                 if (existingEventCategory == null)
                 {
                     return NotFound();
                 }

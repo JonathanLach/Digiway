@@ -52,7 +52,7 @@ namespace DigiwayWebapi.Controllers
 
         // PUT api/values/5
         [HttpPut]
-        public async Task<IActionResult> Put(int id, [FromBody]Company company)
+        public async Task<IActionResult> Put(long id, [FromBody]Company company)
         {
             if (!ModelState.IsValid || company == null)
             {
@@ -69,10 +69,10 @@ namespace DigiwayWebapi.Controllers
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete("id/{id}")]
+        public async Task<IActionResult> Delete(long id)
         {
-            var existingCompany = await _context.Companies.FindAsync(id);
+            var existingCompany = await _context.Companies.FirstOrDefaultAsync(c => c.CompanyId == id);
             if (existingCompany == null)
             {
                 return NotFound();

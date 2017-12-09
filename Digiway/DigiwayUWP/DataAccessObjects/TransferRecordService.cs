@@ -16,8 +16,7 @@ namespace DigiwayUWP.DataAccessObjects
         private static string transferRecordURL = "api/transferRecords";
         public async Task<ObservableCollection<TransferRecord>> GetTransferRecords()
         {
-            HttpResponseMessage responseMessage = await ClientService.client.GetAsync(transferRecordURL);
-            return await DeserializerService<ObservableCollection<TransferRecord>>.getObjectModelAsync(responseMessage);
+            return await DeserializerService<ObservableCollection<TransferRecord>>.GetObjectFromService(transferRecordURL);
         }
 
         public async Task AddTransferRecord(TransferRecord tr)

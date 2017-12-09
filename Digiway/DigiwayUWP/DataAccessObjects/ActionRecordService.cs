@@ -16,8 +16,7 @@ namespace DigiwayUWP.DataAccessObjects
         private static string actionRecordsURL = "api/actionRecords";
         public async Task<ObservableCollection<ActionRecord>> GetActionRecords()
         {
-            HttpResponseMessage responseMessage = await ClientService.client.GetAsync(actionRecordsURL);
-            return await DeserializerService<ObservableCollection<ActionRecord>>.getObjectModelAsync(responseMessage);
+            return await DeserializerService<ObservableCollection<ActionRecord>>.GetObjectFromService(actionRecordsURL);
         }
 
         public async Task AddActionRecord(ActionRecord ar)

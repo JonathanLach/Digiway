@@ -19,6 +19,7 @@ namespace DigiwayUWP.DataAccessObjects
     public class EventService : IEventDAO
     {
         private static string eventURL = "api/events";
+        private static string eventDeleteURL = eventURL+ "/id/";
         private static string eventCategoryURL = "api/eventCategories";
         private static string companyURL = "api/companies";
 
@@ -34,40 +35,22 @@ namespace DigiwayUWP.DataAccessObjects
 
         public async Task DeleteEvent(Event e)
         {
-            await ClientService.client.DeleteAsync(eventURL + "/" + e.EventId);
+            await ClientService.client.DeleteAsync(eventURL + "/id/" + e.EventId);
         }
 
         public async Task<ObservableCollection<Event>> GetEvents()
         {
-            HttpResponseMessage responseMessage = await ClientService.client.GetAsync(eventURL);
-            return await DeserializerService<ObservableCollection<Event>>.getObjectModelAsync(responseMessage);
+            return await DeserializerService<ObservableCollection<Event>>.GetObjectFromService(eventURL);
         }
 
         public async Task<ObservableCollection<EventCategory>> GetEventCategories()
         {
-
-            HttpResponseMessage responseMessage = await ClientService.client.GetAsync(eventCategoryURL);
-            if (responseMessage.StatusCode == HttpStatusCode.Forbidden || responseMessage.StatusCode >= HttpStatusCode.InternalServerError)
-            {
-                throw new DAOConnectionException();
-            }
-            else
-            {
-                return await DeserializerService<ObservableCollection<EventCategory>>.getObjectModelAsync(responseMessage);
-            }
+            return await DeserializerService<ObservableCollection<EventCategory>>.GetObjectFromService(eventCategoryURL);
         }
 
         public async Task<ObservableCollection<Company>> GetCompanies()
         {
-            HttpResponseMessage responseMessage = await ClientService.client.GetAsync(companyURL);
-            if (responseMessage.StatusCode == HttpStatusCode.Forbidden || responseMessage.StatusCode >= HttpStatusCode.InternalServerError)
-            {
-                throw new DAOConnectionException();
-            }
-            else
-            {
-                return await DeserializerService<ObservableCollection<Company>>.getObjectModelAsync(responseMessage);
-            }
+            return await DeserializerService<ObservableCollection<Company>>.GetObjectFromService(companyURL);
         }
 
     }

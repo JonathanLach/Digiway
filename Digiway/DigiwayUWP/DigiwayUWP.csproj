@@ -110,6 +110,7 @@
     <Compile Include="Exceptions\AnteriorEventDateException.cs" />
     <Compile Include="Exceptions\DAOConnectionException.cs" />
     <Compile Include="Exceptions\DAOException.cs" />
+    <Compile Include="Exceptions\EmptyFieldException.cs" />
     <Compile Include="Exceptions\EventFormException.cs" />
     <Compile Include="Exceptions\IncorrectPasswordException.cs" />
     <Compile Include="Exceptions\LoginException.cs" />

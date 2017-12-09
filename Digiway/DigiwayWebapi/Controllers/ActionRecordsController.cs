@@ -54,7 +54,7 @@ namespace DigiwayWebapi.Controllers
 
         // PUT api/values/5
         [HttpPut]
-        public async Task<IActionResult> Put(int id, [FromBody]ActionRecord actionRecord)
+        public async Task<IActionResult> Put(long id, [FromBody]ActionRecord actionRecord)
         {
             if (!ModelState.IsValid || actionRecord == null)
             {
@@ -73,10 +73,10 @@ namespace DigiwayWebapi.Controllers
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete("id/{id}")]
+        public async Task<IActionResult> Delete(long id)
         {
-            var existingActionRecord = await _context.ActionRecords.FindAsync(id);
+            var existingActionRecord = await _context.ActionRecords.FirstOrDefaultAsync(ar => ar.ActionRecordId == id);
             if (existingActionRecord == null)
             {
                 return NotFound();

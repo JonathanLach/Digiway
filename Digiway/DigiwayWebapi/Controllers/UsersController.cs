@@ -71,7 +71,7 @@ namespace DigiwayWebapi.Controllers
 
         // PUT api/values/5
         [HttpPut]
-        public async Task<IActionResult> Put(int id, [FromBody]User u)
+        public async Task<IActionResult> Put(long id, [FromBody]User u)
         {
 
             if (!ModelState.IsValid || u == null)
@@ -100,10 +100,10 @@ namespace DigiwayWebapi.Controllers
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete("id/{id}")]
+        public async Task<IActionResult> Delete(long id)
         {
-            var existingUser = await _context.Users.FindAsync(id);
+            var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.UserId == id);
             if (existingUser == null)
             {
                 return NotFound();

@@ -88,10 +88,10 @@ namespace DigiwayWebapi.Controllers
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
+        [HttpDelete("id/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var existingEvent = await _context.Events.FindAsync(id);
+            var existingEvent = await _context.Events.FirstOrDefaultAsync(e => e.EventId == id);
             if (existingEvent == null)
             {
                 return NotFound();

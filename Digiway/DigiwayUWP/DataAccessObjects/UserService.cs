@@ -20,8 +20,7 @@ namespace DigiwayUWP.DataAccessObjects
 
         public async Task<ObservableCollection<User>> GetUsers()
         {
-            HttpResponseMessage responseMessage = await ClientService.client.GetAsync(userURL);
-            return await DeserializerService<ObservableCollection<User>>.getObjectModelAsync(responseMessage);
+            return await DeserializerService<ObservableCollection<User>>.GetObjectFromService(userURL);
         }
 
         public async Task UpdateUser(User u)
@@ -31,19 +30,7 @@ namespace DigiwayUWP.DataAccessObjects
 
         public async Task<User> getUserByUsername(string userName)
         {
-            HttpResponseMessage responseMessage = await ClientService.client.GetAsync(userByNicknameURL + userName);
-            if (responseMessage.StatusCode == HttpStatusCode.NotFound)
-            {
-                throw new UserNotFoundException();
-            }
-            else if (responseMessage.StatusCode == HttpStatusCode.Forbidden || responseMessage.StatusCode >= HttpStatusCode.InternalServerError)
-            {
-                throw new DAOConnectionException();
-            }
-            else
-            {
-                return await DeserializerService<User>.getObjectModelAsync(responseMessage);
-            }
+            return await DeserializerService<User>.GetObjectFromService(userByNicknameURL + userName);
         }
     }
 }

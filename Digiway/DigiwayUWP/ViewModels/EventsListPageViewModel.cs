@@ -1,4 +1,5 @@
-﻿using DigiwayUWP.Models;
+﻿using DigiwayUWP.Exceptions;
+using DigiwayUWP.Models;
 using DigiwayUWP.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -143,11 +144,19 @@ namespace DigiwayUWP.ViewModels
 
         private async void GetEvents()
         {
-            Events = await Event.GetEvents();
-            foreach(Event e in Events)
+            try
             {
-                IFormatProvider culture = new CultureInfo("en-US");
-                e.FormattedDate = e.EventDate.ToString("dddd dd MMMM yyyy", culture);
+                Events = await Event.GetEvents();
+                foreach (Event e in Events)
+                {
+                    IFormatProvider culture = new CultureInfo("en-US");
+                    e.FormattedDate = e.EventDate.ToString("dddd dd MMMM yyyy", culture);
+                }
+            }
+            catch (DAOConnectionException e)
+            {
+                await _dialogService.ShowMessage(e.Message, e.Title);
+                _navigationService.NavigateTo("HomePage");
             }
         }
 

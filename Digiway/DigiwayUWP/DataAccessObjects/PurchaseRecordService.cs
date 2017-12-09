@@ -16,8 +16,7 @@ namespace DigiwayUWP.DataAccessObjects
         private static string purchaseRecordURL = "api/purchaseRecords";
         public async Task<ObservableCollection<PurchaseRecord>> GetPurchaseRecords()
         {
-            HttpResponseMessage responseMessage = await ClientService.client.GetAsync(purchaseRecordURL);
-            return await DeserializerService<ObservableCollection<PurchaseRecord>>.getObjectModelAsync(responseMessage);
+            return await DeserializerService<ObservableCollection<PurchaseRecord>>.GetObjectFromService(purchaseRecordURL);
         }
     }
 }
