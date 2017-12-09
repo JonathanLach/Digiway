@@ -26,6 +26,7 @@ namespace DigiwayUWP.DataAccessObjects
         public async Task AddEvent(Event e)
         {
             await ClientService.client.PostAsJsonAsync(eventURL, e);
+            HttpClient newClient = new HttpClient();
         }
 
         public async Task UpdateEvent(Event e)

@@ -31,6 +31,13 @@ namespace DigiwayUWP.Views
             hamburgerMenuControl.ItemsSource = MenuItem.GetMainItems();
         }
 
+        public PointsOfInterestPageViewModel Vm {
+            get
+            {
+                return (PointsOfInterestPageViewModel)DataContext;
+            }
+        }
+
         private void OnMenuItemClick(object sender, ItemClickEventArgs e)
         {
             var menuItem = e.ClickedItem as MenuItem;

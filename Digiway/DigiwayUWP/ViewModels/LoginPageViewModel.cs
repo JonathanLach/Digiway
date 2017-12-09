@@ -53,7 +53,7 @@ namespace DigiwayUWP.ViewModels
             get
             {
                 if (_signIn == null)
-                {
+                { 
                     _signIn = new RelayCommand(async () => await Connection());
                 }
                 return _signIn;

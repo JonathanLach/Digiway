@@ -20,16 +20,50 @@ namespace DigiwayUWP.ViewModels
 {
     public class PointsOfInterestPageViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        private INavigationService _navigationService;
 
+        private ObservableCollection<PointOfInterest> PointsOfInterest { get; set; }
+        private ObservableCollection<Geopoint> _pushpins;
+        public ObservableCollection<Geopoint> Pushpins
+        {
+            get
+            {
+                return _pushpins;
+            }
+            set
+            {
+                _pushpins = value;
+                RaisePropertyChanged("Pushpins");
+            }
+        }
+
+        private INavigationService _navigationService;
+    
         public PointsOfInterestPageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
         }
 
+        public void MapDoubleClick(object sender, MapInputEventArgs e)
+        {
+            MapIcon snPoint = new MapIcon
+            {
+                Location = e.Location,
+                NormalizedAnchorPoint = new Windows.Foundation.Point(0.5, 1),
+                ZIndex = 0,
+                Title = "Titre"
+            };
+        }
+
         public void OnNavigatedTo(NavigationEventArgs e)
         {
-
+            if (e.Parameter != null)
+            {
+                PointsOfInterest = (ObservableCollection<PointOfInterest>)e.Parameter;
+            }
+            else
+            {
+                PointsOfInterest = new ObservableCollection<PointOfInterest>();
+            }
         }
     }
 }

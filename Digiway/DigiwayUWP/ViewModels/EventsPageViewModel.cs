@@ -11,6 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.Devices.Geolocation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -92,6 +93,8 @@ namespace DigiwayUWP.ViewModels
                 RaisePropertyChanged("TicketPrice");
             }
         }
+
+        public ObservableCollection<PointOfInterest> PointsOfInterest { get; set; }
 
         private string _zip;
         public string ZIP
@@ -219,7 +222,7 @@ namespace DigiwayUWP.ViewModels
 
         public void GetPointsOfInterestView()
         {
-            _navigationService.NavigateTo("PointsOfInterestPage");
+            _navigationService.NavigateTo("PointsOfInterestPage", PointsOfInterest);
         }
 
         public EventsPageViewModel(INavigationService navigationService = null, IDialogService dialogService = null)
@@ -347,6 +350,7 @@ namespace DigiwayUWP.ViewModels
                     CompanySelected = Companies.Where(u => u.CompanyId == EventSelected.CompanyId).First();
                     CategorySelected = Categories.Where(u => u.EventCategoryId == EventSelected.EventCategoryId).First();
                     TicketPrice = decimal.ToDouble(EventSelected.TicketPrice);
+                    PointsOfInterest = new ObservableCollection<PointOfInterest>(EventSelected.PointsOfInterest);
                 }
                 else
                 {
