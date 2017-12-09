@@ -13,6 +13,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.Devices.Geolocation;
+using Windows.Foundation;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Navigation;
 
@@ -21,9 +23,10 @@ namespace DigiwayUWP.ViewModels
     public class PointsOfInterestPageViewModel : ViewModelBase, INotifyPropertyChanged
     {
 
+
         private ObservableCollection<PointOfInterest> PointsOfInterest { get; set; }
-        private ObservableCollection<Geopoint> _pushpins;
-        public ObservableCollection<Geopoint> Pushpins
+        private ObservableCollection<MapElement> _pushpins;
+        public ObservableCollection<MapElement> Pushpins
         {
             get
             {
@@ -36,22 +39,38 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
+        private string _pushpinTitle;
+        public string PushpinTitle
+        {
+            get
+            {
+                return _pushpinTitle;
+            }
+            set
+            {
+                _pushpinTitle = value;
+                RaisePropertyChanged("PushpinTitle");
+            }
+        }
+
         private INavigationService _navigationService;
     
         public PointsOfInterestPageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
+            Pushpins = new ObservableCollection<MapElement>();
         }
 
         public void MapDoubleClick(object sender, MapInputEventArgs e)
         {
-            MapIcon snPoint = new MapIcon
+            MapIcon newPushpin = new MapIcon
             {
                 Location = e.Location,
-                NormalizedAnchorPoint = new Windows.Foundation.Point(0.5, 1),
                 ZIndex = 0,
-                Title = "Titre"
-            };
+                NormalizedAnchorPoint = new Point(0.5, 1),
+                Title = PushpinTitle,
+        };
+            Pushpins.Add(newPushpin);
         }
 
         public void OnNavigatedTo(NavigationEventArgs e)
