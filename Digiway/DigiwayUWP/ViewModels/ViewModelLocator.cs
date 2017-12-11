@@ -1,4 +1,5 @@
-﻿using DigiwayUWP.Views;
+﻿using DigiwayUWP.Resources;
+using DigiwayUWP.Views;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
@@ -15,6 +16,7 @@ namespace DigiwayUWP.ViewModels
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            SimpleIoc.Default.Register<MainPageViewModel>();
             SimpleIoc.Default.Register<AnalyticsPageViewModel>();
             SimpleIoc.Default.Register<ActionRecordsPageViewModel>();
             SimpleIoc.Default.Register<EventsPageViewModel>();
@@ -24,9 +26,10 @@ namespace DigiwayUWP.ViewModels
             SimpleIoc.Default.Register<EventsListPageViewModel>();
             SimpleIoc.Default.Register<PointsOfInterestPageViewModel>();
 
-            NavigationService navigationPages = new NavigationService();
+            CustomNavigationService navigationPages = new CustomNavigationService();
             SimpleIoc.Default.Register<INavigationService>(() => navigationPages);
             SimpleIoc.Default.Register<IDialogService, DialogService>();
+            navigationPages.Configure("MainPage", typeof(MainPage));
             navigationPages.Configure("AnalyticsPage", typeof(AnalyticsPage));
             navigationPages.Configure("ActionRecordsPage", typeof(ActionRecordsPage));
             navigationPages.Configure("EventsPage", typeof(EventsPage));

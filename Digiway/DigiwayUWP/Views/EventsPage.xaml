@@ -12,76 +12,70 @@
 
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <controls1:HamburgerMenu x:Name="hamburgerMenuControl"
-                                PaneBackground="Black"
-                                ItemTemplate="{StaticResource DefaultTemplate}"
-                                ItemClick="OnMenuItemClick"
-                                OpenPaneLength="180">
-            <Grid>
-                <Grid.Background>
-                    <ImageBrush ImageSource="/Resources/EventsImage.jpg" Opacity="0.90"/>
-                </Grid.Background>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="3*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="Event Manager" FontSize="30" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"/>
-                <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top">
-                    <TextBlock Text="Name: "  Margin="0,0,30,0"/>
-                    <TextBox Text="{Binding Name, Mode=TwoWay}"/>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Margin="0,5,0,0">
-                    <TextBlock Text="Date: "/>
-                    <DatePicker HorizontalAlignment="Stretch" Date="{Binding EventDatePicker, Mode=TwoWay}"/>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" Margin="0,5,0,0">
-                    <TextBlock Text="Address: "/>
-                    <TextBox Text="{Binding Address, Mode=TwoWay}"/>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Row="4" Grid.Column="1" VerticalAlignment="Top" Margin="0,5,0,0">
-                    <TextBlock Text="City: "/>
-                    <TextBox Text="{Binding City, Mode=TwoWay}"/>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" Margin="0,5,0,0">
-                    <TextBlock Text="ZIP: "/>
-                    <TextBox Text="{Binding ZIP, Mode=TwoWay}"/>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Row="6" Grid.Column="1" VerticalAlignment="Top" Margin="0,5,0,0">
-                    <TextBlock Text="Ticket Price (€): "/>
-                    <TextBox Text="{Binding TicketPrice, Mode=TwoWay}" />
-                    <!-- <controls2:NumericUpDown Value="{Binding TicketPrice}" Name="Price" HorizontalAlignment="Stretch" Minimum="0" Maximum="1000" /> -->
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,5,0,0">
-                    <TextBlock Text="Category: "/>
-                    <ComboBox ItemsSource="{Binding Categories}" HorizontalAlignment="Stretch" SelectedItem="{Binding CategorySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Row="8" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,5,0,0">
-                    <TextBlock Text="Company: "/>
-                    <ComboBox ItemsSource="{Binding Companies}" HorizontalAlignment="Stretch" SelectedItem="{Binding CompanySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                </StackPanel>
-                <StackPanel Orientation="Vertical"  Grid.Row="9" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                    <TextBlock Text="Description: "/>
-                    <TextBox Text="{Binding Description, Mode=TwoWay}" AcceptsReturn="True"  ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" PlaceholderText="Describe your event" Height="100" MaxHeight="300"/>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Row="10" Grid.Column="1"  VerticalAlignment="Center" Margin="0,5,0,0">
-                    <Button Content="Points of interest" Command="{Binding GetPOIView}" HorizontalAlignment="Center" Width="150" Height="30" BorderBrush="LightGray" Background="DarkGray" Margin="0,0,0,30" BorderThickness="1"/>
-                    <Button Content="Envoyer" Command="{Binding AddNewEvent}" HorizontalAlignment="Center" Width="100" Height="30" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
-                </StackPanel>
-            </Grid>
-        </controls1:HamburgerMenu>
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/Resources/EventsImage.jpg" Opacity="0.90"/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Event Manager" FontSize="30" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top">
+                <TextBlock Text="Name: "  Margin="0,0,30,0"/>
+                <TextBox Text="{Binding Name, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Margin="0,5,0,0">
+                <TextBlock Text="Date: "/>
+                <DatePicker HorizontalAlignment="Stretch" Date="{Binding EventDatePicker, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" Margin="0,5,0,0">
+                <TextBlock Text="Address: "/>
+                <TextBox Text="{Binding Address, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="4" Grid.Column="1" VerticalAlignment="Top" Margin="0,5,0,0">
+                <TextBlock Text="City: "/>
+                <TextBox Text="{Binding City, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" Margin="0,5,0,0">
+                <TextBlock Text="ZIP: "/>
+                <TextBox Text="{Binding ZIP, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="6" Grid.Column="1" VerticalAlignment="Top" Margin="0,5,0,0">
+                <TextBlock Text="Ticket Price (€): "/>
+                <TextBox Text="{Binding TicketPrice, Mode=TwoWay}" />
+                <!-- <controls2:NumericUpDown Value="{Binding TicketPrice}" Name="Price" HorizontalAlignment="Stretch" Minimum="0" Maximum="1000" /> -->
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,5,0,0">
+                <TextBlock Text="Category: "/>
+                <ComboBox ItemsSource="{Binding Categories}" HorizontalAlignment="Stretch" SelectedItem="{Binding CategorySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="8" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,5,0,0">
+                <TextBlock Text="Company: "/>
+                <ComboBox ItemsSource="{Binding Companies}" HorizontalAlignment="Stretch" SelectedItem="{Binding CompanySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical"  Grid.Row="9" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <TextBlock Text="Description: "/>
+                <TextBox Text="{Binding Description, Mode=TwoWay}" AcceptsReturn="True"  ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" PlaceholderText="Describe your event" Height="100" MaxHeight="300"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="10" Grid.Column="1"  VerticalAlignment="Center" Margin="0,5,0,0">
+                <Button Content="Points of interest" Command="{Binding GetPOIView}" HorizontalAlignment="Center" Width="150" Height="30" BorderBrush="LightGray" Background="DarkGray" Margin="0,0,0,30" BorderThickness="1"/>
+                <Button Content="Envoyer" Command="{Binding AddNewEvent}" HorizontalAlignment="Center" Width="100" Height="30" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

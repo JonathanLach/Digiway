@@ -1,5 +1,4 @@
 ﻿using DigiwayUWP.Models;
-using DigiwayUWP.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,23 +14,25 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=234238
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace DigiwayUWP.Views
 {
     /// <summary>
-    /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
+    /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ProfilePage : Page
+    public sealed partial class MainPage : Page
     {
-        public ProfilePage()
+        public MainPage()
         {
             this.InitializeComponent();
+            hamburgerMenuControl.ItemsSource = MenuItem.GetMainItems();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        private void OnMenuItemClick(object sender, ItemClickEventArgs e)
         {
-            ((ProfilePageViewModel)DataContext).OnNavigatedTo(e);
+            var menuItem = e.ClickedItem as MenuItem;
+            Frame.Navigate(menuItem.PageType);
         }
     }
 }

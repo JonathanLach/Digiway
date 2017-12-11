@@ -1,4 +1,5 @@
 ﻿using DigiwayUWP.DataAccessObjects;
+using DigiwayUWP.Exceptions;
 using DigiwayUWP.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -54,23 +55,35 @@ namespace DigiwayUWP.ViewModels
         }
 
         private INavigationService _navigationService;
-    
-        public PointsOfInterestPageViewModel(INavigationService navigationService)
+        private IDialogService _dialogService;
+
+        public PointsOfInterestPageViewModel(INavigationService navigationService, IDialogService dialogService)
         {
             _navigationService = navigationService;
+            _dialogService = dialogService;
             Pushpins = new ObservableCollection<MapElement>();
         }
 
         public void MapDoubleClick(object sender, MapInputEventArgs e)
         {
-            MapIcon newPushpin = new MapIcon
+            try
             {
-                Location = e.Location,
-                ZIndex = 0,
-                NormalizedAnchorPoint = new Point(0.5, 1),
-                Title = PushpinTitle,
-        };
-            Pushpins.Add(newPushpin);
+                if (PushpinTitle == null || PushpinTitle == "")
+                {
+                    throw new EmptyFieldException("Title");
+                }
+                MapIcon newPushpin = new MapIcon
+                {
+                    Location = e.Location,
+                    ZIndex = 0,
+                    NormalizedAnchorPoint = new Point(0.5, 1),
+                    Title = PushpinTitle,
+                };
+                Pushpins.Add(newPushpin);
+            } catch (EmptyFieldException ex)
+            {
+                _dialogService.ShowMessage(ex.Message, ex.Title);
+            }
         }
 
         public void OnNavigatedTo(NavigationEventArgs e)

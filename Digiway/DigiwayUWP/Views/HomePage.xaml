@@ -9,17 +9,10 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <controls:HamburgerMenu x:Name="hamburgerMenuControl"
-                                PaneBackground="Black"
-                                Foreground="White"
-                                ItemTemplate="{StaticResource DefaultTemplate}"
-                                ItemClick="OnMenuItemClick"
-                                OpenPaneLength="180">
-            <Grid>
-                <Grid.Background>
-                    <ImageBrush Stretch="Fill"  ImageSource="/Resources/HomeBackground.jpg" AlignmentY="Top" AlignmentX="Center"/>
-                </Grid.Background>
-            </Grid>
-        </controls:HamburgerMenu>
+        <Grid>
+            <Grid.Background>
+                <ImageBrush Stretch="Fill"  ImageSource="/Resources/HomeBackground.jpg" AlignmentY="Top" AlignmentX="Center"/>
+            </Grid.Background>
+        </Grid>
     </Grid>
 </Page>

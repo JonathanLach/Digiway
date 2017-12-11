@@ -28,7 +28,6 @@ namespace DigiwayUWP.Views
         public PointsOfInterestPage()
         {
             this.InitializeComponent();
-            hamburgerMenuControl.ItemsSource = MenuItem.GetMainItems();
         }
 
         public PointsOfInterestPageViewModel Vm {
@@ -36,12 +35,6 @@ namespace DigiwayUWP.Views
             {
                 return (PointsOfInterestPageViewModel)DataContext;
             }
-        }
-
-        private void OnMenuItemClick(object sender, ItemClickEventArgs e)
-        {
-            var menuItem = e.ClickedItem as MenuItem;
-            Frame.Navigate(menuItem.PageType);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

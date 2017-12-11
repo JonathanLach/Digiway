@@ -86,7 +86,7 @@ namespace DigiwayUWP.ViewModels
                 {
                     User.CurrentUser = u;
                     await ActionRecord.AddActionRecord("Logged in");
-                    _navigationService.NavigateTo("HomePage");
+                    _navigationService.NavigateTo("MainPage");
                 }
                 else
                 {

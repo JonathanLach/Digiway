@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="DigiwayUWP.Views.AnalyticsPage"
+    x:Class="DigiwayUWP.Views.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:DigiwayUWP.Views"
@@ -10,7 +10,16 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-            <TextBlock Text="Analytics" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <controls:HamburgerMenu x:Name="hamburgerMenuControl"
+                                PaneBackground="Black"
+                                Foreground="White"
+                                ItemTemplate="{StaticResource DefaultTemplate}"
+                                ItemClick="OnMenuItemClick"
+                                OpenPaneLength="180">
+                <Frame Name="MainFrame"/>
+            </controls:HamburgerMenu>
+            <Grid>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

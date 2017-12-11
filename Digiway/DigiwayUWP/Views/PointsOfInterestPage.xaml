@@ -12,28 +12,23 @@
     mc:Ignorable="d">
 
     <Grid Name="pageGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <controls:HamburgerMenu x:Name="hamburgerMenuControl"
-                                PaneBackground="Black"
-                                ItemTemplate="{StaticResource DefaultTemplate}"
-                                ItemClick="OnMenuItemClick"
-                                OpenPaneLength="180">
-            <Grid>
-                <Grid.Background>
-                    <ImageBrush ImageSource="/Resources/EventsImage.jpg" Opacity="0.90"/>
-                </Grid.Background>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="4*" />
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="7*"/>
-                    <RowDefinition Height="2*"/>
-                </Grid.RowDefinitions>
-                <Maps:MapControl
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/Resources/EventsImage.jpg" Opacity="0.90"/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Maps:MapControl
                    x:Name="Map" 
                    MapServiceToken="IyxS023Xvt5KHJhcXShs~SRY0Trw92WYpZX-JtoTE3Q~AsDJWQeaaB6wZmCBSYQEv0xYJShxPhuMOVRL9QaxucwWwnO5MAYuU4nUid4QZlyX"
                    ZoomInteractionMode="GestureAndControl"
@@ -47,23 +42,22 @@
                    BorderBrush="Black"
                    BorderThickness="10">
 
-                    <Maps:MapItemsControl ItemsSource="{Binding Pushpins, Mode=Twoway}">
-                        <Maps:MapItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Foreground="Black"  Maps:MapControl.Location="{Binding Location}" Text="{Binding Title}" Maps:MapControl.NormalizedAnchorPoint="{Binding NormalizedAnchorPoint}"
+                <Maps:MapItemsControl ItemsSource="{Binding Pushpins, Mode=Twoway}">
+                    <Maps:MapItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Foreground="Black"  Maps:MapControl.Location="{Binding Location}" Text="{Binding Title}" Maps:MapControl.NormalizedAnchorPoint="{Binding NormalizedAnchorPoint}"
                                     FontSize="20" Margin="5"/>
-                                    <Image Source="/Resources/Pushpin.png" Width="30" Height="30"  Maps:MapControl.Location="{Binding Location}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </Maps:MapItemsControl.ItemTemplate>
-                    </Maps:MapItemsControl>
-                </Maps:MapControl>
-                <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" Margin="0,5,0,0">
-                    <TextBlock Text="Titre: " HorizontalAlignment="Center"/>
-                    <TextBox Text="{Binding PushpinTitle, Mode=TwoWay}"/>
-                </StackPanel>
-            </Grid>
-        </controls:HamburgerMenu>
+                                <Image Source="/Resources/Pushpin.png" Width="30" Height="30"  Maps:MapControl.Location="{Binding Location}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </Maps:MapItemsControl.ItemTemplate>
+                </Maps:MapItemsControl>
+            </Maps:MapControl>
+            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" Margin="0,5,0,0">
+                <TextBlock Text="Titre: " HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding PushpinTitle, Mode=TwoWay}"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

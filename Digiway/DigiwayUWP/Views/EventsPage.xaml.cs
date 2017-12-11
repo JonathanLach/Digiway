@@ -29,14 +29,6 @@ namespace DigiwayUWP.Views
         public EventsPage()
         {
             this.InitializeComponent();
-            hamburgerMenuControl.ItemsSource = MenuItem.GetMainItems();
-
-        }
-
-        private void OnMenuItemClick(object sender, ItemClickEventArgs e)
-        {
-            var menuItem = e.ClickedItem as MenuItem;
-            Frame.Navigate(menuItem.PageType);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
