@@ -11,37 +11,30 @@
 
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <controls:HamburgerMenu x:Name="hamburgerMenuControl"
-                                PaneBackground="Black"
-                                ItemTemplate="{StaticResource DefaultTemplate}"
-                                ItemClick="OnMenuItemClick"
-                                OpenPaneLength="180">
-
-            <Grid>
-                <Grid.Background>
-                    <ImageBrush ImageSource="/Resources/EventsImage.jpg" Opacity="0.90"/>
-                </Grid.Background>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="2.3*"/>
-                    <ColumnDefinition Width="3*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="2*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="Action Records" FontSize="30" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"/>
-                <TextBlock Text="Action Records" FontSize="30" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                <ListView Background="White" BorderBrush="Black"  Grid.Row="1" Grid.Column="0" BorderThickness="1" ItemsSource="{Binding ActionRecords, Mode=TwoWay}" SelectionMode="None">
-                </ListView>
-                <TextBlock Text="Purchase" FontSize="30" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                <ListView Background="White" BorderBrush="Black" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding PurchaseRecords, Mode=TwoWay}" SelectionMode="None">
-                </ListView>
-                <TextBlock Text="Transfers" FontSize="30" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                <ListView Background="White" BorderBrush="Black" Grid.Row="1" Grid.Column="2" ItemsSource="{Binding TransferRecords, Mode=TwoWay}" SelectionMode="None">
-                </ListView>
-            </Grid>
-        </controls:HamburgerMenu>
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/Resources/EventsImage.jpg" Opacity="0.90"/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2.3*"/>
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Action Records" FontSize="30" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"/>
+            <TextBlock Text="Action Records" FontSize="30" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <ListView Background="White" BorderBrush="Black"  Grid.Row="1" Grid.Column="0" BorderThickness="1" ItemsSource="{Binding ActionRecords, Mode=TwoWay}" SelectionMode="None">
+            </ListView>
+            <TextBlock Text="Purchase" FontSize="30" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <ListView Background="White" BorderBrush="Black" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding PurchaseRecords, Mode=TwoWay}" SelectionMode="None">
+            </ListView>
+            <TextBlock Text="Transfers" FontSize="30" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <ListView Background="White" BorderBrush="Black" Grid.Row="1" Grid.Column="2" ItemsSource="{Binding TransferRecords, Mode=TwoWay}" SelectionMode="None">
+            </ListView>
+        </Grid>
     </Grid>
 </Page>

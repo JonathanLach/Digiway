@@ -40,6 +40,15 @@ namespace DigiwayUWP.ViewModels
             navigationPages.Configure("PointsOfInterestPage", typeof(PointsOfInterestPage));
         }
 
+
+        public MainPageViewModel Main
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<MainPageViewModel>();
+            }
+        }
+
         public EventsPageViewModel Events
         {
             get

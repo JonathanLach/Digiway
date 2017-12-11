@@ -38,7 +38,7 @@ namespace DigiwayUWP.Resources
         {
             get
             {
-                return _currentFrame ?? (_currentFrame = (App.rootFrame));
+                return _currentFrame ?? (_currentFrame = (Frame)Window.Current.Content);
             }
 
             set
@@ -143,14 +143,6 @@ namespace DigiwayUWP.Resources
         /// a key that has not been configured earlier.</exception>
         public virtual void NavigateTo(string pageKey, object parameter)
         {
-            if(CurrentFrame == App.rootFrame)
-            {
-                var child = GetChildOfType<Frame>(CurrentFrame);
-                if (child != null)
-                {
-                    CurrentFrame = child;
-                }
-            }
 
             lock (_pagesByKey)
             {
