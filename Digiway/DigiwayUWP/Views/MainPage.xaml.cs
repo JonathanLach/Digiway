@@ -1,4 +1,5 @@
 ﻿using DigiwayUWP.Models;
+using DigiwayUWP.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +27,11 @@ namespace DigiwayUWP.Views
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ((MainPageViewModel)DataContext).OnNavigatedTo(e);
         }
     }
 }

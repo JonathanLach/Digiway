@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace DigiwayUWP.ViewModels
 {
@@ -69,6 +70,11 @@ namespace DigiwayUWP.ViewModels
         {
             _navigationService = navigationService;
             MenuItems = new ObservableCollection<MenuItem>(MenuItem.GetMainItems());
+        }
+
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+            _navigationService.NavigateTo("HomePage");
         }
     }
 }

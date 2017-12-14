@@ -24,7 +24,7 @@
                     <core:InvokeCommandAction Command="{Binding MenuItemCommand}"/>
                 </core:EventTriggerBehavior>
             </i:Interaction.Behaviors>
-            <Frame Name="MainFrame"/>
+            <Frame/>
         </controls:HamburgerMenu>
     </Grid>
 </Page>

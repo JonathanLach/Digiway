@@ -34,28 +34,41 @@ namespace DigiwayUWP.Resources
         /// Gets or sets the Frame that should be use for the navigation.
         /// If this is not set explicitly, then (Frame)Window.Current.Content is used.
         /// </summary>
-        public Frame CurrentFrame
+        private Frame _mainFrame;
+
+        /// <summary>
+        /// Gets or sets the Frame that should be use for the navigation.
+        /// If this is not set explicitly, then (Frame)Window.Current.Content is used.
+        /// </summary>
+        public Frame MainFrame
         {
             get
             {
-                return _currentFrame ?? (_currentFrame = (Frame)Window.Current.Content);
+                var child = ChildGetter.GetChildOfType<Frame>(Window.Current.Content);
+                if (child == null)
+                {
+                    return (Frame)Window.Current.Content;
+                }
+                else {
+                    return child;
+                }
             }
 
             set
             {
-                _currentFrame = value;
+                _mainFrame = value;
             }
         }
 
         /// <summary>
         /// Gets a flag indicating if the CurrentFrame can navigate backwards.
         /// </summary>
-        public bool CanGoBack => CurrentFrame.CanGoBack;
+        public bool CanGoBack => MainFrame.CanGoBack;
 
         /// <summary>
         /// Gets a flag indicating if the CurrentFrame can navigate forward.
         /// </summary>
-        public bool CanGoForward => CurrentFrame.CanGoForward;
+        public bool CanGoForward => MainFrame.CanGoForward;
 
         /// <summary>
         /// Check if the CurrentFrame can navigate forward, and if yes, performs
@@ -63,9 +76,9 @@ namespace DigiwayUWP.Resources
         /// </summary>
         public void GoForward()
         {
-            if (CurrentFrame.CanGoForward)
+            if (MainFrame.CanGoForward)
             {
-                CurrentFrame.GoForward();
+                MainFrame.GoForward();
             }
         }
 
@@ -78,17 +91,17 @@ namespace DigiwayUWP.Resources
             {
                 lock (_pagesByKey)
                 {
-                    if (CurrentFrame.BackStackDepth == 0)
+                    if (MainFrame.BackStackDepth == 0)
                     {
                         return RootPageKey;
                     }
 
-                    if (CurrentFrame.Content == null)
+                    if (MainFrame.Content == null)
                     {
                         return UnknownPageKey;
                     }
 
-                    var currentType = CurrentFrame.Content.GetType();
+                    var currentType = MainFrame.Content.GetType();
 
                     if (_pagesByKey.All(p => p.Value != currentType))
                     {
@@ -109,9 +122,9 @@ namespace DigiwayUWP.Resources
         /// </summary>
         public void GoBack()
         {
-            if (CurrentFrame.CanGoBack)
+            if (MainFrame.CanGoBack)
             {
-                CurrentFrame.GoBack();
+                MainFrame.GoBack();
             }
         }
 
@@ -154,24 +167,8 @@ namespace DigiwayUWP.Resources
                             pageKey),
                         "pageKey");
                 }
-
-                CurrentFrame.Navigate(_pagesByKey[pageKey], parameter);
+                MainFrame.Navigate(_pagesByKey[pageKey], parameter);
             }
-        }
-
-        public static T GetChildOfType<T>(DependencyObject depObj)
-        where T : DependencyObject
-        {
-            if (depObj == null) return null;
-
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
-            {
-                var child = VisualTreeHelper.GetChild(depObj, i);
-
-                var result = (child as T) ?? GetChildOfType<T>(child);
-                if (result != null) return result;
-            }
-            return null;
         }
 
         /// <summary>

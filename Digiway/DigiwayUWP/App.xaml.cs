@@ -24,7 +24,7 @@ namespace DigiwayUWP
     sealed partial class App : Application
     {
 
-        public static Frame rootFrame;
+        public Frame rootFrame;
         /// <summary>
         /// Initialise l'objet d'application de singleton.  Il s'agit de la première ligne du code créé
         /// à être exécutée. Elle correspond donc à l'équivalent logique de main() ou WinMain().
