@@ -6,13 +6,40 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Home}"
+    Foreground="Black">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid>
             <Grid.Background>
                 <ImageBrush Stretch="Fill"  ImageSource="/Resources/HomeBackground.jpg" AlignmentY="Top" AlignmentX="Center"/>
             </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4.5*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="4.5*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Home" FontSize="30" Grid.Row="0" Grid.ColumnSpan="5" HorizontalAlignment="Center"/>
+            <Button Content="Events Manager" Command="{Binding EventsManagerNav}" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
+            <Button Content="Action Records" Command="{Binding ActionRecordsNav}" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Stretch" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
+            <Button Content="Profile" Command="{Binding ProfileNav}" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
+            <Button Content="Analytics" Command="{Binding AnalyticsNav}" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Stretch" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
         </Grid>
     </Grid>
 </Page>

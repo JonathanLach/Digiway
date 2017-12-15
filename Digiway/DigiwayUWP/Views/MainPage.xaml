@@ -9,11 +9,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
-    DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
+    DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
+    Foreground="Black">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <controls:HamburgerMenu x:Name="hamburgerMenuControl"
                                 PaneBackground="Black"
+                                Foreground="White"
                                 ItemTemplate="{StaticResource DefaultTemplate}"
                                 ItemsSource="{Binding MenuItems}"
                                 SelectedItem="{Binding SelectedItem, Mode=TwoWay}"

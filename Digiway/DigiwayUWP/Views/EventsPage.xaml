@@ -8,7 +8,8 @@
     xmlns:controls1="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:controls2="using:WinRTXamlToolkit.Controls"
     mc:Ignorable="d"
-    DataContext="{Binding Source={StaticResource Locator}, Path=Events}">
+    DataContext="{Binding Source={StaticResource Locator}, Path=Events}"
+    Foreground="Black">
 
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">

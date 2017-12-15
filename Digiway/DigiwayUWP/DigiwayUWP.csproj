@@ -118,10 +118,13 @@
     <Compile Include="Exceptions\NoCategorySelectedException.cs" />
     <Compile Include="Exceptions\NoCompanySelectedException.cs" />
     <Compile Include="Exceptions\NoEventSelectedException.cs" />
+    <Compile Include="Exceptions\NoMatchPasswordException.cs" />
     <Compile Include="Exceptions\NoPushpinFoundException.cs" />
     <Compile Include="Exceptions\NotBelgianEventException.cs" />
+    <Compile Include="Exceptions\PasswordChangeException.cs" />
     <Compile Include="Exceptions\PushpinTitleTakenException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
+    <Compile Include="Exceptions\WrongPasswordException.cs" />
     <Compile Include="Models\ActionRecord.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Event.cs" />
@@ -140,11 +143,16 @@
     <Compile Include="Resources\DefaultTemplate.xaml.cs">
       <DependentUpon>DefaultTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\PasswordHasher.cs" />
+    <Compile Include="ViewModels\ChangePasswordPageViewModel.cs" />
     <Compile Include="ViewModels\EventsListPageViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\PointsOfInterestPageViewModel.cs" />
+    <Compile Include="Views\ChangePasswordPage.xaml.cs">
+      <DependentUpon>ChangePasswordPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EventsListPage.xaml.cs">
       <DependentUpon>EventsListPage.xaml</DependentUpon>
     </Compile>
@@ -195,6 +203,7 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Resources\PushpinMap.png" />
     <Content Include="Resources\Pushpin.png" />
     <Content Include="Resources\EventImage.jpg" />
     <Content Include="Resources\EventsImage.jpg" />
@@ -215,6 +224,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AnalyticsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChangePasswordPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

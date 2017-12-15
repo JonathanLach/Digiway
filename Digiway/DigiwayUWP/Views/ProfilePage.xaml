@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     DataContext="{Binding Source={StaticResource Locator}, Path=Profile}"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Foreground="Black">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -16,39 +17,47 @@
                 <ImageBrush ImageSource="/Resources/EventsImage.jpg" Opacity="0.90"/>
             </Grid.Background>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
                 <RowDefinition Height="2*"/>
-                <RowDefinition Height="5*"/>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Profile" FontSize="30" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"/>
-            <StackPanel Orientation="Vertical" Background="White" BorderBrush="Black" BorderThickness="1"  Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <TextBlock Text="Profile" FontSize="30" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center"/>
+            <TextBlock Text="General" FontSize="24" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <StackPanel Orientation="Vertical" Background="White" BorderBrush="Black" BorderThickness="1"  Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <TextBlock Text="First name: " Margin="0,20,0,0" HorizontalAlignment="Center"/>
                 <TextBlock Text="{Binding CurrentUser.FirstName}" Foreground="DarkGoldenrod" HorizontalAlignment="Center" />
                 <TextBlock Text="Last name: " HorizontalAlignment="Center" />
                 <TextBlock Text="{Binding CurrentUser.LastName}" Foreground="DarkGoldenrod" HorizontalAlignment="Center"/>
                 <TextBlock Text="Address: " HorizontalAlignment="Center" />
                 <TextBlock Text="{Binding AddressFormat}" Foreground="DarkGoldenrod" HorizontalAlignment="Center" />
-                <TextBlock Text="Money: "  Margin="0,0,0,0" HorizontalAlignment="Center"/>
+                <TextBlock Text="Money: " HorizontalAlignment="Center"/>
                 <TextBlock Text="{Binding MoneyFormat}" Foreground="DarkGoldenrod" HorizontalAlignment="Center"/>
-                <TextBlock Text="Companies:" TextDecorations="Underline" Margin="0,0,0,50" HorizontalAlignment="Center" />
-                <ListView  ItemsSource="{Binding CurrentUser.Companies}" HorizontalAlignment="Center" SelectionMode="None">
-                </ListView>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Companies" FontSize="24" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <StackPanel Orientation="Vertical" Background="White" BorderBrush="Black" BorderThickness="1"  Grid.Row="4" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <ListView  ItemsSource="{Binding CurrentUser.Companies}" Foreground="Black"  HorizontalAlignment="Center" SelectionMode="None"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Money: "/>
                 <TextBox Text="{Binding MoneyTransaction, Mode=TwoWay}"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                 <Button Content="Deposit" Command="{Binding DepositMoney}" HorizontalAlignment="Center" Width="100" Height="30" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
                 <Button Content="Withdraw" Command="{Binding WithdrawMoney}" HorizontalAlignment="Center" Width="100" Height="30" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
             </StackPanel>
+            <Button Content="Change Password" HorizontalAlignment="Stretch" Grid.Column="3" Grid.Row="6"  Command="{Binding ChangePassword}" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
         </Grid>
     </Grid>
 </Page>

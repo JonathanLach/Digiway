@@ -1,6 +1,7 @@
 ﻿using DigiwayUWP.DataAccessObjects;
 using DigiwayUWP.Exceptions;
 using DigiwayUWP.Models;
+using DigiwayUWP.Resources;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
@@ -78,7 +79,7 @@ namespace DigiwayUWP.ViewModels
 
         public async Task Connection()
         {
-            string hashedPassword = HashPassword(Password);
+            string hashedPassword = PasswordHasher.HashPassword(Password);
             try
             {
                 User u = await User.GetUserByUsername(Login);
@@ -98,21 +99,5 @@ namespace DigiwayUWP.ViewModels
                 await _dialogService.ShowMessage(e.Message, e.Title);
             }
         }
-
-        public static String HashPassword(string value)
-        {
-            StringBuilder Sb = new StringBuilder();
-
-            using (var hash = SHA512.Create())
-            {
-                Encoding enc = Encoding.UTF8;
-                Byte[] result = hash.ComputeHash(enc.GetBytes(value));
-
-                foreach (Byte b in result)
-                    Sb.Append(b.ToString("x2"));
-            }
-            return Sb.ToString();
-        }
-
     }
 }

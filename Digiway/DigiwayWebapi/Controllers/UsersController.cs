@@ -29,7 +29,10 @@ namespace DigiwayWebapi.Controllers
         [HttpGet("username/{userName}")]
         public async Task<IActionResult> GetByUsername(string userName)
         {
-            var existingUser = await _context.Users.Where(u=> u.Login == userName).FirstOrDefaultAsync();
+            var existingUser = await _context.Users.Where(u=> u.Login == userName)
+                                                    .Include(uc => uc.Companies)
+                                                    .ThenInclude(c => c.Company)
+                                                    .FirstOrDefaultAsync();
             if (existingUser == null)
             {
                 return NotFound();
@@ -41,7 +44,10 @@ namespace DigiwayWebapi.Controllers
         [HttpGet("id/{id}", Name = "GetUserById")]
         public async Task<IActionResult> GetById(long id)
         {
-            var existingUser = await _context.Users.Where(u=> u.UserId == id).FirstOrDefaultAsync();
+            var existingUser = await _context.Users.Where(u=> u.UserId == id)
+                                                    .Include(uc => uc.Companies)
+                                                    .ThenInclude(c => c.Company)
+                                                    .FirstOrDefaultAsync();
             if (existingUser == null)
             {
                 return NotFound();
@@ -89,6 +95,7 @@ namespace DigiwayWebapi.Controllers
             existingUser.AccessRights = u.AccessRights;
             existingUser.ActionRecords = u.ActionRecords;
             existingUser.FirstName = u.FirstName;
+            existingUser.Money = u.Money;
             existingUser.IBANAccount = u.IBANAccount;
             existingUser.LastName = u.LastName;
             existingUser.Login = u.Login;

@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
-    DataContext="{Binding Source={StaticResource Locator}, Path=Login}">
+    DataContext="{Binding Source={StaticResource Locator}, Path=Login}"
+    Foreground="Black">
 
     <Grid>
         <Grid.Background>

@@ -69,7 +69,7 @@ namespace DigiwayUWP.ViewModels
         public HomePage HomePage { get; set; }
 
         private INavigationService _navigationService;
-        public MainPageViewModel(INavigationService navigationService)
+        public MainPageViewModel(INavigationService navigationService = null)
         {
             _navigationService = navigationService;
             MenuItems = new ObservableCollection<MenuItem>(MenuItem.GetMainItems());

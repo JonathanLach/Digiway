@@ -10,7 +10,8 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     DataContext="{Binding Source={StaticResource Locator}, Path=PointsOfInterest}"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Foreground="Black">
 
     <Grid Name="pageGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid>
@@ -29,6 +30,7 @@
                 <RowDefinition Height="7*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
+            <TextBlock Text="Points of Interest" FontSize="30" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
             <Maps:MapControl
                    x:Name="Map" 
                    MapServiceToken="IyxS023Xvt5KHJhcXShs~SRY0Trw92WYpZX-JtoTE3Q~AsDJWQeaaB6wZmCBSYQEv0xYJShxPhuMOVRL9QaxucwWwnO5MAYuU4nUid4QZlyX"
@@ -48,7 +50,7 @@
                             <StackPanel>
                                 <TextBlock Foreground="Black"  Maps:MapControl.Location="{Binding Location}" Text="{Binding Title}" Maps:MapControl.NormalizedAnchorPoint="{Binding NormalizedAnchorPoint}"
                                     FontSize="20" Margin="5"/>
-                                <Image Source="/Resources/Pushpin.png" Width="30" Height="30"  Maps:MapControl.Location="{Binding Location}"/>
+                                <Image Source="/Resources/PushpinMap.png" Width="30" Height="30"  Maps:MapControl.Location="{Binding Location}"/>
                             </StackPanel>
                         </DataTemplate>
                     </Maps:MapItemsControl.ItemTemplate>
@@ -60,7 +62,6 @@
                 <Button Content="Delete Point" Command="{Binding DeletePOI}"  Width="150" Height="30" HorizontalAlignment="Center"  BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
                 <Button Content="Save" Command="{Binding SavePOI}"  Width="100" Height="30" HorizontalAlignment="Center"  BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
                 <Button Content="Cancel" Command="{Binding CancelPOI}"  Width="100" Height="30" HorizontalAlignment="Center"  BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1" Margin="0, 5,0,0"/>
-
             </StackPanel>
         </Grid>
     </Grid>

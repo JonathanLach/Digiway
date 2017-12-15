@@ -1,6 +1,7 @@
 ﻿using DigiwayUWP.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,8 +13,15 @@ using Windows.UI.Xaml.Navigation;
 
 namespace DigiwayUWP.ViewModels
 {
-    public class ProfilePageViewModel : ViewModelBase
+    public class ProfilePageViewModel : ViewModelBase, INotifyPropertyChanged
     {
+        private INavigationService _navigationService;
+
+        public ProfilePageViewModel(INavigationService navigationService = null)
+        {
+            _navigationService = navigationService;
+        }
+
         private User _currentUser;
         public User CurrentUser
         {
@@ -57,8 +65,8 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
-        private decimal _moneyTransaction;
-        public decimal MoneyTransaction
+        private double _moneyTransaction;
+        public double MoneyTransaction
         {
             get
             {
@@ -116,6 +124,25 @@ namespace DigiwayUWP.ViewModels
             MoneyFormat = CurrentUser.Money + " €";
             await TransferRecord.AddTransferRecord(MoneyTransaction);
             await CurrentUser.UpdateUser();
+        }
+
+
+        private ICommand _changePassword;
+        public ICommand ChangePassword
+        {
+            get
+            {
+                if (_changePassword == null)
+                {
+                    _changePassword = new RelayCommand(() => ChangePasswordNavigation());
+                }
+                return _changePassword;
+            }
+        }
+
+        public void ChangePasswordNavigation()
+        {
+            _navigationService.NavigateTo("ChangePasswordPage");
         }
 
         public void OnNavigatedTo(NavigationEventArgs e)

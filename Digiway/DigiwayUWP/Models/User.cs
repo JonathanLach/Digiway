@@ -22,7 +22,7 @@ namespace DigiwayUWP.Models
         public string City { get; set; }
         public string TelNumber { get; set; }
         public int AccessRights { get; set; }
-        public decimal Money { get; set; }
+        public double Money { get; set; }
 
         public static User CurrentUser {get; set; }
 

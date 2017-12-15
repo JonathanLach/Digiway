@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
-    DataContext="{Binding Source={StaticResource Locator}, Path=ActionRecords}">
+    DataContext="{Binding Source={StaticResource Locator}, Path=ActionRecords}"
+    Foreground="Black">
 
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -16,24 +17,28 @@
                 <ImageBrush ImageSource="/Resources/EventsImage.jpg" Opacity="0.90"/>
             </Grid.Background>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="2.3*"/>
-                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="7*" />
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Action Records" FontSize="30" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"/>
-            <TextBlock Text="Action Records" FontSize="30" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-            <ListView Background="White" BorderBrush="Black"  Grid.Row="1" Grid.Column="0" BorderThickness="1" ItemsSource="{Binding ActionRecords, Mode=TwoWay}" SelectionMode="None">
+            <TextBlock Text="Action Records" FontSize="30" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center"/>
+            <TextBlock Text="Action Records" FontSize="30" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <ListView Background="White" BorderBrush="Black" Grid.Row="1" Grid.Column="1" BorderThickness="1" ItemsSource="{Binding ActionRecords, Mode=TwoWay}" SelectionMode="None">
             </ListView>
-            <TextBlock Text="Purchase" FontSize="30" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-            <ListView Background="White" BorderBrush="Black" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding PurchaseRecords, Mode=TwoWay}" SelectionMode="None">
+            <TextBlock Text="Purchase" FontSize="30" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <ListView Background="White" BorderBrush="Black" BorderThickness="1"  Grid.Row="1" Grid.Column="3" ItemsSource="{Binding PurchaseRecords, Mode=TwoWay}" SelectionMode="None">
             </ListView>
-            <TextBlock Text="Transfers" FontSize="30" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-            <ListView Background="White" BorderBrush="Black" Grid.Row="1" Grid.Column="2" ItemsSource="{Binding TransferRecords, Mode=TwoWay}" SelectionMode="None">
+            <TextBlock Text="Transfers" FontSize="30" Grid.Row="0" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <ListView Background="White" BorderBrush="Black" BorderThickness="1" Grid.Row="1" Grid.Column="5" ItemsSource="{Binding TransferRecords, Mode=TwoWay}" SelectionMode="None">
             </ListView>
         </Grid>
     </Grid>

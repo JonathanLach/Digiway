@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DigiwayWebapi.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.ObjectModel;
+using System.Collections;
 
 namespace DigiwayWebapi.Controllers
 {
@@ -27,6 +29,12 @@ namespace DigiwayWebapi.Controllers
                     .Include(c => c.Company)
                     .ToListAsync();
         }
+
+        /*[HttpGet("user/{username}", Name ="GetEventsByUsername")]
+        public async Task<IEnumerable<Event>> GetEventsByUserWithCompany([FromBody]User u)
+        {
+            var eventFound = await
+        }*/
 
         // GET api/values/5
         [HttpGet("id/{id}", Name = "GetEventById")]
