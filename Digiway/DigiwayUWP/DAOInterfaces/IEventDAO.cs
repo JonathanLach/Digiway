@@ -16,5 +16,6 @@ namespace DigiwayUWP.DAOInterfaces
         Task<ObservableCollection<EventCategory>> GetEventCategories();
         Task<ObservableCollection<Company>> GetCompanies();
         Task DeleteEvent(Event e);
+        Task SendNotification(Event e);
     }
 }

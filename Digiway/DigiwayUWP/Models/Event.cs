@@ -30,21 +30,37 @@ namespace DigiwayUWP.Models
 
         private static IEventDAO eService = new EventService();
 
+        /// <summary>
+        /// Call the service to add a new event
+        /// </summary>
+        /// <returns></returns>
         public async Task AddEvent()
         {
             await eService.AddEvent(this);
         }
 
+        /// <summary>
+        /// Get all the events from the web service
+        /// </summary>
+        /// <returns></returns>
         public static async Task<ObservableCollection<Event>> GetEvents()
         {
             return await eService.GetEvents();
         }
 
+        /// <summary>
+        /// Update the event with new values to the service
+        /// </summary>
+        /// <returns></returns>
         public async Task UpdateEvent()
         {
             await eService.UpdateEvent(this);
         }
 
+        /// <summary>
+        /// Get all companies available in service
+        /// </summary>
+        /// <returns></returns>
         public static async Task<ObservableCollection<Company>> GetCompanies()
         {
             return await eService.GetCompanies();
@@ -56,9 +72,18 @@ namespace DigiwayUWP.Models
             return Name + "\t" + EventDate.GetDateTimeFormats('D', culture).GetValue(1) + "\t" + EventCategory;
         }
 
+        /// <summary>
+        /// Delete the event from the service
+        /// </summary>
+        /// <returns></returns>
         public async Task DeleteEvent()
         {
             await eService.DeleteEvent(this);
+        }
+
+        public async Task SendNotification()
+        {
+            await eService.SendNotification(this);
         }
     }
 }

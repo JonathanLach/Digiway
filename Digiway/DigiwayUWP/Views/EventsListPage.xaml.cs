@@ -29,11 +29,6 @@ namespace DigiwayUWP.Views
             this.InitializeComponent();
         }
 
-        private void AddEventClick(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(EventsPage));
-        }
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             ((EventsListPageViewModel)DataContext).OnNavigatedTo(e);

@@ -2,10 +2,9 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:DigiwayUWP.Resources"
-    xmlns:models="using:DigiwayUWP.Models"
     x:Class="DigiwayUWP.Resources.DefaultTemplate">
 
-    <DataTemplate x:Key="DefaultTemplate" x:DataType="models:MenuItem">
+    <DataTemplate x:Key="DefaultTemplate" x:DataType="local:MenuItem">
         <Grid Width="240" Height="48">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="48" />

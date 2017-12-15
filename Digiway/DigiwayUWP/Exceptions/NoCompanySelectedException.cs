@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DigiwayUWP.Exceptions
 {
-    public class NoCompanySelectedException : EventFormException
+    public class NoCompanySelectedException : EventException
     {
         private string _message = "No company selected";
         public override string Message

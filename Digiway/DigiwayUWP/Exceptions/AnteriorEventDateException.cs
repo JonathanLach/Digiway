@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DigiwayUWP.Exceptions
 {
-    public class AnteriorEventDateException : EventFormException
+    public class AnteriorEventDateException : EventException
     {
         private string _message = "The event date can't be in the past.";
         public override string Message

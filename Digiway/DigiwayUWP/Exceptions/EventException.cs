@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace DigiwayUWP.Exceptions
 {
-    public class NotBelgianEventException : EventException
+    public class EventException : Exception
     {
-        private string _message = "The ZIP must be Belgian (4 digits). Abroad events are not allowed yet.";
+        private string _message = "Incorrect form";
         public override string Message
         {
             get { return _message; }
+        }
+
+        private string _title = "Form error";
+        public string Title
+        {
+            get { return _title; }
         }
     }
 }

@@ -32,16 +32,29 @@ namespace DigiwayUWP.Models
 
         public static IUserDAO userService = new UserService();
 
+        /// <summary>
+        /// Get all the users from service
+        /// </summary>
+        /// <returns></returns>
         public static async Task<ObservableCollection<User>> GetUsers()
         {
             return await userService.GetUsers();
         }
 
+        /// <summary>
+        /// Update the user in the service
+        /// </summary>
+        /// <returns></returns>
         public async Task UpdateUser()
         {
             await userService.UpdateUser(this);
         }
 
+        /// <summary>
+        /// Get a user with the passed userName, if it exists.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
         public static async Task<User> GetUserByUsername(string userName)
         {
             return await userService.getUserByUsername(userName);

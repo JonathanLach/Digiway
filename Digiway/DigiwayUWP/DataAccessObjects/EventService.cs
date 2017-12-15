@@ -54,5 +54,8 @@ namespace DigiwayUWP.DataAccessObjects
             return await DeserializerService<ObservableCollection<Company>>.GetObjectFromService(companyURL);
         }
 
+        public async Task SendNotification(Event e)
+        {
+        }
     }
 }

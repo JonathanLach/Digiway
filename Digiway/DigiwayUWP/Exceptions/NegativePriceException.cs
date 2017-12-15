@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DigiwayUWP.Exceptions
 {
-    public class NegativePriceException : EventFormException
+    public class NegativePriceException : EventException
     {
         private string _message = "Price must be >= 0";
         public override string Message

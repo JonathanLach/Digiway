@@ -10,6 +10,12 @@ namespace DigiwayUWP.Resources
 {
     public static class ChildGetter
     {
+            /// <summary>
+            /// Return a child object of type T or null if it doesn't exist
+            /// </summary>
+            /// <typeparam name="T"></typeparam>
+            /// <param name="depObj"></param>
+            /// <returns></returns>
             public static T GetChildOfType<T>(DependencyObject depObj)
             where T : DependencyObject
             {

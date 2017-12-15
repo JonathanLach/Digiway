@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DigiwayUWP.Exceptions
 {
-    public class NotBelgianEventException : EventException
+    public class PushpinTitleTakenException : EventException
     {
-        private string _message = "The ZIP must be Belgian (4 digits). Abroad events are not allowed yet.";
+        private string _message = "Pushpin title already taken, it must be unique.";
         public override string Message
         {
             get { return _message; }

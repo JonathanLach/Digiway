@@ -25,7 +25,7 @@ namespace DigiwayUWP.ViewModels
     {
 
 
-        private ObservableCollection<PointOfInterest> PointsOfInterest { get; set; }
+        public Event EventSelected { get; set; }
         private ObservableCollection<MapElement> _pushpins;
         public ObservableCollection<MapElement> Pushpins
         {
@@ -39,6 +39,8 @@ namespace DigiwayUWP.ViewModels
                 RaisePropertyChanged("Pushpins");
             }
         }
+
+        public ObservableCollection<PointOfInterest> SavedPointsOfInterest { get; set; }
 
         private string _pushpinTitle;
         public string PushpinTitle
@@ -54,6 +56,89 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
+        private ICommand _savePOI;
+        public ICommand SavePOI
+        {
+            get
+            {
+                if (_savePOI == null)
+                {
+                    _savePOI = new RelayCommand(() => SavePointsOfInterest());
+                }
+                return _savePOI;
+            }
+        }
+
+        private ICommand _deletePOI;
+        public ICommand DeletePOI
+        {
+            get
+            {
+                if (_deletePOI == null)
+                {
+                    _deletePOI = new RelayCommand(() => DeletePointsOfInterest());
+                }
+                return _deletePOI;
+            }
+        }
+
+        public void DeletePointsOfInterest()
+        {
+            try
+            {
+                var POI = EventSelected.PointsOfInterest.Where(pi => pi.Name == PushpinTitle).FirstOrDefault();
+                if (POI == null)
+                {
+                    throw new NoPushpinFoundException();
+                }
+                EventSelected.PointsOfInterest.Remove(POI);
+                foreach (MapIcon mi in Pushpins)
+                {
+                    if (mi.Title == PushpinTitle)
+                    {
+                        Pushpins.Remove(mi);
+                        break;
+                    }
+                }
+            }
+            catch (EventException e)
+            {
+                _dialogService.ShowMessage(e.Message, e.Title);
+            }
+        }
+
+        private ICommand _cancelPOI;
+        public ICommand CancelPOI
+        {
+            get
+            {
+                if (_cancelPOI == null)
+                {
+                    _cancelPOI = new RelayCommand(() => CancelPointsOfInterest());
+                }
+                return _cancelPOI;
+            }
+        }
+
+        public void SavePointsOfInterest()
+        {
+            _navigationService.NavigateTo("EventsPage", EventSelected);
+        }
+
+        public void CancelPointsOfInterest()
+        {
+            if (SavedPointsOfInterest == null)
+            {
+                EventSelected.PointsOfInterest.Clear();
+            }
+            else
+            {
+                EventSelected.PointsOfInterest = SavedPointsOfInterest;
+            }
+            Pushpins.Clear();
+            _navigationService.NavigateTo("EventsPage", EventSelected);
+        }
+
         private INavigationService _navigationService;
         private IDialogService _dialogService;
 
@@ -64,13 +149,22 @@ namespace DigiwayUWP.ViewModels
             Pushpins = new ObservableCollection<MapElement>();
         }
 
-        public void MapDoubleClick(object sender, MapInputEventArgs e)
+        public async Task MapDoubleClick(object sender, MapInputEventArgs e)
         {
+            //Delete zoom behavior on doubleclick
+            var camera = (MapControl)sender;
+            var currentCamera = camera.ActualCamera;
+            await camera.TrySetSceneAsync(MapScene.CreateFromCamera(currentCamera));
+            //End of delete zoom behavior
             try
             {
                 if (PushpinTitle == null || PushpinTitle == "")
                 {
                     throw new EmptyFieldException("Title");
+                }
+                if (EventSelected.PointsOfInterest.Where(pi => pi.Name == PushpinTitle).FirstOrDefault() != null)
+                {
+                    throw new PushpinTitleTakenException();
                 }
                 MapIcon newPushpin = new MapIcon
                 {
@@ -80,22 +174,45 @@ namespace DigiwayUWP.ViewModels
                     Title = PushpinTitle,
                 };
                 Pushpins.Add(newPushpin);
-            } catch (EmptyFieldException ex)
+                EventSelected.PointsOfInterest.Add(new PointOfInterest()
+                {
+                    Latitude = e.Location.Position.Latitude,
+                    Longitude = e.Location.Position.Longitude,
+                    Name = PushpinTitle,
+                    Description = null
+                });
+            } catch (EventException ex)
             {
-                _dialogService.ShowMessage(ex.Message, ex.Title);
+                await _dialogService.ShowMessage(ex.Message, ex.Title);
             }
         }
 
         public void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.Parameter != null)
+            EventSelected = (Event)e.Parameter;
+            if (EventSelected.PointsOfInterest == null)
             {
-                PointsOfInterest = (ObservableCollection<PointOfInterest>)e.Parameter;
+                EventSelected.PointsOfInterest = new ObservableCollection<PointOfInterest>();
             }
             else
             {
-                PointsOfInterest = new ObservableCollection<PointOfInterest>();
+                SavedPointsOfInterest = new ObservableCollection<PointOfInterest>(EventSelected.PointsOfInterest);
+                foreach (PointOfInterest p in EventSelected.PointsOfInterest)
+                {
+                    BasicGeoposition position = new BasicGeoposition()
+                    {
+                        Latitude = p.Latitude,
+                        Longitude = p.Longitude
+                    };
+                    Pushpins.Add(new MapIcon()
+                    {
+
+                        Location = new Geopoint(position),
+                        NormalizedAnchorPoint = new Point(0.5, 1),
+                        Title = p.Name
+                    });
+                }
             }
         }
-    }
+     }
 }

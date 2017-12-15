@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DigiwayUWP.Exceptions
 {
-    public class NotBelgianEventException : EventException
+    public class NoEventSelectedException : EventException
     {
-        private string _message = "The ZIP must be Belgian (4 digits). Abroad events are not allowed yet.";
+        private string _message = "No event selected";
         public override string Message
         {
             get { return _message; }

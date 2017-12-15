@@ -1,4 +1,5 @@
-﻿using DigiwayUWP.Models;
+﻿using DigiwayUWP.Resources;
+using DigiwayUWP.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
@@ -65,16 +66,14 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
+        public HomePage HomePage { get; set; }
+
         private INavigationService _navigationService;
         public MainPageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
             MenuItems = new ObservableCollection<MenuItem>(MenuItem.GetMainItems());
-        }
-
-        public void OnNavigatedTo(NavigationEventArgs e)
-        {
-            _navigationService.NavigateTo("HomePage");
+            HomePage = new HomePage();
         }
     }
 }

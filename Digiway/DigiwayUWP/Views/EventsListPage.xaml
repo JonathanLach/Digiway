@@ -23,7 +23,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="2*"/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <TextBlock Text="Events list" FontSize="30" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"/>
             <ListView x:Name="eventsList" Grid.Row="1" Grid.Column="1" Background="White" BorderBrush="Black" BorderThickness="1" ItemsSource="{Binding Events, Mode=TwoWay}" SelectionMode="Single" SelectedItem="{Binding EventSelected, Mode=TwoWay}">
@@ -47,7 +48,11 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,0,0,0">
+            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="0,0,0,0">
+                <TextBox Text="{Binding Notification}" HorizontalAlignment="Stretch" Background="White"/>
+                <Button Content="Send notification" Command="{Binding SendNotification}"  Width="150" Height="30" BorderBrush="LightGray" Background="DarkGray" HorizontalAlignment="Center"  BorderThickness="1"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,0,0,0">
                 <Button Content="Add" Command="{Binding AddNewEvent}" Width="100" Height="30" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
                 <Button Content="Edit" Command="{Binding EditEvent}"  Width="100" Height="30" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
                 <Button Content="Delete" Command="{Binding DeleteEvent}"  Width="100" Height="30" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>

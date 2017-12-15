@@ -21,6 +21,10 @@ namespace DigiwayUWP.Models
             return Name;
         }
 
+        /// <summary>
+        /// Get all event categories from the web service
+        /// </summary>
+        /// <returns></returns>
         public static async Task<ObservableCollection<EventCategory>> GetEventCategories()
         {
             return await eService.GetEventCategories();

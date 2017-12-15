@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     DataContext="{Binding Source={StaticResource Locator}, Path=PointsOfInterest}"
     mc:Ignorable="d">
 
@@ -35,13 +36,12 @@
                    TiltInteractionMode="GestureAndControl"
                    ZoomLevel="14"
                    LandmarksVisible="True"
-                   MapDoubleTapped="{x:Bind Vm.MapDoubleClick}" 
+                   MapDoubleTapped="{x:Bind Vm.MapDoubleClick}"
                    Grid.Row="1"
                    Grid.ColumnSpan="3"
                    Grid.Column="1"
                    BorderBrush="Black"
                    BorderThickness="10">
-
                 <Maps:MapItemsControl ItemsSource="{Binding Pushpins, Mode=Twoway}">
                     <Maps:MapItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -57,6 +57,10 @@
             <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" Margin="0,5,0,0">
                 <TextBlock Text="Titre: " HorizontalAlignment="Center"/>
                 <TextBox Text="{Binding PushpinTitle, Mode=TwoWay}"/>
+                <Button Content="Delete Point" Command="{Binding DeletePOI}"  Width="150" Height="30" HorizontalAlignment="Center"  BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
+                <Button Content="Save" Command="{Binding SavePOI}"  Width="100" Height="30" HorizontalAlignment="Center"  BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
+                <Button Content="Cancel" Command="{Binding CancelPOI}"  Width="100" Height="30" HorizontalAlignment="Center"  BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1" Margin="0, 5,0,0"/>
+
             </StackPanel>
         </Grid>
     </Grid>

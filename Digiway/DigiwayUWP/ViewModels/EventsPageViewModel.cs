@@ -222,7 +222,17 @@ namespace DigiwayUWP.ViewModels
 
         public void GetPointsOfInterestView()
         {
-            _navigationService.NavigateTo("PointsOfInterestPage", PointsOfInterest);
+            EventSelected.Address = Address;
+            EventSelected.City = City;
+            EventSelected.Company = CompanySelected;
+            EventSelected.Description = Description;
+            EventSelected.EventDate = EventDatePicker.DateTime;
+            EventSelected.Name = Name;
+            EventSelected.PointsOfInterest = PointsOfInterest;
+            EventSelected.TicketPrice = (decimal)TicketPrice;
+            EventSelected.ZIP = ZIP;
+            EventSelected.EventCategory = CategorySelected;
+            _navigationService.NavigateTo("PointsOfInterestPage", EventSelected);
         }
 
         public EventsPageViewModel(INavigationService navigationService = null, IDialogService dialogService = null)
@@ -291,7 +301,7 @@ namespace DigiwayUWP.ViewModels
                     EventDate = EventDatePicker.DateTime,
                     EventCategoryId = CategorySelected.EventCategoryId,
                     CompanyId = CompanySelected.CompanyId,
-                    PointsOfInterest = null,
+                    PointsOfInterest = PointsOfInterest,
                     PurchaseRecords = null,
                     TicketPrice = (decimal)this.TicketPrice,
                     ZIP = this.ZIP
@@ -315,7 +325,7 @@ namespace DigiwayUWP.ViewModels
                 }
                 await ActionRecord.AddActionRecord(actionDescription);
                 _navigationService.NavigateTo("EventsListPage");
-            } catch (EventFormException e)
+            } catch (EventException e)
             {
                 await _dialogService.ShowMessage(e.Message, e.Title);
             }
@@ -355,6 +365,7 @@ namespace DigiwayUWP.ViewModels
                 else
                 {
                     EventDatePicker = DateTime.Today;
+                    PointsOfInterest = null;
                 }
             }
             catch (DAOConnectionException ex)

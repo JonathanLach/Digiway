@@ -14,7 +14,6 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <controls:HamburgerMenu x:Name="hamburgerMenuControl"
                                 PaneBackground="Black"
-                                Foreground="White"
                                 ItemTemplate="{StaticResource DefaultTemplate}"
                                 ItemsSource="{Binding MenuItems}"
                                 SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
@@ -24,7 +23,7 @@
                     <core:InvokeCommandAction Command="{Binding MenuItemCommand}"/>
                 </core:EventTriggerBehavior>
             </i:Interaction.Behaviors>
-            <Frame/>
+            <Frame Content="{Binding HomePage}"/>
         </controls:HamburgerMenu>
     </Grid>
 </Page>

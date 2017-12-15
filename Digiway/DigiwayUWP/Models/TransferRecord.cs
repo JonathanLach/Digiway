@@ -17,6 +17,10 @@ namespace DigiwayUWP.Models
 
         private static ITransferRecordDAO tService = new TransferRecordService();
 
+        /// <summary>
+        /// Get all the transfer records from the service
+        /// </summary>
+        /// <returns></returns>
         public static async Task<ObservableCollection<TransferRecord>> GetTransferRecords()
         {
             ObservableCollection<TransferRecord> recordsFound = await tService.GetTransferRecords();
@@ -31,6 +35,11 @@ namespace DigiwayUWP.Models
             return ActionRecord + " " + TransferedValue;
         }
 
+        /// <summary>
+        /// Add a transfer record with a fixed model
+        /// </summary>
+        /// <param name="moneyTransfered"></param>
+        /// <returns></returns>
         public static async Task AddTransferRecord(decimal moneyTransfered)
         {
             ActionRecord aRecord = new ActionRecord()

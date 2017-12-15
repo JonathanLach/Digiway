@@ -28,10 +28,5 @@ namespace DigiwayUWP.Views
         {
             this.InitializeComponent();
         }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            ((MainPageViewModel)DataContext).OnNavigatedTo(e);
-        }
     }
 }

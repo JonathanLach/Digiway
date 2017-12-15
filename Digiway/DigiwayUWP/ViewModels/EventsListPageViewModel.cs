@@ -54,6 +54,20 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
+        private string _notification;
+        public string Notification
+        {
+            get
+            {
+                return _notification;
+            }
+            set
+            {
+                _notification = value;
+                RaisePropertyChanged("Notification");
+            }
+        }
+
         private INavigationService _navigationService;
         private IDialogService _dialogService;
 
@@ -102,6 +116,43 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
+        public ICommand _sendNotification;
+        public ICommand SendNotification
+        {
+            get
+            {
+                if (_sendNotification == null)
+                {
+                    _sendNotification = new RelayCommand(() => SendEventNotification());
+                }
+                return _sendNotification;
+            }
+        }
+
+        public void SendEventNotification()
+        {
+            try
+            {
+                verificationEventSelected();
+
+                if (Notification == null || Notification == "")
+                {
+                    throw new EmptyFieldException("Notification");
+                }
+
+
+
+            }
+            catch (NoEventSelectedException e)
+            {
+                _dialogService.ShowMessage(e.Message, e.Title);
+            }
+            catch (EmptyFieldException e)
+            {
+                _dialogService.ShowMessage(e.Message, e.Title);
+            }
+        }
+
         public void AddEvent()
         {
             _navigationService.NavigateTo("EventsPage");
@@ -109,36 +160,47 @@ namespace DigiwayUWP.ViewModels
 
         public async Task DeleteEventSelected()
         {
-            if (EventSelected != null)
+            try
             {
+
+                verificationEventSelected();
                 await _dialogService.ShowMessage("Are you sure you want to delete the selected event?",
-                        "Confirmation",
-                        buttonConfirmText: "Yes", buttonCancelText: "No",
-                        afterHideCallback: async (confirmed) =>
-                        {
-                            if (confirmed)
-                            {
-                                await EventSelected.DeleteEvent();
-                                await _dialogService.ShowMessage("Event Deleted!", "EventManager");
-                                _navigationService.NavigateTo("EventsListPage");
-                            }
-                        });
+                "Confirmation",
+                buttonConfirmText: "Yes", buttonCancelText: "No",
+                afterHideCallback: async (confirmed) =>
+                {
+                    if (confirmed)
+                    {
+                        await EventSelected.DeleteEvent();
+                        await _dialogService.ShowMessage("Event Deleted!", "EventManager");
+                        _navigationService.NavigateTo("EventsListPage");
+                    }
+                });
             }
-            else
-            {
-                await _dialogService.ShowMessage("No event selected", "Selection error");
+            catch (NoEventSelectedException e) {
+                await _dialogService.ShowMessage(e.Message, e.Title);
             }
         }
 
         public async Task EditEventSelected()
         {
-            if (EventSelected != null)
+            try
             {
+                verificationEventSelected();
                 _navigationService.NavigateTo("EventsPage", EventSelected);
+
             }
-            else
+            catch (NoEventSelectedException e)
             {
-                await _dialogService.ShowMessage("No event selected", "Selection error");
+                await _dialogService.ShowMessage(e.Message, e.Title);
+            }
+        }
+
+        private void verificationEventSelected()
+        {
+            if (EventSelected == null)
+            {
+                throw new NoEventSelectedException();
             }
         }
 
@@ -164,6 +226,5 @@ namespace DigiwayUWP.ViewModels
         {
             GetEvents();
         }
-
     }
 }

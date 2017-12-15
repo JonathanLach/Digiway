@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DigiwayUWP.Exceptions
 {
-    public class EmptyFieldException : EventFormException
+    public class EmptyFieldException : EventException
     {
         private string _fieldName;
 

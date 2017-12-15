@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 
-namespace DigiwayUWP.Models
+namespace DigiwayUWP.Resources
 {
     public class MenuItem
     {
@@ -13,6 +13,10 @@ namespace DigiwayUWP.Models
         public string Name { get; set; }
         public string PageType { get; set; }
 
+        /// <summary>
+        /// Get the main items of the menu
+        /// </summary>
+        /// <returns></returns>
         public static List<MenuItem> GetMainItems()
         {
             var items = new List<MenuItem>();

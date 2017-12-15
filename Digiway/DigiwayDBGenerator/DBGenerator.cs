@@ -56,11 +56,6 @@ namespace DigiwayDBGenerator
                 Friend = testUser2,
                 IsAwaiting = false
             };*/
-            ActionRecord testActionRecord = new ActionRecord()
-            {
-                RecordDate = new DateTime(2017, 11, 11),
-                User = testUser
-            };
 
             Company testCompany = new Company()
             {
@@ -77,28 +72,6 @@ namespace DigiwayDBGenerator
                 Name = "Convention",
             };
 
-            Event testEvent = new Event()
-            {
-                Name = "Digiway opening 2017",
-                EventDate = new System.DateTime(2017, 11, 19),
-                EventCategory = testEventCateg,
-                Address = "19 rue du tunnel",
-                ZIP = "6010",
-                City = "Couillet",
-                Company = testCompany,
-                Description = "Pour tout le monde",
-                TicketPrice = 10,
-            };
-
-            PointOfInterest testPOI = new PointOfInterest()
-            {
-                Name = "Stand de nourriture",
-                Description = "Où on peut se nourrir",
-                Latitude = 10,
-                Longitude = 10,
-                Event = testEvent,
-            };
-
             ProductCategory testProdCateg = new ProductCategory()
             {
                 Name = "Nourriture"
@@ -111,21 +84,6 @@ namespace DigiwayDBGenerator
                 IsCustom = false
             };
 
-            PurchaseRecord testPurchaseRec = new PurchaseRecord()
-            {
-                Quantity = 10,
-                UnitPrice = 10,
-                ActionRecord = testActionRecord,
-                Event = testEvent,
-                Product = testProduct,
-            };
-
-            TransferRecord testTransferRec = new TransferRecord()
-            {
-                TransferedValue = 10,
-                ActionRecord = testActionRecord
-            };
-
             UserCompany testUserCompany = new UserCompany()
             {
                 Company = testCompany,
@@ -134,15 +92,10 @@ namespace DigiwayDBGenerator
 
             _context.Users.Add(testUser);
             _context.Users.Add(testUser2);
-            _context.ActionRecords.Add(testActionRecord);
             _context.Companies.Add(testCompany);
             _context.EventCategories.Add(testEventCateg);
-            _context.Events.Add(testEvent);
-            _context.PointsOfInterest.Add(testPOI);
             _context.ProductCategories.Add(testProdCateg);
             _context.Products.Add(testProduct);
-            _context.PurchaseRecords.Add(testPurchaseRec);
-            _context.TransferRecords.Add(testTransferRec);
             _context.UserCompanies.Add(testUserCompany);
             //_context.Friendships.Add(testFriendship);
             //_context.Database.ExecuteSqlCommand(deleteFriendship);

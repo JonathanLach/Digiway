@@ -6,18 +6,12 @@ using System.Threading.Tasks;
 
 namespace DigiwayUWP.Exceptions
 {
-    public class EventFormException : Exception
+    public class NoPushpinFoundException : EventException
     {
-        private string _message = "Incorrect form";
+        private string _message = "No pushpin found with this title";
         public override string Message
         {
             get { return _message; }
-        }
-
-        private string _title = "Form error";
-        public string Title
-        {
-            get { return _title; }
         }
     }
 }

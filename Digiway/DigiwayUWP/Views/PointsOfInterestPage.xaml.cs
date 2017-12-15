@@ -46,6 +46,9 @@ namespace DigiwayUWP.Views
             };
             Geopoint mapCenter = new Geopoint(namurPosition);
             Map.Center = mapCenter;
+
+            ((PointsOfInterestPageViewModel)DataContext).OnNavigatedTo(e);
+
         }
     }
 }

@@ -21,6 +21,10 @@ namespace DigiwayUWP.Models
 
         private static IPurchaseRecordDAO pService = new PurchaseRecordService();
 
+        /// <summary>
+        /// Get all the purchase records from the service
+        /// </summary>
+        /// <returns></returns>
         public static async Task<ObservableCollection<PurchaseRecord>> GetPurchaseRecords()
         {
             ObservableCollection<PurchaseRecord> recordsFound = await pService.GetPurchaseRecords();

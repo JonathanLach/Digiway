@@ -21,6 +21,11 @@ namespace DigiwayUWP.Models
 
         private static IActionRecordDAO aService = new ActionRecordService();
 
+
+        /// <summary>
+        /// Call the web service to get all action records
+        /// </summary>
+        /// <returns></returns>
         public static async Task<ObservableCollection<ActionRecord>> GetActionRecords()
         {
             ObservableCollection<ActionRecord> recordsFound = await aService.GetActionRecords();
@@ -30,6 +35,12 @@ namespace DigiwayUWP.Models
                                                             select record;
             return new ObservableCollection<ActionRecord>(recordsKept);
         }
+
+        /// <summary>
+        /// Send a new action record to the service, added in data
+        /// </summary>
+        /// <param name="description"></param>
+        /// <returns></returns>
 
         public static async Task AddActionRecord(string description)
         {

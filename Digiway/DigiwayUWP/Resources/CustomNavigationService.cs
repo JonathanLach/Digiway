@@ -28,7 +28,6 @@ namespace DigiwayUWP.Resources
         public const string UnknownPageKey = "-- UNKNOWN --";
 
         private readonly Dictionary<string, Type> _pagesByKey = new Dictionary<string, Type>();
-        private Frame _currentFrame;
 
         /// <summary>
         /// Gets or sets the Frame that should be use for the navigation.
