@@ -17,9 +17,9 @@
             </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4.5*"/>
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="4.5*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -36,8 +36,8 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <TextBlock Text="Home" FontSize="30" Grid.Row="0" Grid.ColumnSpan="5" HorizontalAlignment="Center"/>
-            <Button Content="Events Manager" Command="{Binding EventsManagerNav}" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
-            <Button Content="Action Records" Command="{Binding ActionRecordsNav}" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Stretch" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
+            <Button Content="Events Manager" Command="{Binding EventsManagerNav}" FontStretch="UltraExpanded" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
+            <Button Content="Action Records" Command="{Binding ActionRecordsNav}" FontStretch="UltraExpanded" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Stretch" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
             <Button Content="Profile" Command="{Binding ProfileNav}" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
             <Button Content="Analytics" Command="{Binding AnalyticsNav}" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Stretch" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
         </Grid>

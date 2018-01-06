@@ -102,7 +102,14 @@ namespace DigiwayWebapi.Controllers
             existingUser.Password = u.Password;
             existingUser.TelNumber = u.TelNumber;
             existingUser.ZIP = u.ZIP;
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                return StatusCode((int)HttpStatusCode.Conflict);
+            }
             return new NoContentResult();
         }
 
@@ -116,7 +123,14 @@ namespace DigiwayWebapi.Controllers
                 return NotFound();
             }
             _context.Users.Remove(existingUser);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                return StatusCode((int)HttpStatusCode.Conflict);
+            }
             return new NoContentResult();
         }
     }

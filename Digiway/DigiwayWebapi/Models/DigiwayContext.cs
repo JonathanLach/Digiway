@@ -15,8 +15,8 @@ namespace DigiwayWebapi.Models
             modelBuilder.Entity<UserCompany>().HasKey(table => new { table.UserId, table.CompanyId });
             modelBuilder.Entity<User>().Property(u => u.Money).HasDefaultValue(0);
             modelBuilder.Entity<User>().HasIndex(u => u.Login).IsUnique();
-            //modelBuilder.Entity<User>().HasMany(u => u.Friends).WithOne(f => f.User).OnDelete(DeleteBehavior.SetNull);
-            //modelBuilder.Entity<Friendship>().HasOne(fr => fr.User).WithMany(u => u.Friends).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<User>().HasMany(u => u.Friends).WithOne(f => f.User).OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<Friendship>().HasOne(fr => fr.User).WithMany(u => u.Friends).OnDelete(DeleteBehavior.Cascade);
         }
         public DbSet<ActionRecord> ActionRecords { get; set; }
         public DbSet<Company> Companies { get; set; }
@@ -29,6 +29,6 @@ namespace DigiwayWebapi.Models
         public DbSet<TransferRecord> TransferRecords { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserCompany> UserCompanies { get; set; }
-        //public DbSet<Friendship> Friendships { get; set; }
+        public DbSet<Friendship> Friendships { get; set; }
     }
 }

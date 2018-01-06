@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace DigiwayWebapi.Controllers
@@ -66,7 +67,14 @@ namespace DigiwayWebapi.Controllers
                 }
                 existingEventCategory.Name = e.Name;
                  existingEventCategory.Events = e.Events;
-                await _context.SaveChangesAsync();
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    return StatusCode((int)HttpStatusCode.Conflict);
+                }
                 return new NoContentResult();
             }
 
@@ -80,7 +88,14 @@ namespace DigiwayWebapi.Controllers
                     return NotFound();
                 }
                 _context.EventCategories.Remove(existingEventCategory);
-                await _context.SaveChangesAsync();
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    return StatusCode((int)HttpStatusCode.Conflict);
+                }
                 return new NoContentResult();
             }
         }

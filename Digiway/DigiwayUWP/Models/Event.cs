@@ -81,9 +81,10 @@ namespace DigiwayUWP.Models
             await eService.DeleteEvent(this);
         }
 
-        public async Task SendNotification()
+        public async Task SendNotification(string message)
         {
-            await eService.SendNotification(this);
+            FCMPushNotification notif = new FCMPushNotification();
+            await notif.SendPush(this.Name , message);
         }
     }
 }

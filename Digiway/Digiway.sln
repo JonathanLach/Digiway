@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigiwayWebapi", "DigiwayWeb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigiwayDBGenerator", "DigiwayDBGenerator\DigiwayDBGenerator.csproj", "{6FCF363C-B3FC-4292-A42F-0B992D112106}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigiwayUWP", "DigiwayUWP\DigiwayUWP.csproj", "{558B226C-B5EC-4287-9747-84643CA6ED9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yetee UWP", "DigiwayUWP\Yetee UWP.csproj", "{558B226C-B5EC-4287-9747-84643CA6ED9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

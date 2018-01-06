@@ -222,23 +222,36 @@ namespace DigiwayUWP.ViewModels
 
         public void GetPointsOfInterestView()
         {
-            EventSelected.Address = Address;
-            EventSelected.City = City;
-            EventSelected.Company = CompanySelected;
-            EventSelected.Description = Description;
-            EventSelected.EventDate = EventDatePicker.DateTime;
-            EventSelected.Name = Name;
-            EventSelected.PointsOfInterest = PointsOfInterest;
-            EventSelected.TicketPrice = (decimal)TicketPrice;
-            EventSelected.ZIP = ZIP;
-            EventSelected.EventCategory = CategorySelected;
-            _navigationService.NavigateTo("PointsOfInterestPage", EventSelected);
+            try
+            {
+                VerificationEvent();
+                if (EventSelected == null)
+                {
+                    throw new NotCreatedEventException();
+                }
+                EventSelected.Address = Address;
+                EventSelected.City = City;
+                EventSelected.Company = CompanySelected;
+                EventSelected.Description = Description;
+                EventSelected.EventDate = EventDatePicker.DateTime;
+                EventSelected.Name = Name;
+                EventSelected.PointsOfInterest = PointsOfInterest;
+                EventSelected.TicketPrice = (decimal)TicketPrice;
+                EventSelected.ZIP = ZIP;
+                EventSelected.EventCategory = CategorySelected;
+                _navigationService.NavigateTo("PointsOfInterestPage", EventSelected);
+            }
+            catch(EventException e)
+            {
+                _dialogService.ShowMessage(e.Message, e.Title);
+            }
         }
 
         public EventsPageViewModel(INavigationService navigationService = null, IDialogService dialogService = null)
         {
             _navigationService = navigationService;
             _dialogService = dialogService;
+
         }
 
         private void VerificationEvent()
@@ -307,7 +320,6 @@ namespace DigiwayUWP.ViewModels
                     ZIP = this.ZIP
                 };
 
-
                 string actionDescription;
 
                 if (EventSelected == null)
@@ -320,6 +332,17 @@ namespace DigiwayUWP.ViewModels
                 {
                     actionDescription = "Edition de l'événement: " + newEvent.Name;
                     newEvent.EventId = EventSelected.EventId;
+                    foreach (PointOfInterest p in newEvent.PointsOfInterest)
+                    {
+                        if (p.ToBeRemoved)
+                        {
+                            await p.DeletePOI();
+                        }
+                        else
+                        {
+                            await p.UpdatePOI();
+                        }
+                    }
                     await newEvent.UpdateEvent();
                     await _dialogService.ShowMessage("Event Modified!", "Event Manager");
                 }
@@ -344,6 +367,13 @@ namespace DigiwayUWP.ViewModels
 
         public async Task OnNavigatedTo(NavigationEventArgs e)
         {
+            Name = "";
+            EventDatePicker.ToLocalTime();
+            Address = "";
+            City = "";
+            ZIP = "";
+            Description = "";
+            TicketPrice = 0;
             try
             {
                 await GetCompanies();

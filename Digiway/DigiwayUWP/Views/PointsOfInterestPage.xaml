@@ -30,7 +30,7 @@
                 <RowDefinition Height="7*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Points of Interest" FontSize="30" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+            <TextBlock Text="Points of Interest" FontSize="30" Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
             <Maps:MapControl
                    x:Name="Map" 
                    MapServiceToken="IyxS023Xvt5KHJhcXShs~SRY0Trw92WYpZX-JtoTE3Q~AsDJWQeaaB6wZmCBSYQEv0xYJShxPhuMOVRL9QaxucwWwnO5MAYuU4nUid4QZlyX"
@@ -41,9 +41,7 @@
                    MapDoubleTapped="{x:Bind Vm.MapDoubleClick}"
                    Grid.Row="1"
                    Grid.ColumnSpan="3"
-                   Grid.Column="1"
-                   BorderBrush="Black"
-                   BorderThickness="10">
+                   Grid.Column="1">
                 <Maps:MapItemsControl ItemsSource="{Binding Pushpins, Mode=Twoway}">
                     <Maps:MapItemsControl.ItemTemplate>
                         <DataTemplate>

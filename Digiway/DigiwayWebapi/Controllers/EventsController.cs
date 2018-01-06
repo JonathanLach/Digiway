@@ -7,6 +7,7 @@ using DigiwayWebapi.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Collections;
+using System.Net;
 
 namespace DigiwayWebapi.Controllers
 {
@@ -38,7 +39,7 @@ namespace DigiwayWebapi.Controllers
 
         // GET api/values/5
         [HttpGet("id/{id}", Name = "GetEventById")]
-        public async Task<IActionResult> GetById(long id)
+        public async Task<IActionResult> GetEventById(long id)
         {
             var existingEvent = await _context.Events
                                 .Include(ec => ec.EventCategory)
@@ -51,6 +52,14 @@ namespace DigiwayWebapi.Controllers
                 return NotFound();
             }
             return new ObjectResult(existingEvent);
+        }
+
+        [HttpGet("poi/{id}", Name = "GetPOIFromEventById")]
+        public async Task<IEnumerable<PointOfInterest>> GetPOIFromEventById(long id)
+        {
+            return await _context.PointsOfInterest
+                    .Where(poi => poi.Event.EventId == id)
+                    .ToListAsync();
         }
 
         // POST api/values
@@ -91,7 +100,14 @@ namespace DigiwayWebapi.Controllers
             existingEvent.EventCategoryId = e.EventCategoryId;
             existingEvent.EventDate = e.EventDate;
             existingEvent.PurchaseRecords = e.PurchaseRecords;
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return StatusCode((int)HttpStatusCode.Conflict);
+            }
             return new NoContentResult();
         }
 
@@ -105,7 +121,14 @@ namespace DigiwayWebapi.Controllers
                 return NotFound();
             }
             _context.Events.Remove(existingEvent);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                return StatusCode((int)HttpStatusCode.Conflict);
+            }
             return new NoContentResult();
         }
     }

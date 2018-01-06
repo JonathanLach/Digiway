@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="DAOInterfaces\IActionRecordDAO.cs" />
     <Compile Include="DAOInterfaces\IEventDAO.cs" />
+    <Compile Include="DAOInterfaces\IPointOfInterestDAO.cs" />
     <Compile Include="DAOInterfaces\IPurchaseRecordDAO.cs" />
     <Compile Include="DAOInterfaces\ITransferRecordDAO.cs" />
     <Compile Include="DAOInterfaces\IUserDAO.cs" />
@@ -104,6 +105,8 @@
     <Compile Include="DataAccessObjects\ClientService.cs" />
     <Compile Include="DataAccessObjects\DeserializerService.cs" />
     <Compile Include="DataAccessObjects\EventService.cs" />
+    <Compile Include="DataAccessObjects\FCMPushNotification.cs" />
+    <Compile Include="DataAccessObjects\PointOfInterestService.cs" />
     <Compile Include="DataAccessObjects\PurchaseRecordService.cs" />
     <Compile Include="DataAccessObjects\TransferRecordService.cs" />
     <Compile Include="DataAccessObjects\UserService.cs" />
@@ -121,6 +124,7 @@
     <Compile Include="Exceptions\NoMatchPasswordException.cs" />
     <Compile Include="Exceptions\NoPushpinFoundException.cs" />
     <Compile Include="Exceptions\NotBelgianEventException.cs" />
+    <Compile Include="Exceptions\NotCreatedEventException.cs" />
     <Compile Include="Exceptions\PasswordChangeException.cs" />
     <Compile Include="Exceptions\PushpinTitleTakenException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
@@ -203,6 +207,8 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Resources\graph1.PNG" />
+    <Content Include="Resources\graph2.PNG" />
     <Content Include="Resources\PushpinMap.png" />
     <Content Include="Resources\Pushpin.png" />
     <Content Include="Resources\EventImage.jpg" />

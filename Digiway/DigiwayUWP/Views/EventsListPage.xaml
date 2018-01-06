@@ -50,7 +50,7 @@
                 </ListView.ItemTemplate>
             </ListView>
             <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="0,0,0,0">
-                <TextBox Text="{Binding Notification}" HorizontalAlignment="Stretch" Background="White"/>
+                <TextBox Text="{Binding Notification, Mode=TwoWay}" HorizontalAlignment="Stretch" Background="White"/>
                 <Button Content="Send notification" Command="{Binding SendNotification}"  Width="150" Height="30" BorderBrush="LightGray" Background="DarkGray" HorizontalAlignment="Center"  BorderThickness="1"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,0,0,0">

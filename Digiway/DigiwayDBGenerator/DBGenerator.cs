@@ -15,7 +15,7 @@ namespace DigiwayDBGenerator
 
         public void DBGeneration()
         {
-            //string deleteFriendship = "CREATE TRIGGER digiway.cascadeFriendship ON digiway.Users AFTER DELETE AS DELETE FROM digiway.Friendships WHERE FriendUserId IS NULL;";
+            string deleteFriendship = "CREATE TRIGGER digiway.cascadeFriendship ON digiway.Users AFTER DELETE AS DELETE FROM digiway.Friendships WHERE FriendUserId IS NULL;";
             DbContextOptionsBuilder builder = new DbContextOptionsBuilder();
             DbContextOptions options = builder.UseSqlServer("Server=tcp:digiway.database.windows.net,1433;Initial Catalog=Digiway;Persist Security Info=False;User ID=jlachapelle;Password=ig2017Digiway;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;").Options;
             _context = new DigiwayContext(options);
@@ -117,7 +117,7 @@ namespace DigiwayDBGenerator
             _context.Products.Add(testProduct);
             _context.UserCompanies.Add(testUserCompany);
             //_context.Friendships.Add(testFriendship);
-            //_context.Database.ExecuteSqlCommand(deleteFriendship);
+            _context.Database.ExecuteSqlCommand(deleteFriendship);
             _context.SaveChanges();
         }
 

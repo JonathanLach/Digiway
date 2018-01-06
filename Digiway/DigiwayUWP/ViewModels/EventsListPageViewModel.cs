@@ -129,7 +129,7 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
-        public void SendEventNotification()
+        public async Task SendEventNotification()
         {
             try
             {
@@ -140,16 +140,26 @@ namespace DigiwayUWP.ViewModels
                     throw new EmptyFieldException("Notification");
                 }
 
-
-
+                await _dialogService.ShowMessage("Are you sure you want to send this notification to the selected event?",
+                "Confirmation",
+                buttonConfirmText: "Yes", buttonCancelText: "No",
+                afterHideCallback: async (confirmed) =>
+                {
+                    if (confirmed)
+                    {
+                        await EventSelected.SendNotification(Notification);
+                        await _dialogService.ShowMessage("Notification has been sent to the event users", "Success");
+                    }
+                });
+                
             }
             catch (NoEventSelectedException e)
             {
-                _dialogService.ShowMessage(e.Message, e.Title);
+                await _dialogService.ShowMessage(e.Message, e.Title);
             }
             catch (EmptyFieldException e)
             {
-                _dialogService.ShowMessage(e.Message, e.Title);
+                await _dialogService.ShowMessage(e.Message, e.Title);
             }
         }
 

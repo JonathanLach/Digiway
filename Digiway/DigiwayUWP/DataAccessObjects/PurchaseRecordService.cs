@@ -17,6 +17,8 @@ namespace DigiwayUWP.DataAccessObjects
         public async Task<ObservableCollection<PurchaseRecord>> GetPurchaseRecords()
         {
             return await DeserializerService<ObservableCollection<PurchaseRecord>>.GetObjectFromService(purchaseRecordURL);
+
+
         }
     }
 }

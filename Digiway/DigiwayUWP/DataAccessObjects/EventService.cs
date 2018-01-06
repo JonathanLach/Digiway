@@ -26,7 +26,6 @@ namespace DigiwayUWP.DataAccessObjects
         public async Task AddEvent(Event e)
         {
             await ClientService.client.PostAsJsonAsync(eventURL, e);
-            HttpClient newClient = new HttpClient();
         }
 
         public async Task UpdateEvent(Event e)
@@ -36,7 +35,7 @@ namespace DigiwayUWP.DataAccessObjects
 
         public async Task DeleteEvent(Event e)
         {
-            await ClientService.client.DeleteAsync(eventURL + "/id/" + e.EventId);
+            await ClientService.client.DeleteAsync(eventDeleteURL + e.EventId);
         }
 
         public async Task<ObservableCollection<Event>> GetEvents()

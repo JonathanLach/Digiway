@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DigiwayWebapi.Models;
+using System.Net;
 
 namespace DigiwayWebapi.Controllers
 {
@@ -68,7 +69,14 @@ namespace DigiwayWebapi.Controllers
             existingActionRecord.Description = actionRecord.Description;
             existingActionRecord.RecordDate = actionRecord.RecordDate;
             existingActionRecord.User = actionRecord.User;
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                return StatusCode((int)HttpStatusCode.Conflict);
+            }
             return new NoContentResult();
         }
 
@@ -82,7 +90,14 @@ namespace DigiwayWebapi.Controllers
                 return NotFound();
             }
             _context.ActionRecords.Remove(existingActionRecord);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                return StatusCode((int)HttpStatusCode.Conflict);
+            }
             return new NoContentResult();
         }
     }

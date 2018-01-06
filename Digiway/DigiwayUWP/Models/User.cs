@@ -28,7 +28,6 @@ namespace DigiwayUWP.Models
 
         public virtual ICollection<UserCompany> Companies { get; set; }
         public virtual ICollection<ActionRecord> ActionRecords { get; set; }
-        //public virtual ICollection<Friendship> Friends { get; set; }
 
         public static IUserDAO userService = new UserService();
 

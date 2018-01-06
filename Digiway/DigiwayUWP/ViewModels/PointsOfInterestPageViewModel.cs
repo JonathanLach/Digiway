@@ -91,7 +91,8 @@ namespace DigiwayUWP.ViewModels
                 {
                     throw new NoPushpinFoundException();
                 }
-                EventSelected.PointsOfInterest.Remove(POI);
+
+                POI.ToBeRemoved = true;
                 foreach (MapIcon mi in Pushpins)
                 {
                     if (mi.Title == PushpinTitle)
@@ -122,6 +123,7 @@ namespace DigiwayUWP.ViewModels
 
         public void SavePointsOfInterest()
         {
+            
             _navigationService.NavigateTo("EventsPage", EventSelected);
         }
 
@@ -179,7 +181,9 @@ namespace DigiwayUWP.ViewModels
                     Latitude = e.Location.Position.Latitude,
                     Longitude = e.Location.Position.Longitude,
                     Name = PushpinTitle,
-                    Description = null
+                    Description = null,
+                    EventId = EventSelected.EventId,
+                    ToBeRemoved = false,
                 });
             } catch (EventException ex)
             {
@@ -189,6 +193,7 @@ namespace DigiwayUWP.ViewModels
 
         public void OnNavigatedTo(NavigationEventArgs e)
         {
+            Pushpins.Clear();
             EventSelected = (Event)e.Parameter;
             if (EventSelected.PointsOfInterest == null)
             {
