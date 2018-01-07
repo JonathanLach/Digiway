@@ -28,17 +28,6 @@ namespace DigiwayUWP.Views
         public AnalyticsPage()
         {
             this.InitializeComponent();
-            Stats.Source = new BitmapImage(new Uri("ms-appx://DigiwayUWP/Resources/graph1.PNG"));
-        }
-
-        private void Stats_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Stats_PointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-            Stats.Source = new BitmapImage(new Uri("ms-appx://DigiwayUWP/Resources/graph2.PNG"));
         }
     }
 }

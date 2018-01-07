@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Xaml.Navigation;
 
 namespace DigiwayUWP.ViewModels
 {
@@ -98,7 +99,7 @@ namespace DigiwayUWP.ViewModels
         {
             try
             {
-                verificationPasswords();
+                VerificationPasswords();
                 User.CurrentUser.Password = PasswordHasher.HashPassword(NewPassword);
                 await User.CurrentUser.UpdateUser();
                 await _dialogService.ShowMessage("Password changed!", "Confirmation");
@@ -110,7 +111,7 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
-        private void verificationPasswords()
+        private void VerificationPasswords()
         {
             if (User.CurrentUser.Password != PasswordHasher.HashPassword(ActualPassword))
             {
@@ -125,6 +126,13 @@ namespace DigiwayUWP.ViewModels
         public void CancelPasswordChange()
         {
             _navigationService.GoBack();
+        }
+
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ActualPassword = "";
+            NewPassword = "";
+            Confirmation = "";
         }
     }
 }

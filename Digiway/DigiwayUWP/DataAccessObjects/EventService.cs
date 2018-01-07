@@ -19,6 +19,7 @@ namespace DigiwayUWP.DataAccessObjects
     public class EventService : IEventDAO
     {
         private static string eventURL = "api/events";
+        private static string futureEventsURL = eventURL + "/incoming/";
         private static string eventDeleteURL = eventURL+ "/id/";
         private static string eventCategoryURL = "api/eventCategories";
         private static string companyURL = "api/companies";
@@ -43,6 +44,11 @@ namespace DigiwayUWP.DataAccessObjects
             return await DeserializerService<ObservableCollection<Event>>.GetObjectFromService(eventURL);
         }
 
+        public async Task<ObservableCollection<Event>> GetFutureEvents()
+        {
+            return await DeserializerService<ObservableCollection<Event>>.GetObjectFromService(futureEventsURL);
+        }
+
         public async Task<ObservableCollection<EventCategory>> GetEventCategories()
         {
             return await DeserializerService<ObservableCollection<EventCategory>>.GetObjectFromService(eventCategoryURL);
@@ -51,10 +57,6 @@ namespace DigiwayUWP.DataAccessObjects
         public async Task<ObservableCollection<Company>> GetCompanies()
         {
             return await DeserializerService<ObservableCollection<Company>>.GetObjectFromService(companyURL);
-        }
-
-        public async Task SendNotification(Event e)
-        {
         }
     }
 }

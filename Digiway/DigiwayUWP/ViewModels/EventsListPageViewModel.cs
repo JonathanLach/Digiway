@@ -218,7 +218,7 @@ namespace DigiwayUWP.ViewModels
         {
             try
             {
-                Events = await Event.GetEvents();
+                Events = await Event.GetFutureEvents();
                 foreach (Event e in Events)
                 {
                     IFormatProvider culture = new CultureInfo("en-US");

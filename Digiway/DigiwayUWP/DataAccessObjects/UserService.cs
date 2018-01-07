@@ -17,6 +17,7 @@ namespace DigiwayUWP.DataAccessObjects
     {
         private static string userURL = "api/users";
         private static string userByNicknameURL = userURL + "/username/";
+        private static string companiesByUserURL = "api/companies/user";
 
         public async Task<ObservableCollection<User>> GetUsers()
         {

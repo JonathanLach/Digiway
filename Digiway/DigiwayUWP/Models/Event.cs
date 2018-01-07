@@ -48,6 +48,11 @@ namespace DigiwayUWP.Models
             return await eService.GetEvents();
         }
 
+        public static async Task<ObservableCollection<Event>> GetFutureEvents()
+        {
+            return await eService.GetFutureEvents();
+        }
+
         /// <summary>
         /// Update the event with new values to the service
         /// </summary>

@@ -54,6 +54,17 @@ namespace DigiwayWebapi.Controllers
             return new ObjectResult(existingEvent);
         }
 
+        [HttpGet("incoming")]
+        public async Task<IEnumerable<Event>> GetFutureEvents()
+        {
+            return await _context.Events
+                             .Where(e => e.EventDate >= DateTime.Today)
+                            .Include(ec => ec.EventCategory)
+                            .Include(poi => poi.PointsOfInterest)
+                            .Include(c => c.Company)
+                            .ToListAsync();
+        }
+
         [HttpGet("poi/{id}", Name = "GetPOIFromEventById")]
         public async Task<IEnumerable<PointOfInterest>> GetPOIFromEventById(long id)
         {

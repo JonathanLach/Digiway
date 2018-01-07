@@ -13,22 +13,5 @@ namespace DigiwayUWP.ViewModels
 {
     public class AnalyticsPageViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        private ImageBrush _imageShown;
-        public ImageBrush ImageShown
-        {
-            get
-            {
-                return _imageShown;
-            }
-            set
-            {
-                _imageShown = value;
-                RaisePropertyChanged("ImageShown");
-            }
-        }
-
-        public AnalyticsPageViewModel()
-        {
-        }
     }
 }

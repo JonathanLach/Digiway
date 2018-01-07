@@ -12,7 +12,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid>
-            <Image x:Name="Stats" PointerPressed="Stats_PointerPressed"/>
+            <TextBlock Text="Not implemented" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
     </Grid>
 </Page>
