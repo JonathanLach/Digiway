@@ -52,12 +52,14 @@ namespace DigiwayUWP.Models
                 PurchaseRecords = null,
                 TransferRecords = null
             };
+
             await aService.AddActionRecord(newAction);
         }
 
         public override string ToString()
         {
-            return RecordDate + " " + Description;
+            IFormatProvider culture = new System.Globalization.CultureInfo("en-US");
+            return RecordDate.GetDateTimeFormats('D', culture).GetValue(1) + " " + Description;
         }
     }
 }
