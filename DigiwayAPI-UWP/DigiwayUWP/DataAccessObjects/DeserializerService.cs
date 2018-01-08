@@ -12,11 +12,8 @@ namespace DigiwayUWP.DataAccessObjects
 {
     public static class DeserializerService<T>
     {
-        /// <summary>
-        /// Get an object model, deserialized, with type T
-        /// </summary>
-        /// <param name="responseMessage"></param>
-        /// <returns></returns>
+        private static string testConnectionURL = "api/values";
+
         private static async Task<T> GetObjectModelAsync (HttpResponseMessage responseMessage)
         {
             var Jsonresponse = await responseMessage.Content.ReadAsStringAsync();
@@ -35,11 +32,23 @@ namespace DigiwayUWP.DataAccessObjects
             {
                 throw new UserNotFoundException();
             }
+            CheckServiceIsUp(responseMessage);
+            return await GetObjectModelAsync(responseMessage);
+        }
+
+        public static void CheckServiceIsUp(HttpResponseMessage responseMessage)
+        {
             if (responseMessage.StatusCode == HttpStatusCode.Forbidden || responseMessage.StatusCode >= HttpStatusCode.InternalServerError)
             {
                 throw new DAOConnectionException();
             }
-            return await GetObjectModelAsync(responseMessage);
+        }
+
+        public static async Task CheckConnectivity()
+        {
+
+            HttpResponseMessage responseMessage = await ClientService.client.GetAsync(testConnectionURL);
+            CheckServiceIsUp(responseMessage);
         }
     }
 }

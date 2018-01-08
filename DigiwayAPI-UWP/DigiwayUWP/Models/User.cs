@@ -46,7 +46,13 @@ namespace DigiwayUWP.Models
         /// <returns></returns>
         public async Task UpdateUser()
         {
+            await DeserializerService<User>.CheckConnectivity();
             await userService.UpdateUser(this);
+        }
+
+        public async Task SetAuthentication()
+        {
+            await userService.SetAuthentication(this);
         }
 
         /// <summary>

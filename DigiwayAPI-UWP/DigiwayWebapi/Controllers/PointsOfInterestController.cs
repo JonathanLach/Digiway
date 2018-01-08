@@ -1,4 +1,5 @@
 ﻿using DigiwayWebapi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,6 +12,7 @@ namespace DigiwayWebapi.Controllers
 {
     namespace DigiwayWebapi.Controllers
     {
+        [Authorize]
         [Route("api/[controller]")]
         public class PointsOfInterestController : Controller
         {

@@ -1,4 +1,5 @@
 ﻿using DigiwayWebapi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace DigiwayWebapi.Controllers
 {
+        [Authorize]
         [Route("api/[controller]")]
         public class EventCategoriesController : Controller
         {

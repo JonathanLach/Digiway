@@ -42,6 +42,7 @@ namespace DigiwayUWP.Models
         /// <returns></returns>
         public static async Task AddTransferRecord(double moneyTransfered)
         {
+            await DeserializerService<Event>.CheckConnectivity();
             ActionRecord aRecord = new ActionRecord()
             {
                 RecordDate = DateTime.Today,

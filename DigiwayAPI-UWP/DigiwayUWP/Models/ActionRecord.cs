@@ -44,6 +44,7 @@ namespace DigiwayUWP.Models
 
         public static async Task AddActionRecord(string description)
         {
+            await DeserializerService<ActionRecord>.CheckConnectivity();
             ActionRecord newAction = new ActionRecord()
             {
                 UserId = User.CurrentUser.UserId,

@@ -1,5 +1,7 @@
-﻿using DigiwayUWP.Models;
+﻿using DigiwayUWP.Exceptions;
+using DigiwayUWP.Models;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -63,6 +65,15 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
+        private INavigationService _navigationService;
+        private IDialogService _dialogService;
+
+        public ActionRecordsPageViewModel(INavigationService navigationService, IDialogService dialogService)
+        {
+            _navigationService = navigationService;
+            _dialogService = dialogService;
+        }
+
         private async Task GetActionRecords()
         {
             ActionRecords = await ActionRecord.GetActionRecords();
@@ -80,9 +91,17 @@ namespace DigiwayUWP.ViewModels
 
         public async Task OnNavigatedTo(NavigationEventArgs e)
         {
-            await GetActionRecords();
-            await GetPurchaseRecords();
-            await GetTransferRecords();
+            try
+            {
+                await GetActionRecords();
+                await GetPurchaseRecords();
+                await GetTransferRecords();
+            }
+            catch (DAOConnectionException ex)
+            {
+                await _dialogService.ShowMessage(ex.Message, ex.Title);
+                _navigationService.NavigateTo("HomePage");
+            }
         }
 
     }

@@ -190,6 +190,10 @@ namespace DigiwayUWP.ViewModels
             catch (NoEventSelectedException e) {
                 await _dialogService.ShowMessage(e.Message, e.Title);
             }
+            catch (DAOConnectionException e)
+            {
+                await _dialogService.ShowMessage(e.Message, e.Title);
+            }
         }
 
         public async Task EditEventSelected()

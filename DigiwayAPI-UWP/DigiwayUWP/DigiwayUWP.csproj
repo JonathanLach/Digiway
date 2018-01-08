@@ -134,6 +134,8 @@
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventCategory.cs" />
     <Compile Include="Models\Friendship.cs" />
+    <Compile Include="Models\Token.cs" />
+    <Compile Include="Models\TokenRequest.cs" />
     <Compile Include="Resources\MenuItem.cs" />
     <Compile Include="Models\PointOfInterest.cs" />
     <Compile Include="Models\Product.cs" />

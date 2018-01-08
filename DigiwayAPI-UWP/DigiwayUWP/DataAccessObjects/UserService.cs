@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,6 +19,7 @@ namespace DigiwayUWP.DataAccessObjects
         private static string userURL = "api/users";
         private static string userByNicknameURL = userURL + "/username/";
         private static string companiesByUserURL = "api/companies/user";
+        private static string tokenURL = "token";
 
         public async Task<ObservableCollection<User>> GetUsers()
         {
@@ -32,6 +34,27 @@ namespace DigiwayUWP.DataAccessObjects
         public async Task<User> getUserByUsername(string userName)
         {
             return await DeserializerService<User>.GetObjectFromService(userByNicknameURL + userName);
+        }
+
+        public async Task SetAuthentication(User u)
+        {
+            TokenRequest tUser = new TokenRequest()
+            {
+                Username = u.Login,
+                Password = u.Password
+            };
+            HttpResponseMessage responseMessage = await ClientService.client.PostAsJsonAsync(tokenURL, tUser);
+            if (responseMessage.StatusCode == HttpStatusCode.NotFound)
+            {
+                throw new UserNotFoundException();
+            }
+            if (responseMessage.StatusCode == HttpStatusCode.Forbidden || responseMessage.StatusCode >= HttpStatusCode.InternalServerError)
+            {
+                throw new DAOConnectionException();
+            }
+            var jsonresponse = await responseMessage.Content.ReadAsStringAsync();
+            Token model = JsonConvert.DeserializeObject<Token>(jsonresponse);
+            ClientService.client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", model.TokenValue);
         }
     }
 }

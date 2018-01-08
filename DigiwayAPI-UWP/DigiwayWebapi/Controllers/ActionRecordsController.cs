@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DigiwayWebapi.Models;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DigiwayWebapi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class ActionRecordsController : Controller
     {

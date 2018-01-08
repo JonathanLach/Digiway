@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Collections;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DigiwayWebapi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class EventsController : Controller
     {

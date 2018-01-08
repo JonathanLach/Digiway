@@ -36,6 +36,7 @@ namespace DigiwayUWP.Models
         /// <returns></returns>
         public async Task AddEvent()
         {
+            await DeserializerService<Event>.CheckConnectivity();
             await eService.AddEvent(this);
         }
 
@@ -59,6 +60,7 @@ namespace DigiwayUWP.Models
         /// <returns></returns>
         public async Task UpdateEvent()
         {
+            await DeserializerService<Event>.CheckConnectivity();
             await eService.UpdateEvent(this);
         }
 
@@ -83,6 +85,7 @@ namespace DigiwayUWP.Models
         /// <returns></returns>
         public async Task DeleteEvent()
         {
+            await DeserializerService<Event>.CheckConnectivity();
             await eService.DeleteEvent(this);
         }
 

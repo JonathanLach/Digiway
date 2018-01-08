@@ -1,4 +1,5 @@
-﻿using DigiwayUWP.Models;
+﻿using DigiwayUWP.Exceptions;
+using DigiwayUWP.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
@@ -16,10 +17,12 @@ namespace DigiwayUWP.ViewModels
     public class ProfilePageViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private INavigationService _navigationService;
+        private IDialogService _dialogService;
 
-        public ProfilePageViewModel(INavigationService navigationService = null)
+        public ProfilePageViewModel(INavigationService navigationService = null, IDialogService dialogService = null)
         {
             _navigationService = navigationService;
+            _dialogService = dialogService;
         }
 
         private User _currentUser;
@@ -109,21 +112,39 @@ namespace DigiwayUWP.ViewModels
 
         public async Task Withdraw()
         {
-            if (CurrentUser.Money - MoneyTransaction >= 0)
+            try
             {
-                CurrentUser.Money -= MoneyTransaction;
+                if (CurrentUser.Money - MoneyTransaction >= 0)
+                {
+                    CurrentUser.Money -= MoneyTransaction;
+                    MoneyFormat = CurrentUser.Money + " €";
+                    await TransferRecord.AddTransferRecord(-MoneyTransaction);
+                    await CurrentUser.UpdateUser();
+                }
+            }
+            catch (DAOConnectionException e)
+            {
+                await _dialogService.ShowMessage(e.Message, e.Title);
+                CurrentUser.Money += MoneyTransaction;
                 MoneyFormat = CurrentUser.Money + " €";
-                await TransferRecord.AddTransferRecord(-MoneyTransaction);
-                await CurrentUser.UpdateUser();
             }
         }
 
         public async Task Deposit()
         {
-            CurrentUser.Money += MoneyTransaction;
-            MoneyFormat = CurrentUser.Money + " €";
-            await TransferRecord.AddTransferRecord(MoneyTransaction);
-            await CurrentUser.UpdateUser();
+            try
+            {
+                CurrentUser.Money += MoneyTransaction;
+                MoneyFormat = CurrentUser.Money + " €";
+                await TransferRecord.AddTransferRecord(MoneyTransaction);
+                await CurrentUser.UpdateUser();
+            }
+            catch (DAOConnectionException e)
+            {
+                await _dialogService.ShowMessage(e.Message, e.Title);
+                CurrentUser.Money -= MoneyTransaction;
+                MoneyFormat = CurrentUser.Money + " €";
+            }
         }
 
 

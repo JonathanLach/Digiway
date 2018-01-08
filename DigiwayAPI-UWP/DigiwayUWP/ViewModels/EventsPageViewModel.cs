@@ -321,6 +321,7 @@ namespace DigiwayUWP.ViewModels
                 };
 
                 string actionDescription;
+                
 
                 if (EventSelected == null)
                 {
@@ -348,7 +349,12 @@ namespace DigiwayUWP.ViewModels
                 }
                 await ActionRecord.AddActionRecord(actionDescription);
                 _navigationService.NavigateTo("EventsListPage");
-            } catch (EventException e)
+            }
+            catch (EventException e)
+            {
+                await _dialogService.ShowMessage(e.Message, e.Title);
+            }
+            catch (DAOConnectionException e)
             {
                 await _dialogService.ShowMessage(e.Message, e.Title);
             }

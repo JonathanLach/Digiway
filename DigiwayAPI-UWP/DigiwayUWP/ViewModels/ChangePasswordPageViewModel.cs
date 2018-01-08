@@ -109,6 +109,10 @@ namespace DigiwayUWP.ViewModels
             {
                 await _dialogService.ShowMessage(e.Message, e.Title);
             }
+            catch (DAOConnectionException e)
+            {
+                await _dialogService.ShowMessage(e.Message, e.Title);
+            }
         }
 
         private void VerificationPasswords()

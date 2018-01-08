@@ -15,5 +15,6 @@ namespace DigiwayUWP.DAOInterfaces
         Task UpdateUser(User u);
 
         Task<User> getUserByUsername(string userName);
+        Task SetAuthentication(User u);
     }
 }

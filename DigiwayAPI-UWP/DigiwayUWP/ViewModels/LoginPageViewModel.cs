@@ -86,6 +86,8 @@ namespace DigiwayUWP.ViewModels
                 if (u.Password == hashedPassword)
                 {
                     User.CurrentUser = u;
+                    User.CurrentUser.Password = hashedPassword;
+                    await User.CurrentUser.SetAuthentication();
                     await ActionRecord.AddActionRecord("Logged in");
                     _navigationService.NavigateTo("MainPage");
                 }
@@ -93,6 +95,10 @@ namespace DigiwayUWP.ViewModels
                 {
                     throw new IncorrectPasswordException();
                 }
+            }
+            catch(DAOConnectionException e)
+            {
+                await _dialogService.ShowMessage(e.Message, e.Title);
             }
             catch (LoginException e)
             {

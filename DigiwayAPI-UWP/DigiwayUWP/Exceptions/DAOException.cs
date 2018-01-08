@@ -8,7 +8,7 @@ namespace DigiwayUWP.Exceptions
 {
     public class DAOException : Exception
     {
-        private string _title = "Data Access Error";
+        private string _title = "Service Error";
         public string Title
         {
             get { return _title; }

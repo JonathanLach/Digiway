@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using DigiwayWebapi.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DigiwayWebapi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class ProductsController : Controller
     {
