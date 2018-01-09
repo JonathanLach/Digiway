@@ -20,6 +20,8 @@ namespace DigiwayUWP.ViewModels
     public class LoginPageViewModel : ViewModelBase, INotifyPropertyChanged
     {
 
+        public static int organisatorAccess = 7;
+
         private string _login;
         public string Login
         {
@@ -85,11 +87,18 @@ namespace DigiwayUWP.ViewModels
                 User u = await User.GetUserByUsername(Login);
                 if (u.Password == hashedPassword)
                 {
-                    User.CurrentUser = u;
-                    User.CurrentUser.Password = hashedPassword;
-                    await User.CurrentUser.SetAuthentication();
-                    await ActionRecord.AddActionRecord("Logged in");
-                    _navigationService.NavigateTo("MainPage");
+                    if (u.AccessRights == organisatorAccess)
+                    {
+                        User.CurrentUser = u;
+                        User.CurrentUser.Password = hashedPassword;
+                        await User.CurrentUser.SetAuthentication();
+                        await ActionRecord.AddActionRecord("Logged in");
+                        _navigationService.NavigateTo("MainPage");
+                    }
+                    else
+                    {
+                        throw new AccessNotGrantedException();
+                    }
                 }
                 else
                 {

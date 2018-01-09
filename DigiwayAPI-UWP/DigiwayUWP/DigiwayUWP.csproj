@@ -110,6 +110,7 @@
     <Compile Include="DataAccessObjects\PurchaseRecordService.cs" />
     <Compile Include="DataAccessObjects\TransferRecordService.cs" />
     <Compile Include="DataAccessObjects\UserService.cs" />
+    <Compile Include="Exceptions\AccessNotGrantedException.cs" />
     <Compile Include="Exceptions\AnteriorEventDateException.cs" />
     <Compile Include="Exceptions\DAOConcurrencyException.cs" />
     <Compile Include="Exceptions\DAOConnectionException.cs" />
