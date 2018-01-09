@@ -354,7 +354,7 @@ namespace DigiwayUWP.ViewModels
             {
                 await _dialogService.ShowMessage(e.Message, e.Title);
             }
-            catch (DAOConnectionException e)
+            catch (DAOException e)
             {
                 await _dialogService.ShowMessage(e.Message, e.Title);
             }

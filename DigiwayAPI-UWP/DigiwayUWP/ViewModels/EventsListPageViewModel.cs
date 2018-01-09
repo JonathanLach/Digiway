@@ -181,9 +181,16 @@ namespace DigiwayUWP.ViewModels
                 {
                     if (confirmed)
                     {
-                        await EventSelected.DeleteEvent();
-                        await _dialogService.ShowMessage("Event Deleted!", "EventManager");
-                        _navigationService.NavigateTo("EventsListPage");
+                        try
+                        {
+                            await EventSelected.DeleteEvent();
+                            await _dialogService.ShowMessage("Event Deleted!", "EventManager");
+                            _navigationService.NavigateTo("EventsListPage");
+                        }
+                        catch (DAOConcurrencyException e)
+                        {
+                            await _dialogService.ShowMessage(e.Message, e.Title);
+                        }
                     }
                 });
             }

@@ -29,7 +29,11 @@ namespace DigiwayUWP.DataAccessObjects
 
         public async Task UpdatePOI(PointOfInterest poi)
         {
-            await ClientService.client.PutAsJsonAsync(poiURL, poi);
+            HttpResponseMessage responseMessage = await ClientService.client.PutAsJsonAsync(poiURL, poi);
+            if (responseMessage.StatusCode == HttpStatusCode.Conflict)
+            {
+                throw new DAOConcurrencyException();
+            }
         }
 
         public async Task<ObservableCollection<PointOfInterest>> GetPOIByEvent(Event e)
@@ -39,7 +43,11 @@ namespace DigiwayUWP.DataAccessObjects
 
         public async Task DeletePOI(PointOfInterest poi)
         {
-            await ClientService.client.DeleteAsync(poiPointOfInterestURL + poi.PointOfInterestId);
+            HttpResponseMessage responseMessage = await ClientService.client.DeleteAsync(poiPointOfInterestURL + poi.PointOfInterestId);
+            if (responseMessage.StatusCode == HttpStatusCode.Conflict)
+            {
+                throw new DAOConcurrencyException();
+            }
         }
     }
 }

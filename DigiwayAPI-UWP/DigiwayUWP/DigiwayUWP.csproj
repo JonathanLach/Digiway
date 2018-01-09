@@ -111,6 +111,7 @@
     <Compile Include="DataAccessObjects\TransferRecordService.cs" />
     <Compile Include="DataAccessObjects\UserService.cs" />
     <Compile Include="Exceptions\AnteriorEventDateException.cs" />
+    <Compile Include="Exceptions\DAOConcurrencyException.cs" />
     <Compile Include="Exceptions\DAOConnectionException.cs" />
     <Compile Include="Exceptions\DAOException.cs" />
     <Compile Include="Exceptions\EmptyFieldException.cs" />

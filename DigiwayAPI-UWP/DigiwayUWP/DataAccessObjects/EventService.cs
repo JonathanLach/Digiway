@@ -31,12 +31,20 @@ namespace DigiwayUWP.DataAccessObjects
 
         public async Task UpdateEvent(Event e)
         {
-            await ClientService.client.PutAsJsonAsync(eventURL, e);
+            HttpResponseMessage responseMessage = await ClientService.client.PutAsJsonAsync(eventURL, e);
+            if (responseMessage.StatusCode == HttpStatusCode.Conflict)
+            {
+                throw new DAOConcurrencyException();
+            }
         }
 
         public async Task DeleteEvent(Event e)
         {
-            await ClientService.client.DeleteAsync(eventDeleteURL + e.EventId);
+            HttpResponseMessage responseMessage = await ClientService.client.DeleteAsync(eventDeleteURL + e.EventId);
+            if (responseMessage.StatusCode == HttpStatusCode.Conflict)
+            {
+                throw new DAOConcurrencyException();
+            }
         }
 
         public async Task<ObservableCollection<Event>> GetEvents()
