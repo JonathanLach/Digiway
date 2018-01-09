@@ -33,12 +33,6 @@ namespace DigiwayWebapi.Controllers
                     .ToListAsync();
         }
 
-        /*[HttpGet("user/{username}", Name ="GetEventsByUsername")]
-        public async Task<IEnumerable<Event>> GetEventsByUserWithCompany([FromBody]User u)
-        {
-            var eventFound = await
-        }*/
-
         // GET api/values/5
         [HttpGet("id/{id}", Name = "GetEventById")]
         public async Task<IActionResult> GetEventById(long id)
