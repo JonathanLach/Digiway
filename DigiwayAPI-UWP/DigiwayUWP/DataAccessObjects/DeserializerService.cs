@@ -46,7 +46,6 @@ namespace DigiwayUWP.DataAccessObjects
 
         public static async Task CheckConnectivity()
         {
-
             HttpResponseMessage responseMessage = await ClientService.client.GetAsync(testConnectionURL);
             CheckServiceIsUp(responseMessage);
         }

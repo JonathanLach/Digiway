@@ -123,10 +123,28 @@ namespace DigiwayUWP.ViewModels
             {
                 if (_sendNotification == null)
                 {
-                    _sendNotification = new RelayCommand(() => SendEventNotification());
+                    _sendNotification = new RelayCommand(async () => await SendEventNotification());
                 }
                 return _sendNotification;
             }
+        }
+
+        public ICommand _goBack;
+        public ICommand GoBack
+        {
+            get
+            {
+                if (_goBack == null)
+                {
+                    _goBack = new RelayCommand(() => GoBackNavigation());
+                }
+                return _goBack;
+            }
+        }
+
+        public void GoBackNavigation()
+        {
+            _navigationService.GoBack();
         }
 
         public async Task SendEventNotification()

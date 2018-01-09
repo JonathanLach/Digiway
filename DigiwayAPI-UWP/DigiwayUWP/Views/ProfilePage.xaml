@@ -58,6 +58,8 @@
                 <Button Content="Withdraw" Command="{Binding WithdrawMoney}" HorizontalAlignment="Center" Width="100" Height="30" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
             </StackPanel>
             <Button Content="Change Password" HorizontalAlignment="Stretch" Grid.Column="3" Grid.Row="6"  Command="{Binding ChangePassword}" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
-        </Grid>
+            <Button Content="Back" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="7"  Command="{Binding GoBack}" BorderBrush="LightGray" Background="DarkGray"  BorderThickness="1"/>
+
+      </Grid>
     </Grid>
 </Page>

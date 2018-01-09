@@ -18,7 +18,6 @@ namespace DigiwayUWP.DataAccessObjects
     {
         private static string userURL = "api/users";
         private static string userByNicknameURL = userURL + "/username/";
-        private static string companiesByUserURL = "api/companies/user";
         private static string tokenURL = "token";
 
         public async Task<ObservableCollection<User>> GetUsers()
@@ -28,7 +27,11 @@ namespace DigiwayUWP.DataAccessObjects
 
         public async Task UpdateUser(User u)
         {
-            await ClientService.client.PutAsJsonAsync(userURL, u);
+            HttpResponseMessage responseMessage = await ClientService.client.PutAsJsonAsync(userURL, u);
+            if (responseMessage.StatusCode == HttpStatusCode.Conflict)
+            {
+                throw new DAOConcurrencyException();
+            }
         }
 
         public async Task<User> getUserByUsername(string userName)

@@ -207,6 +207,8 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
+
+
         private ICommand _getPOIView;
         public ICommand GetPOIView
         {

@@ -97,6 +97,24 @@ namespace DigiwayUWP.ViewModels
             }
         }
 
+        public ICommand _goBack;
+        public ICommand GoBack
+        {
+            get
+            {
+                if (_goBack == null)
+                {
+                    _goBack = new RelayCommand(() => GoBackNavigation());
+                }
+                return _goBack;
+            }
+        }
+
+        public void GoBackNavigation()
+        {
+            _navigationService.GoBack();
+        }
+
         private ICommand _withdrawMoney;
         public ICommand WithdrawMoney
         {
@@ -112,39 +130,68 @@ namespace DigiwayUWP.ViewModels
 
         public async Task Withdraw()
         {
-            try
-            {
-                if (CurrentUser.Money - MoneyTransaction >= 0)
-                {
-                    CurrentUser.Money -= MoneyTransaction;
-                    MoneyFormat = CurrentUser.Money + " €";
-                    await TransferRecord.AddTransferRecord(-MoneyTransaction);
-                    await CurrentUser.UpdateUser();
-                }
-            }
-            catch (DAOConnectionException e)
-            {
-                await _dialogService.ShowMessage(e.Message, e.Title);
-                CurrentUser.Money += MoneyTransaction;
-                MoneyFormat = CurrentUser.Money + " €";
-            }
+
+            await _dialogService.ShowMessage("Are you sure you want to withdraw money?",
+               "Confirmation",
+               buttonConfirmText: "Yes", buttonCancelText: "No",
+               afterHideCallback: async (confirmed) =>
+               {
+                   if (confirmed)
+                   {
+                       try
+                       {
+
+                           if(CurrentUser.Money - MoneyTransaction < 0)
+                           {
+                               throw new NotEnoughMoneyException();
+                           }
+
+                            CurrentUser.Money -= MoneyTransaction;
+                            MoneyFormat = CurrentUser.Money + " €";
+                            await TransferRecord.AddTransferRecord(-MoneyTransaction);
+                            await CurrentUser.UpdateUser();
+                            await _dialogService.ShowMessage("You withdrawed money from your user account", "Money Transfer");
+                       }
+                       catch (DAOException e)
+                       {
+                           await _dialogService.ShowMessage(e.Message, e.Title);
+                           CurrentUser.Money += MoneyTransaction;
+                           MoneyFormat = CurrentUser.Money + " €";
+                       }
+                       catch (NotEnoughMoneyException e)
+                       {
+                           await _dialogService.ShowMessage(e.Message, e.Title);
+                       }
+                   }
+               });
         }
 
         public async Task Deposit()
         {
-            try
+            await _dialogService.ShowMessage("Are you sure you want to deposit money?",
+            "Confirmation",
+            buttonConfirmText: "Yes", buttonCancelText: "No",
+            afterHideCallback: async (confirmed) =>
             {
-                CurrentUser.Money += MoneyTransaction;
-                MoneyFormat = CurrentUser.Money + " €";
-                await TransferRecord.AddTransferRecord(MoneyTransaction);
-                await CurrentUser.UpdateUser();
-            }
-            catch (DAOConnectionException e)
-            {
-                await _dialogService.ShowMessage(e.Message, e.Title);
-                CurrentUser.Money -= MoneyTransaction;
-                MoneyFormat = CurrentUser.Money + " €";
-            }
+                if (confirmed)
+                {
+
+                    try
+                    {
+                        CurrentUser.Money += MoneyTransaction;
+                        MoneyFormat = CurrentUser.Money + " €";
+                        await TransferRecord.AddTransferRecord(MoneyTransaction);
+                        await CurrentUser.UpdateUser();
+                            await _dialogService.ShowMessage("You have made a deposit to your user account", "Money Transfer");
+                    }
+                    catch (DAOException e)
+                    {
+                        await _dialogService.ShowMessage(e.Message, e.Title);
+                        CurrentUser.Money -= MoneyTransaction;
+                        MoneyFormat = CurrentUser.Money + " €";
+                    }
+                }
+            });
         }
 
 

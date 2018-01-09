@@ -126,6 +126,7 @@
     <Compile Include="Exceptions\NoPushpinFoundException.cs" />
     <Compile Include="Exceptions\NotBelgianEventException.cs" />
     <Compile Include="Exceptions\NotCreatedEventException.cs" />
+    <Compile Include="Exceptions\NotEnoughMoneyException.cs" />
     <Compile Include="Exceptions\PasswordChangeException.cs" />
     <Compile Include="Exceptions\PushpinTitleTakenException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
@@ -169,7 +170,6 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NativeTypeConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ActionRecordsPageViewModel.cs" />
     <Compile Include="ViewModels\AnalyticsPageViewModel.cs" />

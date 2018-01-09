@@ -1,6 +1,7 @@
 ﻿using DigiwayUWP.Exceptions;
 using DigiwayUWP.Models;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Windows.UI.Xaml.Navigation;
 
 namespace DigiwayUWP.ViewModels
@@ -63,6 +65,24 @@ namespace DigiwayUWP.ViewModels
                     RaisePropertyChanged("TransferRecords");
                 }
             }
+        }
+
+        public ICommand _goBack;
+        public ICommand GoBack
+        {
+            get
+            {
+                if (_goBack == null)
+                {
+                    _goBack = new RelayCommand(() => GoBackNavigation());
+                }
+                return _goBack;
+            }
+        }
+
+        public void GoBackNavigation()
+        {
+            _navigationService.GoBack();
         }
 
         private INavigationService _navigationService;
