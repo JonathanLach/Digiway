@@ -15,19 +15,18 @@ namespace DigiwayWebapi.Controllers
     public class TokenController : Controller
     {
         [HttpPost]
-        public IActionResult Create(string username, string password)
+        public IActionResult Create([FromBody]TokenRequest tr)
         {
-            if (IsValidUserAndPasswordCombination(username, password))
+            if (IsValidUserAndPasswordCombination(tr.Username, tr.Password))
             {
-                Token newToken2 = new Token()
+                Token newToken = new Token()
                 {
-                    TokenValue = GenerateToken(username)
+                    TokenValue = GenerateToken(tr.Username)
                 };
-                return new ObjectResult(newToken2);
+                return new ObjectResult(newToken);
             
             }
-            Token newToken = new Token() { TokenValue = GenerateToken("test") };
-            return new ObjectResult(newToken);
+            return BadRequest();
         }
 
         private bool IsValidUserAndPasswordCombination(string username, string password)
