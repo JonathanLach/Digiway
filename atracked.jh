@@ -1,0 +1,108 @@
+entity Driver {
+	login String required
+    password String required
+    phoneId Long
+    confirmed Boolean required
+    createdOn LocalDate required
+    modifiedOn Instant required
+    firstName String required
+    lastName String required
+    gender String required
+    phoneNumber String required
+    active Boolean required
+    legalStatus String required
+}
+
+entity Address {
+	number Integer required
+    streetName String required
+    zip String required
+    country String required
+}
+
+entity Document {
+	content String required
+    expirationDate LocalDate required
+}
+
+entity Area {
+	areaName String required
+}
+
+entity Company {
+	companyName String required
+    tva String required
+    active Boolean required
+    createdOn LocalDate required
+    createdBy String required
+    modifiedOn Instant required
+    modifiedBy String required    
+}
+
+entity Shipment {
+	shipmentType String required
+    pickupDate LocalDate required
+    deliveryDate LocalDate required
+    deliveredOn LocalDate required
+    pickupSignature String required
+    deliverySignature String required
+    pickupComment String
+    deliveryComment String
+}
+
+entity ShipItem {
+	name String required
+    quantity Integer required
+}
+
+entity Vehicle {
+	vehiclePlate String required
+	model String required
+	brand String required
+    
+}
+
+entity DriverCompany {
+	active Boolean required
+    function String required
+}
+
+relationship OneToOne {
+	Driver{address} to Address
+}
+
+relationship OneToOne {
+	DriverCompany{driver} to Driver
+}
+
+relationship OneToOne {
+	DriverCompany{company} to Company
+}
+
+relationship OneToOne {
+	Driver{vehicle} to Vehicle
+}
+
+relationship OneToMany{
+	Document{driver} to Driver
+}
+
+relationship OneToMany {
+	Shipment{driver} to Driver
+}
+
+relationship OneToMany {
+	ShipItem{shipment} to Shipment
+}
+
+relationship OneToMany {
+	Shipment{pickupAddress} to Address
+}
+
+relationship OneToMany {
+	Shipment{deliveryAddress} to Address
+}
+
+relationship OneToMany {
+	Driver{area} to Area
+}
