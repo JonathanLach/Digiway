@@ -20,6 +20,7 @@ namespace DigiwayWebapi.Models
         }
         public DbSet<ActionRecord> ActionRecords { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<Location> Locations { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventCategory> EventCategories { get; set; }
         public DbSet<PointOfInterest> PointsOfInterest { get; set; }

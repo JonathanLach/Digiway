@@ -28,9 +28,29 @@ namespace DigiwayWebapi.Controllers
         {
             return await _context.Events
                     .Include(ec => ec.EventCategory)
+                    .Include(ec => ec.Location)
                     .Include(poi => poi.PointsOfInterest)
                     .Include(c => c.Company)
                     .ToListAsync();
+        }
+
+        [HttpPut("idList")]
+        public async Task<IEnumerable<Event>> Get([FromBody]List<IdFilter> ids) {
+            List<Event> events = new List<Event>();
+            foreach(IdFilter id in ids) {
+                var existingEvent = await _context.Events
+                                    .Include(ec => ec.EventCategory)
+                                    .Include(ec => ec.Location)
+                                    .Include(poi => poi.PointsOfInterest)
+                                    .Include(c => c.Company)
+                                    .Where(ev => ev.EventId == id.Id)
+                                    .FirstOrDefaultAsync();
+                if(existingEvent != null)
+                {
+                    events.Add(existingEvent);
+                }
+            }
+            return events;
         }
 
         // GET api/values/5

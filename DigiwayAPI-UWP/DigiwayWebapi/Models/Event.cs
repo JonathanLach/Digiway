@@ -27,6 +27,11 @@ namespace DigiwayWebapi.Models
         public long EventCategoryId { get; set; }
         public virtual EventCategory EventCategory { get; set; }
 
+        public long LocationId { get; set; }
+        public virtual Location Location { get; set; }
+
+
+
         public virtual ICollection<PointOfInterest> PointsOfInterest { get; set; }
         public virtual ICollection<PurchaseRecord> PurchaseRecords { get; set; }
 

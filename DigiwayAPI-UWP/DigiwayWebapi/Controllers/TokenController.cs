@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DigiwayWebapi.Controllers
 {
-    [Route("token")]
+    [Route("api/token")]
     public class TokenController : Controller
     {
         [HttpPost]

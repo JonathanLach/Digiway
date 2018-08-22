@@ -17,7 +17,7 @@ namespace DigiwayDBGenerator
         {
             string deleteFriendship = "CREATE TRIGGER digiway.cascadeFriendship ON digiway.Users AFTER DELETE AS DELETE FROM digiway.Friendships WHERE FriendUserId IS NULL;";
             DbContextOptionsBuilder builder = new DbContextOptionsBuilder();
-            DbContextOptions options = builder.UseSqlServer("Server=tcp:digiway.database.windows.net,1433;Initial Catalog=Digiway;Persist Security Info=False;User ID=jlachapelle;Password=ig2017Digiway;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;").Options;
+            DbContextOptions options = builder.UseSqlServer("Server=tcp:digiway.database.windows.net,1433;Initial Catalog=digiway;Persist Security Info=False;User ID=jlachapelle;Password=Mobile2018;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;").Options;
             _context = new DigiwayContext(options);
             _context.Database.EnsureDeleted();
             _context.Database.EnsureCreated();
@@ -112,6 +112,46 @@ namespace DigiwayDBGenerator
             _context.EventCategories.Add(new EventCategory()
             {
                 Name = "Convention"
+            });
+
+            Collection<PointOfInterest> pointsOfInterest = new Collection<PointOfInterest>();
+
+            PointOfInterest poi1 = new PointOfInterest()
+            {
+                Name = "Food stand",
+                Description = "For food",
+                Longitude = 44.23,
+                Latitude = 45.02,
+            };
+            PointOfInterest poi2 = new PointOfInterest()
+            {
+                Name = "Food stand",
+                Description = "For food",
+                Longitude = 43.23,
+                Latitude = 46.02,
+            };
+            pointsOfInterest.Add(poi1);
+            pointsOfInterest.Add(poi2);
+
+            Location location = new Location()
+            {
+                Latitude = 45.02,
+                Longitude = 43.23,
+            };
+
+            _context.Events.Add(new Event()
+            {
+                Name = "JonathanFest",
+                Address = "45 rue du hameau",
+                ZIP = "6000",
+                City = "Charleroi",
+                EventDate = new DateTime(),
+                Location = location,
+                TicketPrice = 10.02M,
+                Description = "Pour les meilleurs",
+                Company = testCompany,
+                EventCategory = testEventCateg,
+                PointsOfInterest = pointsOfInterest
             });
             _context.ProductCategories.Add(testProdCateg);
             _context.Products.Add(testProduct);

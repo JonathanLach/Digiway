@@ -29,16 +29,39 @@ namespace DigiwayWebapi.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("username/{userName}")]
-        public async Task<IActionResult> GetByUsername(string userName)
+        [HttpGet("username/{username}")]
+        public async Task<IActionResult> GetByUsername(String username)
         {
-            var existingUser = await _context.Users.Where(u=> u.Login == userName)
+            var existingUser = await _context.Users.Where(u => u.Login.Equals(username))
                                                     .Include(uc => uc.Companies)
                                                     .ThenInclude(c => c.Company)
                                                     .FirstOrDefaultAsync();
             if (existingUser == null)
             {
                 return NotFound();
+            }
+            existingUser.Password = "";
+            return new ObjectResult(existingUser);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("login/{username}")]
+        public async Task<IActionResult> Login(String username, [FromHeader(Name = "password")] String password)
+        {
+            var existingUser = await _context.Users.Where(u=> u.Login == username)
+                                                    .Include(uc => uc.Companies)
+                                                    .ThenInclude(c => c.Company)
+                                                    .FirstOrDefaultAsync();
+            if (existingUser == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                if (!BCrypt.Net.BCrypt.Verify(password, existingUser.Password))
+                {
+                    return StatusCode((int)HttpStatusCode.Conflict);
+                }
             }
             return new ObjectResult(existingUser);
         }
@@ -60,8 +83,10 @@ namespace DigiwayWebapi.Controllers
 
         // POST api/values
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Post([FromBody]User u)
         {
+            u.Password = BCrypt.Net.BCrypt.HashPassword(u.Password);
             if (!ModelState.IsValid || u == null)
             {
                 return BadRequest();
